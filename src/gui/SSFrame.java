@@ -2,7 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class SSFrame extends JFrame {
@@ -25,7 +28,7 @@ public class SSFrame extends JFrame {
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 		
-		setSize(3 * screenWidth / 4, 3 * screenHeight / 4);
+		setSize(screenWidth * 3/4,screenHeight * 3/4);
 		setTitle("Studentska Služba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -33,7 +36,7 @@ public class SSFrame extends JFrame {
 		SSMenuBar menu = new SSMenuBar();
 		this.setJMenuBar(menu);
 		
-		SSToolBar toolbar = new SSToolBar();
+		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		
 
@@ -44,6 +47,21 @@ public class SSFrame extends JFrame {
 			instance = new SSFrame();
 		}
 		return instance;
+	}
+	
+	/**REFERENCA: Vezbe 05 projekat MVCExample funkcija za skaliranje ikonica */
+	protected static ImageIcon createImageIcon(String path, boolean scaleImage, int width, int height) {
+		if (scaleImage) {
+			// how to scale image
+			ImageIcon imageIcon = new ImageIcon(path); // load the image to a imageIcon
+			Image image = imageIcon.getImage(); // transform it
+			Image newimg = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+			imageIcon = new ImageIcon(newimg); // transform it back
+			return imageIcon;
+
+		} else {
+			return new ImageIcon(path);
+		}
 	}
 
 }
