@@ -1,13 +1,13 @@
 package main;
 
-import gui.SSFrame;
+import gui.Frame;
 
 public class Main {
 
 	public static void main(String[] args) {
 
 		
-		SSFrame studentskaSluzba = SSFrame.getInstance();
+		Frame studentskaSluzba = Frame.getInstance();
 		studentskaSluzba.setVisible(true);
 		
 		

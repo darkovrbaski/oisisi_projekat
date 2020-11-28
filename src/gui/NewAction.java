@@ -16,7 +16,7 @@ public class NewAction extends AbstractAction {
 	public NewAction() {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_A);
 		putValue(SHORT_DESCRIPTION, "Dodaj");
-		putValue(SMALL_ICON, SSFrame.createImageIcon("Images/iconmonstr-plus-2-12.png", true, 20, 20));
+		putValue(SMALL_ICON, Frame.createImageIcon("Images/iconmonstr-plus-2-12.png", true, 20, 20));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
 	}
 	

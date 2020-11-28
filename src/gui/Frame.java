@@ -8,16 +8,16 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class SSFrame extends JFrame {
+public class Frame extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 780842779808006261L;
 	
-	private static SSFrame instance = null;
+	private static Frame instance = null;
 	
-	private SSFrame() {
+	private Frame() {
 		initialise();
 	}
 	
@@ -29,24 +29,27 @@ public class SSFrame extends JFrame {
 		int screenWidth = screenSize.width;
 		
 		setSize(screenWidth * 3/4,screenHeight * 3/4);
-		setTitle("Studentska Slu≈æba");
+		setTitle("Studentska Sluûba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
-		SSMenuBar menu = new SSMenuBar();
+		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
 		
 		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		
 		TabbedPanel tabbedpan = new TabbedPanel();
-		this.add(tabbedpan, BorderLayout.CENTER);		
+		this.add(tabbedpan, BorderLayout.CENTER);
+		
+		StatusBar statusbar = new StatusBar();
+		this.add(statusbar, BorderLayout.SOUTH);
 
 	}
 	
-	public static SSFrame getInstance() {
+	public static Frame getInstance() {
 		if(instance == null) {
-			instance = new SSFrame();
+			instance = new Frame();
 		}
 		return instance;
 	}

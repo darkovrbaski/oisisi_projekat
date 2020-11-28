@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-public class SSMenuBar extends JMenuBar {
+public class MenuBar extends JMenuBar {
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class SSMenuBar extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 	
 	
-	public SSMenuBar() {
+	public MenuBar() {
 		
 		
 		// File Sekcija
@@ -63,9 +63,9 @@ public class SSMenuBar extends JMenuBar {
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		
 		
-		add(file);
-		add(edit);
-		add(help);
+		this.add(file);
+		this.add(edit);
+		this.add(help);
 		
 		
 		
