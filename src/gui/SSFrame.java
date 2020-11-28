@@ -39,6 +39,8 @@ public class SSFrame extends JFrame {
 		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		
+		TabbedPanel tabbedpan = new TabbedPanel();
+		this.add(tabbedpan, BorderLayout.CENTER);		
 
 	}
 	
