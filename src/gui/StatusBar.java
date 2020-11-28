@@ -3,6 +3,8 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -42,7 +44,7 @@ public class StatusBar extends JPanel {
 	}
 	
 	
-	/**REFERENCA: https://www.youtube.com/watch?v=tpQAslXjNKU&ab_channel=ProgrammingKnowledge  Prilagodjeno kod projektu */
+	/**REFERENCA: https://www.youtube.com/watch?v=tpQAslXjNKU&ab_channel=ProgrammingKnowledge, https://www.javatpoint.com/java-get-current-date   Prilagodjen kod projektu */
 	public void clock(JLabel jl) {
 		
 		Thread clock = new Thread() {
@@ -52,16 +54,10 @@ public class StatusBar extends JPanel {
 				try {
 					
 					while(true) {
-					Calendar cal = new GregorianCalendar();
-					int day= cal.get(Calendar.DAY_OF_MONTH);
-					int month= cal.get(Calendar.MONTH);
-					int year= cal.get(Calendar.YEAR);
-					
-					int second= cal.get(Calendar.SECOND);
-					int minute= cal.get(Calendar.MINUTE);
-					int hour= cal.get(Calendar.HOUR); 
-					
-					jl.setText(""+hour+":"+minute+":"+second+"  "+day+"."+month+"."+year);
+					   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss   dd.MM.yyyy");
+					   LocalDateTime now = LocalDateTime.now();
+					 
+					   jl.setText(dtf.format(now));
 					
 					
 					sleep(1000);
@@ -80,5 +76,9 @@ public class StatusBar extends JPanel {
 	
 	
 }
+
+
+
+
 
 
