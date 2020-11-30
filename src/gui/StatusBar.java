@@ -54,7 +54,7 @@ public class StatusBar extends JPanel {
 				try {
 					
 					while(true) {
-					   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss   dd.MM.yyyy");
+					   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss   dd.MM.yyyy.");
 					   LocalDateTime now = LocalDateTime.now();
 					 
 					   jl.setText(dtf.format(now));

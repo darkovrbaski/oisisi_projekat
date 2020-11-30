@@ -16,7 +16,7 @@ public class EditAction extends AbstractAction {
 	public EditAction() {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_B);
 		putValue(SHORT_DESCRIPTION, "Izmeni");
-		putValue(SMALL_ICON, Frame.createImageIcon("Images/iconmonstr-edit-9-12.png", true, 20, 20));
+		putValue(SMALL_ICON, Frame.createImageIcon("Images/largerIcon/iconmonstr-edit-9-24.png", true, 20, 20));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_MASK));
 	}
 	
