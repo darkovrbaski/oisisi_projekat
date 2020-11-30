@@ -28,22 +28,25 @@ public class ToolBar extends JToolBar {
 		NewAction na = new NewAction();
 		JButton newBtn = new JButton(na);
 		newBtn.setOpaque(false);
+		newBtn.setBorder(null);
 		this.add(newBtn);
 		
-		this.addSeparator(new Dimension(8, 0));
+		this.addSeparator(new Dimension(10, 0));
 		
 		// Edit sekcija
 		EditAction ea = new EditAction();
 		JButton editBtn = new JButton(ea);
 		editBtn.setOpaque(false);
+		editBtn.setBorder(null);
 		this.add(editBtn);
 		
-		this.addSeparator(new Dimension(8, 0));
+		this.addSeparator(new Dimension(10, 0));
 		
 		// Remove sekcija
 		DeleteAction da = new DeleteAction();
 		JButton deleteBtn = new JButton(da);
 		deleteBtn.setOpaque(false);
+		deleteBtn.setBorder(null);
 		this.add(deleteBtn);
 		
 		// Search field sekcija
@@ -61,6 +64,7 @@ public class ToolBar extends JToolBar {
 		SearchAction sa = new SearchAction();
 		JButton searchBtn = new JButton(sa);
 		searchBtn.setOpaque(false);
+		searchBtn.setBorder(null);
 		this.add(searchBtn);
 		
 		this.addSeparator(new Dimension(10, 0));
