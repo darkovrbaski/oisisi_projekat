@@ -1,12 +1,15 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 
@@ -29,7 +32,10 @@ public class Frame extends JFrame {
 		int screenWidth = screenSize.width;
 		
 		setSize(screenWidth * 3/4,screenHeight * 3/4);
-		setTitle("Studentska Sluûba");
+		ImageIcon imageIcon = new ImageIcon("Images/iconmonstr-school-21-240.png");
+		Image image = imageIcon.getImage();
+		setIconImage(image);
+		setTitle("Studentska Slu≈æba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
@@ -39,8 +45,16 @@ public class Frame extends JFrame {
 		ToolBar toolbar = new ToolBar();
 		this.add(toolbar, BorderLayout.NORTH);
 		
+		JPanel pan = new JPanel();
+		pan.setLayout(new BorderLayout());
+		pan.setBackground(new java.awt.Color(209, 224, 240));
+		pan.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
+		
 		TabbedPanel tabbedpan = new TabbedPanel();
-		this.add(tabbedpan, BorderLayout.CENTER);
+		
+		pan.add(tabbedpan, BorderLayout.CENTER);
+		
+		this.add(pan, BorderLayout.CENTER);
 		
 		StatusBar statusbar = new StatusBar();
 		this.add(statusbar, BorderLayout.SOUTH);

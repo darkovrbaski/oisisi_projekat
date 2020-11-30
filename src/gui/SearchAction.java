@@ -13,7 +13,10 @@ public class SearchAction extends AbstractAction {
 
 	public SearchAction() {
 		putValue(SHORT_DESCRIPTION, "Pretraži");
-		putValue(SMALL_ICON, Frame.createImageIcon("Images/largerIcon/iconmonstr-magnifier-4-24.png", true, 20, 20));
+
+
+		putValue(SMALL_ICON, Frame.createImageIcon("Images/iconmonstr-magnifier-4-32.png", true, 20, 20));
+		
 	}
 	
 	@Override

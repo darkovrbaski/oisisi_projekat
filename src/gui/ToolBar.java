@@ -20,20 +20,33 @@ public class ToolBar extends JToolBar {
 		
 		super(SwingConstants.HORIZONTAL);
 		setFloatable(false);
+		this.setBackground(new java.awt.Color(225, 230, 246));
+		
+		this.addSeparator(new Dimension(10, 0));
 		
 		// New sekcija
 		NewAction na = new NewAction();
 		JButton newBtn = new JButton(na);
+		newBtn.setOpaque(false);
+		newBtn.setBorder(null);
 		this.add(newBtn);
+		
+		this.addSeparator(new Dimension(10, 0));
 		
 		// Edit sekcija
 		EditAction ea = new EditAction();
 		JButton editBtn = new JButton(ea);
+		editBtn.setOpaque(false);
+		editBtn.setBorder(null);
 		this.add(editBtn);
+		
+		this.addSeparator(new Dimension(10, 0));
 		
 		// Remove sekcija
 		DeleteAction da = new DeleteAction();
 		JButton deleteBtn = new JButton(da);
+		deleteBtn.setOpaque(false);
+		deleteBtn.setBorder(null);
 		this.add(deleteBtn);
 		
 		// Search field sekcija
@@ -41,7 +54,7 @@ public class ToolBar extends JToolBar {
 		rightPan.setOpaque(false);
 		
 		JTextField searchField = new JTextField();
-		searchField.setPreferredSize(new Dimension(250, 28));
+		searchField.setPreferredSize(new Dimension(250, 25));
 		searchField.setToolTipText("Polje za unos pretrage");
 		rightPan.add(searchField);
 		
@@ -50,6 +63,10 @@ public class ToolBar extends JToolBar {
 		// Search button sekcija
 		SearchAction sa = new SearchAction();
 		JButton searchBtn = new JButton(sa);
-		this.add(searchBtn);	
+		searchBtn.setOpaque(false);
+		searchBtn.setBorder(null);
+		this.add(searchBtn);
+		
+		this.addSeparator(new Dimension(10, 0));
 	}
 }
