@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,13 +20,14 @@ public class StatusBar extends JPanel {
 
 	        setLayout(new BorderLayout());
 	        setPreferredSize(new Dimension(getWidth(), 23));
+	        this.setBackground(java.awt.Color.WHITE);
 
 	        // Left Panel
 	        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEADING, 5, 3));
 	        leftPanel.setOpaque(false);
 	        add(leftPanel, BorderLayout.WEST);
 	        
-	        JLabel leftLabel = new JLabel("Studentska Sluûba");
+	        JLabel leftLabel = new JLabel("Studentska Slu≈æba");
 	        leftPanel.add(leftLabel);
 	        
 	        

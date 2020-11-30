@@ -16,7 +16,7 @@ public class DeleteAction extends AbstractAction {
 	public DeleteAction() {
 		putValue(MNEMONIC_KEY, KeyEvent.VK_C);
 		putValue(SHORT_DESCRIPTION, "Obriši");
-		putValue(SMALL_ICON, Frame.createImageIcon("Images/largerIcon/iconmonstr-folder-26-24.png", true, 20, 20));
+		putValue(SMALL_ICON, Frame.createImageIcon("Images/iconmonstr-trash-can-27-32.png", true, 20, 20));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
 	}
 	
