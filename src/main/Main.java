@@ -1,15 +1,14 @@
 package main;
 
+import gui.Frame;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		
-		SSFrame studentskaSluzba = new SSFrame();
+		Frame studentskaSluzba = Frame.getInstance();
 		studentskaSluzba.setVisible(true);
 		
-		
 	}
-	
 
 }
