@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -66,7 +66,7 @@ public class ToolBar extends JToolBar {
 		searchBtn.setOpaque(false);
 		searchBtn.setBorder(null);
 		this.add(searchBtn);
-		
+
 		this.addSeparator(new Dimension(10, 0));
 	}
 }

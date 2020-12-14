@@ -1,7 +1,8 @@
-package gui;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -22,8 +23,8 @@ public class MenuBar extends JMenuBar {
 		
 		// File Sekcija
 		JMenu file = new JMenu("File");
-		JMenuItem miNew = new JMenuItem("New", new ImageIcon("Images/iconmonstr-plus-2-12.png"));
-		JMenuItem miClose = new JMenuItem("Close", new ImageIcon("Images/iconmonstr-x-mark-1-12.png"));
+		JMenuItem miNew = new JMenuItem("New", new ImageIcon("Images" + File.separator + "iconmonstr-plus-2-12.png"));
+		JMenuItem miClose = new JMenuItem("Close", new ImageIcon("Images" + File.separator + "iconmonstr-x-mark-1-12.png"));
 		
 		file.add(miNew);
 		file.addSeparator();
@@ -37,8 +38,8 @@ public class MenuBar extends JMenuBar {
 		
 		// Edit Sekcija
 		JMenu edit  = new JMenu("Edit");
-		JMenuItem miEdit = new JMenuItem("Edit", new ImageIcon("Images/iconmonstr-edit-9-12.png"));
-		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("Images/iconmonstr-folder-26-12.png"));
+		JMenuItem miEdit = new JMenuItem("Edit", new ImageIcon("Images" + File.separator + "iconmonstr-edit-9-12.png"));
+		JMenuItem miDelete = new JMenuItem("Delete", new ImageIcon("Images" + File.separator + "iconmonstr-folder-26-12.png"));
 		
 		edit.add(miEdit);
 		edit.addSeparator();
@@ -51,8 +52,8 @@ public class MenuBar extends JMenuBar {
 		
 		// Help Sekcija
 		JMenu help = new JMenu("Help");
-		JMenuItem miHelp = new JMenuItem("Help", new ImageIcon("Images/iconmonstr-help-3-12.png"));
-		JMenuItem miAbout = new JMenuItem("About", new ImageIcon("Images/iconmonstr-pen-4-12.png"));
+		JMenuItem miHelp = new JMenuItem("Help", new ImageIcon("Images" + File.separator + "iconmonstr-help-3-12.png"));
+		JMenuItem miAbout = new JMenuItem("About", new ImageIcon("Images" + File.separator + "iconmonstr-pen-4-12.png"));
 		
 		help.add(miHelp);
 		help.addSeparator();
