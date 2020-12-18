@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -47,15 +46,10 @@ public class Frame extends JFrame {
 
 		JPanel pan = new JPanel();
 		pan.setLayout(new BorderLayout());
-		pan.setBackground(new java.awt.Color(209, 224, 240));
-		pan.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.LIGHT_GRAY));
-
+		pan.setBackground(Color.WHITE);
 		TabbedPanel tabbedpan = new TabbedPanel();
-
 		pan.add(tabbedpan, BorderLayout.CENTER);
-
 		this.add(pan, BorderLayout.CENTER);
-
 		StatusBar statusbar = new StatusBar();
 		this.add(statusbar, BorderLayout.SOUTH);
 	}
