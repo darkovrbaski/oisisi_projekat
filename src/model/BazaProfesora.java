@@ -57,9 +57,9 @@ public class BazaProfesora {
 		case 1:
 			return profesor.getPrezime();
 		case 2:
-			return profesor.getTitula();
+			return profesor.getTitula().toString();
 		case 3:
-			return profesor.getZvanje();
+			return profesor.getZvanje().toString();
 		default:
 			return null;
 		}

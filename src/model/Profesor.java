@@ -1,9 +1,12 @@
 package model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Profesor {
-
+	
+	public enum Titula { ProfDr, Dr, Ms };
+	public enum Zvanje { Asistent, Docent, VanredniProfesor, RedovniProfesor };
+	
 	private String prezime;
 	private String ime;
 	private String datumRodjenja;
@@ -12,27 +15,16 @@ public class Profesor {
 	private String eMail;
 	private String adresaKancelarije;
 	private String brojLicne;
-	private String titula;
-	private String zvanje;
-	private List<Predmet> spisakPredmeta;
+	private Titula titula;
+	private Zvanje zvanje;
+	private ArrayList<Predmet> spisakPredmeta;
 
 	public Profesor() {
 		super();
-		this.prezime = "";
-		this.ime = "";
-		this.datumRodjenja = "";
-		this.adresa = "";
-		this.telefon = "";
-		this.eMail = "";
-		this.adresaKancelarije = "";
-		this.brojLicne = "";
-		this.titula = "";
-		this.zvanje = "";
-		this.spisakPredmeta = null;
 	}
 
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresa, String telefon, String eMail,
-			String adresaKancelarije, String brojLicne, String titula, String zvanje, List<Predmet> spisakPredmeta) {
+			String adresaKancelarije, String brojLicne, Titula titula, Zvanje zvanje, ArrayList<Predmet> spisakPredmeta) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -111,27 +103,27 @@ public class Profesor {
 		this.brojLicne = brojLicne;
 	}
 
-	public String getTitula() {
+	public Titula getTitula() {
 		return titula;
 	}
 
-	public void setTitula(String titula) {
+	public void setTitula(Titula titula) {
 		this.titula = titula;
 	}
 
-	public String getZvanje() {
+	public Zvanje getZvanje() {
 		return zvanje;
 	}
 
-	public void setZvanje(String zvanje) {
+	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
 
-	public List<Predmet> getSpisakPredmeta() {
+	public ArrayList<Predmet> getSpisakPredmeta() {
 		return spisakPredmeta;
 	}
 
-	public void setSpisakPredmeta(List<Predmet> spisakPredmeta) {
+	public void setSpisakPredmeta(ArrayList<Predmet> spisakPredmeta) {
 		this.spisakPredmeta = spisakPredmeta;
 	}
 
