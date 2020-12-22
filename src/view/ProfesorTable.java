@@ -13,12 +13,15 @@ public class ProfesorTable extends JTable {
 	 * 
 	 */
 	private static final long serialVersionUID = -500762274265898052L;
+	
+	public static JTable tabelaProfesora;
 
 	public ProfesorTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesori());
+		tabelaProfesora = this;
 	}
 
 	@Override
@@ -30,6 +33,11 @@ public class ProfesorTable extends JTable {
 			c.setBackground(Color.WHITE);
 		}
 		return c;
+	}
+	
+	public static void azurirajPrikazProfesora() {
+		AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
+		model.fireTableDataChanged();
 	}
 
 }

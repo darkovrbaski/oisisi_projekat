@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Profesor {
 	
-	public enum Titula { ProfDr, Dr, Ms };
+	public enum Titula { DoktorProfesor, Doktor, Master };
 	public enum Zvanje { Asistent, Docent, VanredniProfesor, RedovniProfesor };
 	
 	private String prezime;

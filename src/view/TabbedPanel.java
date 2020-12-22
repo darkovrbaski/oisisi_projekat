@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class TabbedPanel extends JTabbedPane {
 
@@ -16,6 +18,8 @@ public class TabbedPanel extends JTabbedPane {
 	 */
 	private static final long serialVersionUID = 9109758071824258550L;
 
+	public static int currentTab = 0;
+	
 	public TabbedPanel() {
 
 		// Student sekcija
@@ -40,6 +44,15 @@ public class TabbedPanel extends JTabbedPane {
 		JLabel todoPd = new JLabel("TODO: prikaz entiteta predmet");
 		predmetTab.add(todoPd);
 		this.addTab("Predmeti", iconPd, predmetTab, "Prikaz predmeta");
+		
+		this.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JTabbedPane tabbedPane = (JTabbedPane) e.getSource();
+				currentTab = tabbedPane.getSelectedIndex();
+			}
+		});
 
 	}
 

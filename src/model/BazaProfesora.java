@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
+
 public class BazaProfesora {
 
 	private static BazaProfesora instance = null;
@@ -38,7 +41,7 @@ public class BazaProfesora {
 	}
 
 	public int getColumnCount() {
-		return 4;
+		return kolone.size();
 	}
 
 	public String getColumnName(int index) {
@@ -57,12 +60,32 @@ public class BazaProfesora {
 		case 1:
 			return profesor.getPrezime();
 		case 2:
+			if (profesor.getTitula() == Titula.DoktorProfesor) {
+				return "Doktor Profesor";
+			}
 			return profesor.getTitula().toString();
 		case 3:
+			if (profesor.getZvanje() == Zvanje.RedovniProfesor) {
+				return "Redovni Profesor";
+			}
+			if (profesor.getZvanje() == Zvanje.VanredniProfesor) {
+				return "Vanredni Profesor";
+			}
 			return profesor.getZvanje().toString();
 		default:
 			return null;
 		}
+	}
+	
+	public boolean dodajProfesora(Profesor profesor) {
+		boolean retVal = true;
+		for (Profesor p : profesori) {
+			if (p.getBrojLicne() == profesor.getBrojLicne()) {
+				retVal = false;
+			}
+		}
+		profesori.add(profesor);
+		return retVal;
 	}
 
 }
