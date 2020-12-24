@@ -5,11 +5,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
 
 public class Frame extends JFrame {
 
@@ -37,6 +42,7 @@ public class Frame extends JFrame {
 		setTitle("Studentska Služba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		
 
 		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
@@ -52,6 +58,8 @@ public class Frame extends JFrame {
 		this.add(pan, BorderLayout.CENTER);
 		StatusBar statusbar = new StatusBar();
 		this.add(statusbar, BorderLayout.SOUTH);
+		
+
 	}
 
 	public static Frame getInstance() {

@@ -13,6 +13,8 @@ public class Main {
 		Frame studentskaSluzba = Frame.getInstance();
 		studentskaSluzba.setVisible(true);
 		
+		
+	
 	}
 
 }
