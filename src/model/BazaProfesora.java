@@ -78,14 +78,13 @@ public class BazaProfesora {
 	}
 	
 	public boolean dodajProfesora(Profesor profesor) {
-		boolean retVal = true;
 		for (Profesor p : profesori) {
-			if (p.getBrojLicne() == profesor.getBrojLicne()) {
-				retVal = false;
+			if (p.getBrojLicne().equals(profesor.getBrojLicne())) {
+				return false;
 			}
 		}
 		profesori.add(profesor);
-		return retVal;
+		return true;
 	}
 
 }

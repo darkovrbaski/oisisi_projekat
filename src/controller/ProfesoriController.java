@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.BazaProfesora;
 import model.Predmet;
 import model.Profesor;
@@ -21,7 +23,8 @@ public class ProfesoriController {
 		return instance;
 	}
 
-	private ProfesoriController() {}
+	private ProfesoriController() {
+	}
 
 	public void dodajProfesora() {
 		@SuppressWarnings("unused")
@@ -48,8 +51,14 @@ public class ProfesoriController {
 		adresa = DodajProfesoraDialog.txtAdresaStanovanja.getText();
 		telefon = DodajProfesoraDialog.txtBrojTelefona.getText();
 		eMail = DodajProfesoraDialog.txtEmailAdresa.getText();
-		adresaKancelarije = DodajProfesoraDialog.txtAdresakancelarije.getText();
+		adresaKancelarije = DodajProfesoraDialog.txtAdresaKancelarije.getText();
 		brojLicne = DodajProfesoraDialog.txtBrojLicneKarte.getText();
+
+		if (!proveriPrezime(prezime) || !proveriIme(ime) || !proveriDatum(datumRodjenja) || !proveriAdresu(adresa)
+				|| !proveriBrTelefona(telefon) || !proveriAdrKancelarije(eMail) || !proveriEmail(adresaKancelarije)
+				|| !proveriBrTelefona(brojLicne)) {
+			retVal = false;
+		}
 
 		switch (DodajProfesoraDialog.cbTitula.getSelectedItem().toString()) {
 		case "Master":
@@ -85,17 +94,75 @@ public class ProfesoriController {
 			break;
 		}
 
-		Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresa, telefon, eMail, adresaKancelarije,
-				brojLicne, titula, zvanje, spisakPredmeta);
-		if (retVal == true) {
-			if (BazaProfesora.getInstance().dodajProfesora(profesor) == false) {
+		if (titula == Titula.Master) {
+			if (zvanje != Zvanje.Asistent) {
+				JOptionPane.showMessageDialog(null, "Predavač sa titulom mastera može biti samo asistent!", "GREŠKA",
+						JOptionPane.ERROR_MESSAGE);
 				retVal = false;
 			}
-		} else {
+		}
+
+		if (retVal == true) {
+			Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresa, telefon, eMail, adresaKancelarije,
+					brojLicne, titula, zvanje, spisakPredmeta);
+			retVal = BazaProfesora.getInstance().dodajProfesora(profesor);
+			if (retVal == false) {
+				JOptionPane.showMessageDialog(null, "Profesor sa unetim brojem lične karte već postoji.", "GREŠKA",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+
+		ProfesorTable.azurirajPrikazProfesora();
+		return retVal;
+	}
+
+	public boolean proveriPopunjenostPolja() {
+		boolean retVal = true;
+		if (DodajProfesoraDialog.txtPrezime.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtIme.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtDatumRodjenja.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtAdresaStanovanja.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtBrojTelefona.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtEmailAdresa.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtAdresaKancelarije.getText().trim().isEmpty()
+				|| DodajProfesoraDialog.txtBrojLicneKarte.getText().trim().isEmpty()) {
 			retVal = false;
 		}
-		
-		ProfesorTable.azurirajPrikazProfesora();
+		return retVal;
+	}
+
+	private boolean proveriEmail(String adresaKancelarije) {
+		boolean retVal = true;
+		return retVal;
+	}
+
+	private boolean proveriAdrKancelarije(String eMail) {
+		boolean retVal = true;
+		return retVal;
+	}
+
+	private boolean proveriBrTelefona(String telefon) {
+		boolean retVal = true;
+		return retVal;
+	}
+
+	private boolean proveriAdresu(String adresa) {
+		boolean retVal = true;
+		return retVal;
+	}
+
+	private boolean proveriDatum(String datumRodjenja) {
+		boolean retVal = true;
+		return retVal;
+	}
+	
+	private boolean proveriIme(String ime) {
+		boolean retVal = true;
+		return retVal;
+	}
+	
+	private boolean proveriPrezime(String prezime) {
+		boolean retVal = true;
 		return retVal;
 	}
 }

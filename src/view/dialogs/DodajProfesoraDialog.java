@@ -10,6 +10,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.ProfesoriController;
 
@@ -32,10 +34,40 @@ public class DodajProfesoraDialog extends JDialog {
 	public static JTextField txtAdresaStanovanja;
 	public static JTextField txtBrojTelefona;
 	public static JTextField txtEmailAdresa;
-	public static JTextField txtAdresakancelarije;
+	public static JTextField txtAdresaKancelarije;
 	public static JTextField txtBrojLicneKarte;
 	public static JComboBox<String> cbTitula;
 	public static JComboBox<String> cbZvanje;
+	private JButton btnPotvrdi;
+	private DocumentListener documentListener = new DocumentListener() {
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			if (ProfesoriController.getInstance().proveriPopunjenostPolja()) {
+				btnPotvrdi.setEnabled(true);
+			} else {
+				btnPotvrdi.setEnabled(false);
+			}
+		}
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			if (ProfesoriController.getInstance().proveriPopunjenostPolja()) {
+				btnPotvrdi.setEnabled(true);
+			} else {
+				btnPotvrdi.setEnabled(false);
+			}
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			if (ProfesoriController.getInstance().proveriPopunjenostPolja()) {
+				btnPotvrdi.setEnabled(true);
+			} else {
+				btnPotvrdi.setEnabled(false);
+			}
+		}
+	};
 
 	public DodajProfesoraDialog() {
 		super(Frame.getInstance(), "Dodavanje profesora", true);
@@ -160,14 +192,14 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblAdresaKancelarije.gridy = 6;
 		panTop.add(lblAdresaKancelarije, gbc_lblAdresaKancelarije);
 
-		txtAdresakancelarije = new JTextField();
+		txtAdresaKancelarije = new JTextField();
 		GridBagConstraints gbc_txtAdresakancelarije = new GridBagConstraints();
 		gbc_txtAdresakancelarije.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresakancelarije.gridwidth = 3;
 		gbc_txtAdresakancelarije.insets = new Insets(20, 20, 0, 20);
 		gbc_txtAdresakancelarije.gridx = 1;
 		gbc_txtAdresakancelarije.gridy = 6;
-		panTop.add(txtAdresakancelarije, gbc_txtAdresakancelarije);
+		panTop.add(txtAdresaKancelarije, gbc_txtAdresakancelarije);
 
 		JLabel lblBrojLicneKarte = new JLabel("Broj lične karte*");
 		GridBagConstraints gbc_lblBrojLicneKarte = new GridBagConstraints();
@@ -226,7 +258,17 @@ public class DodajProfesoraDialog extends JDialog {
 		this.add(panBottom, BorderLayout.SOUTH);
 		panBottom.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
-		JButton btnPotvrdi = new JButton("Potvrdi");
+		txtIme.getDocument().addDocumentListener(documentListener);
+		txtPrezime.getDocument().addDocumentListener(documentListener);
+		txtDatumRodjenja.getDocument().addDocumentListener(documentListener);
+		txtAdresaStanovanja.getDocument().addDocumentListener(documentListener);
+		txtBrojTelefona.getDocument().addDocumentListener(documentListener);
+		txtEmailAdresa.getDocument().addDocumentListener(documentListener);
+		txtAdresaKancelarije.getDocument().addDocumentListener(documentListener);
+		txtBrojLicneKarte.getDocument().addDocumentListener(documentListener);
+
+		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setEnabled(false);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (ProfesoriController.getInstance().proveriProfesora() == true) {
