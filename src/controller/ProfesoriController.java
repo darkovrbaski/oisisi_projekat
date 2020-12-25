@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -45,18 +47,18 @@ public class ProfesoriController {
 		Zvanje zvanje;
 		ArrayList<Predmet> spisakPredmeta = new ArrayList<Predmet>();
 
-		prezime = DodajProfesoraDialog.txtPrezime.getText();
-		ime = DodajProfesoraDialog.txtIme.getText();
-		datumRodjenja = DodajProfesoraDialog.txtDatumRodjenja.getText();
-		adresa = DodajProfesoraDialog.txtAdresaStanovanja.getText();
-		telefon = DodajProfesoraDialog.txtBrojTelefona.getText();
-		eMail = DodajProfesoraDialog.txtEmailAdresa.getText();
-		adresaKancelarije = DodajProfesoraDialog.txtAdresaKancelarije.getText();
-		brojLicne = DodajProfesoraDialog.txtBrojLicneKarte.getText();
+		prezime = DodajProfesoraDialog.txtPrezime.getText().trim();
+		ime = DodajProfesoraDialog.txtIme.getText().trim();
+		datumRodjenja = DodajProfesoraDialog.txtDatumRodjenja.getText().trim();
+		adresa = DodajProfesoraDialog.txtAdresaStanovanja.getText().trim();
+		telefon = DodajProfesoraDialog.txtBrojTelefona.getText().trim();
+		eMail = DodajProfesoraDialog.txtEmailAdresa.getText().trim();
+		adresaKancelarije = DodajProfesoraDialog.txtAdresaKancelarije.getText().trim();
+		brojLicne = DodajProfesoraDialog.txtBrojLicneKarte.getText().trim();
 
-		if (!proveriPrezime(prezime) || !proveriIme(ime) || !proveriDatum(datumRodjenja) || !proveriAdresu(adresa)
-				|| !proveriBrTelefona(telefon) || !proveriAdrKancelarije(eMail) || !proveriEmail(adresaKancelarije)
-				|| !proveriBrTelefona(brojLicne)) {
+		if (!proveriIme(ime + " " + prezime) || !proveriDatum(datumRodjenja) || !proveriAdresu(adresa)
+				|| !proveriBrTelefona(telefon) || !proveriEmail(eMail) || !proveriAdresu(adresaKancelarije)
+				|| !proveriBrLicne(brojLicne)) {
 			retVal = false;
 		}
 
@@ -131,38 +133,79 @@ public class ProfesoriController {
 		return retVal;
 	}
 
-	private boolean proveriEmail(String adresaKancelarije) {
+	private boolean proveriBrLicne(String brojLicne) {
 		boolean retVal = true;
+		Pattern patern = Pattern.compile("^[0-9]*$");
+		Matcher matcher = patern.matcher(brojLicne);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj ličen karte.\nSamo brojevi su dozvoljeni!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
 		return retVal;
 	}
 
-	private boolean proveriAdrKancelarije(String eMail) {
+	private boolean proveriEmail(String eMail) {
 		boolean retVal = true;
+		Pattern patern = Pattern.compile(
+				"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+		Matcher matcher = patern.matcher(eMail);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unetu eMail adresu.", "GREŠKA",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		return retVal;
 	}
 
 	private boolean proveriBrTelefona(String telefon) {
 		boolean retVal = true;
+		Pattern patern = Pattern.compile("\\+?\\d[\\d\\s]{6,15}\\d");
+		Matcher matcher = patern.matcher(telefon);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
 		return retVal;
 	}
 
 	private boolean proveriAdresu(String adresa) {
 		boolean retVal = true;
+		Pattern patern = Pattern.compile("[a-zA-ZšŠđĐčČćĆžŽ0-9',. -]+");
+		Matcher matcher = patern.matcher(adresa);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null,
+					"GREŠKA Proverite unetu adresu ili adresu kancelarije.\nPolje sadrži nedozvoljene karaktere!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
 		return retVal;
 	}
 
 	private boolean proveriDatum(String datumRodjenja) {
 		boolean retVal = true;
+		Pattern patern = Pattern.compile("(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})");
+		Matcher matcher = patern.matcher(datumRodjenja);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null,
+					"GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy .",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
 		return retVal;
 	}
-	
+
 	private boolean proveriIme(String ime) {
 		boolean retVal = true;
-		return retVal;
-	}
-	
-	private boolean proveriPrezime(String prezime) {
-		boolean retVal = true;
+		Pattern patern = Pattern.compile("^[a-zA-ZšŠđĐčČćĆžŽ]+(([',. -][a-zA-ZšŠđĐčČćĆžŽ ])?[a-zA-ZšŠđĐčČćĆžŽ]*)*$");
+		Matcher matcher = patern.matcher(ime);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null,
+					"GREŠKA Proverite uneto ime ili prezime.\nPolje sadrži nedozvoljene karaktere!", "GREŠKA",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		return retVal;
 	}
 }
