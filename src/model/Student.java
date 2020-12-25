@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Student {
 	
 	public enum Status { B, S };
+	public enum TrenutnaGodina { PRVA, DRUGA, TRECA, CETVRTA };
 
 	private String prezime;
 	private String ime;
@@ -14,16 +15,16 @@ public class Student {
 	private String eMail;
 	private String brIndeksa;
 	private String godUpisa;
-	private String trenGodina;
+	private TrenutnaGodina trenGodina;
 	private Status statusStudenta;
 	private String prosecnaOcjena;
-	private String spisakPolozenihIspita;
-	private String spisakNePolozenihIspita;
+	private ArrayList<Ocena> spisakPolozenihIspita;
+	private ArrayList<Ocena> spisakNePolozenihIspita;
 	
-	
+
 	public Student(String prezime, String ime, String datumRodjenja, String adresa, String telefon, String eMail,
-			String brIndeksa, String godUpisa, String trenGodina, Status statusStudenta, String prosecnaOcjena,
-			String spisakPolozenihIspita, String spisakNePolozenihIspita) {
+			String brIndeksa, String godUpisa, TrenutnaGodina trenGodina, Status statusStudenta, String prosecnaOcjena,
+			ArrayList<Ocena> spisakPolozenihIspita, ArrayList<Ocena> spisakNePolozenihIspita) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -38,6 +39,8 @@ public class Student {
 		this.prosecnaOcjena = prosecnaOcjena;
 		this.spisakPolozenihIspita = spisakPolozenihIspita;
 		this.spisakNePolozenihIspita = spisakNePolozenihIspita;
+		
+		
 	}
 
 	public String getPrezime() {
@@ -105,11 +108,11 @@ public class Student {
 		this.godUpisa = godUpisa;
 	}
 	
-	public String getTrenGodina() {
+	public TrenutnaGodina getTrenGodina() {
 		return trenGodina;
 	}
 	
-	public void setTrenGodina(String trenGodina) {
+	public void setTrenGodina(TrenutnaGodina trenGodina) {
 		this.trenGodina = trenGodina;
 	}
 	
@@ -128,15 +131,26 @@ public class Student {
 	public void setProsecnaOcjena(String prosecnaOcjena) {
 		this.prosecnaOcjena = prosecnaOcjena;
 	}
-	
-	// JOS 2 METODE !!!!!!
-	
 
 	
 	
 	
+	public ArrayList<Ocena> getSpisakPolozenihIspita() {
+		return spisakPolozenihIspita;
+	}
+
+	public void setSpisakPolozenihIspita(ArrayList<Ocena> spisakPolozenihIspita) {
+		this.spisakPolozenihIspita = spisakPolozenihIspita;
+	}
+
+	public ArrayList<Ocena> getSpisakNePolozenihIspita() {
+		return spisakNePolozenihIspita;
+	}
+
+	public void setSpisakNePolozenihIspita(ArrayList<Ocena> spisakNePolozenihIspita) {
+		this.spisakNePolozenihIspita = spisakNePolozenihIspita;
+	}
 	
-	
-	
-	
+
+
 }

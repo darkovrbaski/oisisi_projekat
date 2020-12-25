@@ -8,6 +8,7 @@ import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import controller.ProfesoriController;
+import controller.StudentiController;
 
 public class NewAction extends AbstractAction {
 
@@ -27,6 +28,10 @@ public class NewAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		if (TabbedPanel.currentTab == 1) {
 			ProfesoriController.getInstance().dodajProfesora();
+		}
+		
+		if (TabbedPanel.currentTab == 0) {
+			StudentiController.getInstance().dodajStudenta();
 		}
 	}
 

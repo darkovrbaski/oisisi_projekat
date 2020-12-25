@@ -22,6 +22,9 @@ import javax.swing.MenuElement;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
+import controller.ProfesoriController;
+import controller.StudentiController;
+
 public class MenuBar extends JMenuBar {
 
 	/**
@@ -42,7 +45,13 @@ public class MenuBar extends JMenuBar {
 		// Action Lisiteneri 
 	    miNew.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
-	        	
+	    		if (TabbedPanel.currentTab == 1) {
+	    			ProfesoriController.getInstance().dodajProfesora();
+	    		}
+	    		
+	    		if (TabbedPanel.currentTab == 0) {
+	    			StudentiController.getInstance().dodajStudenta();
+	    		}
 	        }
 	      });
 	    

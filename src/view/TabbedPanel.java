@@ -24,9 +24,11 @@ public class TabbedPanel extends JTabbedPane {
 
 		// Student sekcija
 		JPanel studentTab = new JPanel();
+		studentTab.setLayout(new BorderLayout()); 
 		ImageIcon iconS = Frame.createImageIcon("Images" + File.separator + "iconmonstr-school-23-16.png", false, 16, 16);
-		JLabel todoS = new JLabel("TODO: prikaz entiteta studenta");
-		studentTab.add(todoS);
+		StudentTable studTable = new StudentTable();
+		JScrollPane scrollPanee = new JScrollPane(studTable);
+		studentTab.add(scrollPanee, BorderLayout.CENTER);
 		this.addTab("Studenti", iconS, studentTab, "Prikaz studenta");
 
 		// Profesor sekcija
