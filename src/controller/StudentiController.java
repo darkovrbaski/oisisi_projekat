@@ -1,6 +1,10 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 import model.BazaStudent;
 import model.Ocena;
@@ -39,23 +43,28 @@ public class StudentiController {
 		String brIndeksa;
 		String godUpisa;
 		String prosecnaOcjena = null;
-		
 		TrenutnaGodina trenGodina;
 		Status status;
-		
 		ArrayList<Ocena> spisakPolozenihIspita = new ArrayList<Ocena>();
 		ArrayList<Ocena> spisakNePolozenihIspita = new ArrayList<Ocena>();
 		
 
-		prezime = DodajStudentaDialog.txtPrezime.getText();
-		ime = DodajStudentaDialog.txtIme.getText();
-		datumRodjenja = DodajStudentaDialog.txtDatumRodjenja.getText();
-		adresa = DodajStudentaDialog.txtAdresaStanovanja.getText();
-		telefon = DodajStudentaDialog.txtBrojTelefona.getText();
-		eMail = DodajStudentaDialog.txtEmailAdresa.getText();
-		brIndeksa = DodajStudentaDialog.txtBrIndeksa.getText();
-		godUpisa = DodajStudentaDialog.txtGodUpisa.getText();
+		prezime = DodajStudentaDialog.txtPrezime.getText().trim();
+		ime = DodajStudentaDialog.txtIme.getText().trim();
+		datumRodjenja = DodajStudentaDialog.txtDatumRodjenja.getText().trim();
+		adresa = DodajStudentaDialog.txtAdresaStanovanja.getText().trim();
+		telefon = DodajStudentaDialog.txtBrojTelefona.getText().trim();
+		eMail = DodajStudentaDialog.txtEmailAdresa.getText().trim();
+		brIndeksa = DodajStudentaDialog.txtBrIndeksa.getText().trim();
+		godUpisa = DodajStudentaDialog.txtGodUpisa.getText().trim();
 		
+		
+		
+		if (!proveriIme(ime + " " + prezime) || !proveriDatum(datumRodjenja) || !proveriAdresu(adresa)
+				|| !proveriBrTelefona(telefon) || !proveriEmail(eMail) || !proveriBrIndeksa(brIndeksa)
+				|| !proveriGodUpisa(godUpisa)) {
+			retVal = false;
+		}
 		
 		
 		switch (DodajStudentaDialog.cbTrenutnaG.getSelectedItem().toString()) {
@@ -99,25 +108,139 @@ public class StudentiController {
 		
 		
 		
-
-		Student student = new Student(prezime, ime, datumRodjenja, adresa, telefon, eMail,
-				brIndeksa,  godUpisa,  trenGodina, status,  prosecnaOcjena,
-				spisakPolozenihIspita,  spisakNePolozenihIspita);
-		
-		
-		
 		if (retVal == true) {
-			if (BazaStudent.getInstance().dodajStudenta(student) == false) {
-				retVal = false;
+			Student student = new Student(prezime, ime, datumRodjenja, adresa, telefon, eMail,
+							brIndeksa,  godUpisa,  trenGodina, status,  prosecnaOcjena,
+							spisakPolozenihIspita,  spisakNePolozenihIspita);
+			
+			retVal = BazaStudent.getInstance().dodajStudenta(student);
+			if (retVal == false) {
+				JOptionPane.showMessageDialog(null, "Student sa unetim brojem indeksa već postoji.", "GREŠKA",
+						JOptionPane.ERROR_MESSAGE);
 			}
-		} else {
-			retVal = false;
 		}
+		
+		
 		
 		StudentTable.azurirajPrikazStudenata();
 		return retVal;
 	}
 
+	
+	
+	public boolean proveriPopunjenostPolja() {
+		boolean retVal = true;
+		if (DodajStudentaDialog.txtPrezime.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtIme.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtDatumRodjenja.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtAdresaStanovanja.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtBrojTelefona.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtEmailAdresa.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtBrIndeksa.getText().trim().isEmpty()
+				|| DodajStudentaDialog.txtGodUpisa.getText().trim().isEmpty()) {
+			retVal = false;
+		}
+		return retVal;
+	}
+	
+	
+	
+	/**REFERENCA: https://www.freeformatter.com/java-regex-tester.html#ad-output */
+	
+
+
+	private boolean proveriEmail(String eMail) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile(
+				"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+		Matcher matcher = patern.matcher(eMail);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unetu eMail adresu.", "GREŠKA",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
+
+	private boolean proveriBrTelefona(String telefon) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("\\+?\\d[\\d\\s]{6,15}\\d");
+		Matcher matcher = patern.matcher(telefon);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
+
+	private boolean proveriAdresu(String adresa) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("[a-zA-ZšŠđĐčČćĆžŽ0-9',. -]+");
+		Matcher matcher = patern.matcher(adresa);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null,
+					"GREŠKA Proverite unetu adresu ili adresu kancelarije.\nPolje sadrži nedozvoljene karaktere!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
+
+	private boolean proveriDatum(String datumRodjenja) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})");
+		Matcher matcher = patern.matcher(datumRodjenja);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null,
+					"GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy .",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
+
+	private boolean proveriIme(String ime) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("^[a-zA-ZšŠđĐčČćĆžŽ]+(([',. -][a-zA-ZšŠđĐčČćĆžŽ ])?[a-zA-ZšŠđĐčČćĆžŽ]*)*$");
+		Matcher matcher = patern.matcher(ime);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null,
+					"GREŠKA Proverite uneto ime ili prezime.\nPolje sadrži nedozvoljene karaktere!", "GREŠKA",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
+	
+	
+	
+	
+	private boolean proveriBrIndeksa(String brIndeksa) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("^\\d{5}$");
+		Matcher matcher = patern.matcher(brIndeksa);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj indeksa.( MAX PET BROJEVA) \nSamo brojevi su dozvoljeni!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
+	
+	
+	
+	private boolean proveriGodUpisa(String godUpisa) {
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("^\\d{4}$");
+		Matcher matcher = patern.matcher(godUpisa);
+		retVal = matcher.matches();
+		if (retVal == false) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj godine upisa.( MAX CETIRI BROJA) \nSamo brojevi su dozvoljeni!",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+		}
+		return retVal;
+	}
 	
 	
 	

@@ -1,27 +1,25 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.io.File;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
+
+
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
+
 
 public class HelpDialog extends JDialog {
 	
 
-	  public HelpDialog() {
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7532094756704393899L;
+
+	public HelpDialog() {
 	   
          
           setTitle("Help - Upustvo za koriscenje programa");

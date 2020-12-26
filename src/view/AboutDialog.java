@@ -11,6 +11,11 @@ import javax.swing.JTextArea;
 public class AboutDialog extends JDialog {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2566945927276159128L;
+
 	public AboutDialog() {
 		
 		setTitle("Help - Upustvo za koriscenje programa");

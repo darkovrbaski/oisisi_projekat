@@ -104,14 +104,14 @@ public class BazaStudent {
 	}
 	
 	public boolean dodajStudenta(Student student) {
-		boolean retVal = true;
 		for (Student s : studenti) {
-			if (s.getBrIndeksa() == student.getBrIndeksa()) {
-				retVal = false;
+			if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
+				return false;
 			}
 		}
+		
 		studenti.add(student);
-		return retVal;
+		return true;
 	}
 	
 	

@@ -15,6 +15,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.StudentiController;
 import view.Frame;
@@ -35,11 +37,44 @@ public class DodajStudentaDialog extends JDialog{
 	public static JTextField txtBrIndeksa;
 	public static JTextField txtGodUpisa;
 	public static JTextField txtTrenGodina;
+	
 	public static JTextField txtStatusStudenta;
 	public static JTextField txtProsecnaOcjena;
 	
 	public static JComboBox<String> cbTrenutnaG;
 	public static JComboBox<String> cbStatus;
+	private JButton btnPotvrdi;
+	
+	private DocumentListener documentListener = new DocumentListener() {
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			if (StudentiController.getInstance().proveriPopunjenostPolja()) {
+				btnPotvrdi.setEnabled(true);
+			} else {
+				btnPotvrdi.setEnabled(false);
+			}
+		}
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			if (StudentiController.getInstance().proveriPopunjenostPolja()) {
+				btnPotvrdi.setEnabled(true);
+			} else {
+				btnPotvrdi.setEnabled(false);
+			}
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			if (StudentiController.getInstance().proveriPopunjenostPolja()) {
+				btnPotvrdi.setEnabled(true);
+			} else {
+				btnPotvrdi.setEnabled(false);
+			}
+		}
+	};
+	
 
 	public DodajStudentaDialog() {
 		super(Frame.getInstance(), "Dodavanje studenta", true);
@@ -261,7 +296,21 @@ public class DodajStudentaDialog extends JDialog{
 		this.add(panBottom, BorderLayout.SOUTH);
 		panBottom.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
-		JButton btnPotvrdi = new JButton("Potvrdi");
+		
+		
+		txtIme.getDocument().addDocumentListener(documentListener);
+		txtPrezime.getDocument().addDocumentListener(documentListener);
+		txtDatumRodjenja.getDocument().addDocumentListener(documentListener);
+		txtAdresaStanovanja.getDocument().addDocumentListener(documentListener);
+		txtBrojTelefona.getDocument().addDocumentListener(documentListener);
+		txtEmailAdresa.getDocument().addDocumentListener(documentListener);
+		txtBrIndeksa.getDocument().addDocumentListener(documentListener);
+		txtGodUpisa.getDocument().addDocumentListener(documentListener);
+
+		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setEnabled(false);
+		
+		
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (StudentiController.getInstance().proveriStudenta() == true) {
