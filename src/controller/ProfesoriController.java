@@ -1,6 +1,9 @@
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,10 +37,9 @@ public class ProfesoriController {
 	}
 
 	public boolean proveriProfesora() {
-		boolean retVal = true;
 		String prezime;
 		String ime;
-		String datumRodjenja;
+		Date datumRodjenja;
 		String adresa;
 		String telefon;
 		String eMail;
@@ -49,17 +51,25 @@ public class ProfesoriController {
 
 		prezime = DodajProfesoraDialog.txtPrezime.getText().trim();
 		ime = DodajProfesoraDialog.txtIme.getText().trim();
-		datumRodjenja = DodajProfesoraDialog.txtDatumRodjenja.getText().trim();
 		adresa = DodajProfesoraDialog.txtAdresaStanovanja.getText().trim();
 		telefon = DodajProfesoraDialog.txtBrojTelefona.getText().trim();
 		eMail = DodajProfesoraDialog.txtEmailAdresa.getText().trim();
 		adresaKancelarije = DodajProfesoraDialog.txtAdresaKancelarije.getText().trim();
 		brojLicne = DodajProfesoraDialog.txtBrojLicneKarte.getText().trim();
 
-		if (!proveriIme(ime + " " + prezime) || !proveriDatum(datumRodjenja) || !proveriAdresu(adresa)
-				|| !proveriBrTelefona(telefon) || !proveriEmail(eMail) || !proveriAdresu(adresaKancelarije)
-				|| !proveriBrLicne(brojLicne)) {
-			retVal = false;
+		if (!proveriIme(ime + " " + prezime) || !proveriAdresu(adresa) || !proveriBrTelefona(telefon)
+				|| !proveriEmail(eMail) || !proveriAdresu(adresaKancelarije) || !proveriBrLicne(brojLicne)) {
+			return false;
+		}
+
+		datumRodjenja = new Date();
+		try {
+			datumRodjenja = new SimpleDateFormat("dd.MM.yyyy.")
+					.parse(DodajProfesoraDialog.txtDatumRodjenja.getText().trim());
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy.",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 
 		switch (DodajProfesoraDialog.cbTitula.getSelectedItem().toString()) {
@@ -74,8 +84,7 @@ public class ProfesoriController {
 			break;
 		default:
 			titula = null;
-			retVal = false;
-			break;
+			return false;
 		}
 		switch (DodajProfesoraDialog.cbZvanje.getSelectedItem().toString()) {
 		case "Asistent":
@@ -92,30 +101,29 @@ public class ProfesoriController {
 			break;
 		default:
 			zvanje = null;
-			retVal = false;
-			break;
+			return false;
 		}
 
 		if (titula == Titula.Master) {
 			if (zvanje != Zvanje.Asistent) {
 				JOptionPane.showMessageDialog(null, "Predavač sa titulom mastera može biti samo asistent!", "GREŠKA",
 						JOptionPane.ERROR_MESSAGE);
-				retVal = false;
+				return false;
 			}
 		}
 
-		if (retVal == true) {
-			Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresa, telefon, eMail, adresaKancelarije,
-					brojLicne, titula, zvanje, spisakPredmeta);
-			retVal = BazaProfesora.getInstance().dodajProfesora(profesor);
-			if (retVal == false) {
-				JOptionPane.showMessageDialog(null, "Profesor sa unetim brojem lične karte već postoji.", "GREŠKA",
-						JOptionPane.ERROR_MESSAGE);
-			}
+		Profesor profesor = new Profesor(ime, prezime, datumRodjenja, adresa, telefon, eMail, adresaKancelarije,
+				brojLicne, titula, zvanje, spisakPredmeta);
+
+		if (BazaProfesora.getInstance().dodajProfesora(profesor) == false) {
+			JOptionPane.showMessageDialog(null, "Profesor sa unetim brojem lične karte već postoji.", "GREŠKA",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 
 		ProfesorTable.azurirajPrikazProfesora();
-		return retVal;
+
+		return true;
 	}
 
 	public boolean proveriPopunjenostPolja() {
@@ -178,19 +186,6 @@ public class ProfesoriController {
 		if (retVal == false) {
 			JOptionPane.showMessageDialog(null,
 					"GREŠKA Proverite unetu adresu ili adresu kancelarije.\nPolje sadrži nedozvoljene karaktere!",
-					"GREŠKA", JOptionPane.ERROR_MESSAGE);
-		}
-		return retVal;
-	}
-
-	private boolean proveriDatum(String datumRodjenja) {
-		boolean retVal = true;
-		Pattern patern = Pattern.compile("(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})");
-		Matcher matcher = patern.matcher(datumRodjenja);
-		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null,
-					"GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy .",
 					"GREŠKA", JOptionPane.ERROR_MESSAGE);
 		}
 		return retVal;
