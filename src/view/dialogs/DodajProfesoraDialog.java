@@ -1,25 +1,26 @@
 package view.dialogs;
 
-import javax.swing.JDialog;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.ProfesoriController;
-
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
 import view.Frame;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import view.dialogs.TextField.Provera;
 
 public class DodajProfesoraDialog extends JDialog {
 
@@ -76,7 +77,6 @@ public class DodajProfesoraDialog extends JDialog {
 		this.setLocationRelativeTo(Frame.getInstance());
 
 		this.setLayout(new BorderLayout(0, 30));
-
 		JPanel panTop = new JPanel();
 		this.add(panTop, BorderLayout.CENTER);
 		GridBagLayout gb = new GridBagLayout();
@@ -90,7 +90,7 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblIme.gridy = 0;
 		panTop.add(lblIme, gbc_lblIme);
 
-		txtIme = new JTextField();
+		txtIme = new TextField("Ime", Provera.Ime, "Proverite uneto ime.\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtIme = new GridBagConstraints();
 		gbc_txtIme.gridwidth = 3;
 		gbc_txtIme.fill = GridBagConstraints.HORIZONTAL;
@@ -107,7 +107,8 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblPrezime.gridy = 1;
 		panTop.add(lblPrezime, gbc_lblPrezime);
 
-		txtPrezime = new JTextField();
+		txtPrezime = new TextField("Prezime", Provera.Prezime,
+				"Proverite uneto prezime.\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtPrezime = new GridBagConstraints();
 		gbc_txtPrezime.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPrezime.gridwidth = 3;
@@ -124,7 +125,8 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblDatumRodjenja.gridy = 2;
 		panTop.add(lblDatumRodjenja, gbc_lblDatumRodjenja);
 
-		txtDatumRodjenja = new JTextField();
+		txtDatumRodjenja = new TextField("dd.mm.yyyy", Provera.Datum,
+				"Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy");
 		GridBagConstraints gbc_txtDatumRodjenja = new GridBagConstraints();
 		gbc_txtDatumRodjenja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDatumRodjenja.gridwidth = 3;
@@ -141,7 +143,8 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblAdresaStanovanja.gridy = 3;
 		panTop.add(lblAdresaStanovanja, gbc_lblAdresaStanovanja);
 
-		txtAdresaStanovanja = new JTextField();
+		txtAdresaStanovanja = new TextField("Adresa, 123", Provera.Adresa,
+				"Proverite unetu adresu stanovanja.\\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtAdresaStanovanja = new GridBagConstraints();
 		gbc_txtAdresaStanovanja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresaStanovanja.gridwidth = 3;
@@ -158,7 +161,8 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblBrojTelefona.gridy = 4;
 		panTop.add(lblBrojTelefona, gbc_lblBrojTelefona);
 
-		txtBrojTelefona = new JTextField();
+		txtBrojTelefona = new TextField("06123123123", Provera.BrTel,
+				"Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!");
 		GridBagConstraints gbc_txtBrojTelefona = new GridBagConstraints();
 		gbc_txtBrojTelefona.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrojTelefona.gridwidth = 3;
@@ -175,7 +179,7 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblEmailAdresa.gridy = 5;
 		panTop.add(lblEmailAdresa, gbc_lblEmailAdresa);
 
-		txtEmailAdresa = new JTextField();
+		txtEmailAdresa = new TextField("primer@primer.com", Provera.Email, "Proverite unetu eMail adresu.");
 		GridBagConstraints gbc_txtEmailAdresa = new GridBagConstraints();
 		gbc_txtEmailAdresa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtEmailAdresa.gridwidth = 3;
@@ -192,7 +196,8 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblAdresaKancelarije.gridy = 6;
 		panTop.add(lblAdresaKancelarije, gbc_lblAdresaKancelarije);
 
-		txtAdresaKancelarije = new JTextField();
+		txtAdresaKancelarije = new TextField("Adresa, Kancelarija, 123", Provera.Adresa,
+				"Proverite unetu adresu kancelarije.\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtAdresakancelarije = new GridBagConstraints();
 		gbc_txtAdresakancelarije.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresakancelarije.gridwidth = 3;
@@ -209,7 +214,8 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblBrojLicneKarte.gridy = 7;
 		panTop.add(lblBrojLicneKarte, gbc_lblBrojLicneKarte);
 
-		txtBrojLicneKarte = new JTextField();
+		txtBrojLicneKarte = new TextField("111222333", Provera.BrLicne,
+				"Proverite unet broj ličen karte.\nSamo brojevi su dozvoljeni!");
 		GridBagConstraints gbc_txtBrojLicneKarte = new GridBagConstraints();
 		gbc_txtBrojLicneKarte.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrojLicneKarte.gridwidth = 3;
