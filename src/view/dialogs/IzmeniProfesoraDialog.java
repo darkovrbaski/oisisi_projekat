@@ -8,21 +8,26 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.ProfesoriController;
+import model.BazaProfesora;
+import model.Profesor;
 import view.Frame;
+import view.TabbedPanel;
 import view.dialogs.TextField.Provera;
 
-public class DodajProfesoraDialog extends JDialog {
+public class IzmeniProfesoraDialog extends JDialog {
 
 	/**
 	 * 
@@ -44,7 +49,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
-			if (ProfesoriController.getInstance().proveriPopunjenostPolja()) {
+			if (ProfesoriController.getInstance().proveriPopunjenostIzmenjenihPolja()) {
 				btnPotvrdi.setEnabled(true);
 			} else {
 				btnPotvrdi.setEnabled(false);
@@ -53,7 +58,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		@Override
 		public void insertUpdate(DocumentEvent e) {
-			if (ProfesoriController.getInstance().proveriPopunjenostPolja()) {
+			if (ProfesoriController.getInstance().proveriPopunjenostIzmenjenihPolja()) {
 				btnPotvrdi.setEnabled(true);
 			} else {
 				btnPotvrdi.setEnabled(false);
@@ -62,7 +67,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
-			if (ProfesoriController.getInstance().proveriPopunjenostPolja()) {
+			if (ProfesoriController.getInstance().proveriPopunjenostIzmenjenihPolja()) {
 				btnPotvrdi.setEnabled(true);
 			} else {
 				btnPotvrdi.setEnabled(false);
@@ -70,15 +75,31 @@ public class DodajProfesoraDialog extends JDialog {
 		}
 	};
 
-	public DodajProfesoraDialog() {
-		super(Frame.getInstance(), "Dodavanje profesora", true);
+	public IzmeniProfesoraDialog() {
+		super(Frame.getInstance(), "Izmena profesora", true);
 		this.setResizable(false);
 		this.setSize(500, 600);
 		this.setLocationRelativeTo(Frame.getInstance());
 
-		this.setLayout(new BorderLayout(0, 30));
+		JTabbedPane tabbedPanel = new JTabbedPane();
+
+		JPanel informacijeTab = informacijeProfesora();
+		tabbedPanel.addTab("Informacije", informacijeTab);
+
+		JPanel predmetiTab = new JPanel();
+		tabbedPanel.addTab("Predmeti", predmetiTab);
+
+		this.add(tabbedPanel);
+		this.setVisible(true);
+	}
+
+	private JPanel informacijeProfesora() {
+		JPanel panel = new JPanel();
+		Profesor profesor = BazaProfesora.getInstance().getRow(TabbedPanel.tabelaProfesora.getCurrentSelectedRow());
+		
+		panel.setLayout(new BorderLayout(0, 30));
 		JPanel panTop = new JPanel();
-		this.add(panTop, BorderLayout.CENTER);
+		panel.add(panTop, BorderLayout.CENTER);
 		GridBagLayout gb = new GridBagLayout();
 		panTop.setLayout(gb);
 
@@ -91,6 +112,7 @@ public class DodajProfesoraDialog extends JDialog {
 		panTop.add(lblIme, gbc_lblIme);
 
 		txtIme = new TextField("Ime", Provera.Ime, "Proverite uneto ime.\nPolje sadrži nedozvoljene karaktere!");
+		txtIme.setText(profesor.getIme());
 		GridBagConstraints gbc_txtIme = new GridBagConstraints();
 		gbc_txtIme.gridwidth = 3;
 		gbc_txtIme.fill = GridBagConstraints.HORIZONTAL;
@@ -109,6 +131,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		txtPrezime = new TextField("Prezime", Provera.Prezime,
 				"Proverite uneto prezime.\nPolje sadrži nedozvoljene karaktere!");
+		txtPrezime.setText(profesor.getPrezime());
 		GridBagConstraints gbc_txtPrezime = new GridBagConstraints();
 		gbc_txtPrezime.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPrezime.gridwidth = 3;
@@ -127,6 +150,8 @@ public class DodajProfesoraDialog extends JDialog {
 
 		txtDatumRodjenja = new TextField("dd.mm.yyyy", Provera.Datum,
 				"Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy");
+		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
+		txtDatumRodjenja.setText(formatDate.format(profesor.getDatumRodjenja()));
 		GridBagConstraints gbc_txtDatumRodjenja = new GridBagConstraints();
 		gbc_txtDatumRodjenja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDatumRodjenja.gridwidth = 3;
@@ -145,6 +170,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		txtAdresaStanovanja = new TextField("Adresa, 123", Provera.Adresa,
 				"Proverite unetu adresu stanovanja.\\nPolje sadrži nedozvoljene karaktere!");
+		txtAdresaStanovanja.setText(profesor.getAdresa());
 		GridBagConstraints gbc_txtAdresaStanovanja = new GridBagConstraints();
 		gbc_txtAdresaStanovanja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresaStanovanja.gridwidth = 3;
@@ -163,6 +189,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		txtBrojTelefona = new TextField("06123123123", Provera.BrTel,
 				"Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!");
+		txtBrojTelefona.setText(profesor.getTelefon());
 		GridBagConstraints gbc_txtBrojTelefona = new GridBagConstraints();
 		gbc_txtBrojTelefona.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrojTelefona.gridwidth = 3;
@@ -180,6 +207,7 @@ public class DodajProfesoraDialog extends JDialog {
 		panTop.add(lblEmailAdresa, gbc_lblEmailAdresa);
 
 		txtEmailAdresa = new TextField("primer@primer.com", Provera.Email, "Proverite unetu eMail adresu.");
+		txtEmailAdresa.setText(profesor.geteMail());
 		GridBagConstraints gbc_txtEmailAdresa = new GridBagConstraints();
 		gbc_txtEmailAdresa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtEmailAdresa.gridwidth = 3;
@@ -198,6 +226,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 		txtAdresaKancelarije = new TextField("Adresa, Kancelarija, 123", Provera.Adresa,
 				"Proverite unetu adresu kancelarije.\nPolje sadrži nedozvoljene karaktere!");
+		txtAdresaKancelarije.setText(profesor.getAdresaKancelarije());
 		GridBagConstraints gbc_txtAdresakancelarije = new GridBagConstraints();
 		gbc_txtAdresakancelarije.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresakancelarije.gridwidth = 3;
@@ -214,8 +243,9 @@ public class DodajProfesoraDialog extends JDialog {
 		gbc_lblBrojLicneKarte.gridy = 7;
 		panTop.add(lblBrojLicneKarte, gbc_lblBrojLicneKarte);
 
-		txtBrojLicneKarte = new TextField("111222333", Provera.BrLicne,
-				"Proverite unet broj ličen karte.\nSamo brojevi su dozvoljeni!");
+		txtBrojLicneKarte = new JTextField();
+		txtBrojLicneKarte.setText(profesor.getBrojLicne());
+		txtBrojLicneKarte.setEditable(false);
 		GridBagConstraints gbc_txtBrojLicneKarte = new GridBagConstraints();
 		gbc_txtBrojLicneKarte.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrojLicneKarte.gridwidth = 3;
@@ -234,6 +264,17 @@ public class DodajProfesoraDialog extends JDialog {
 
 		String[] titule = { "Master", "Doktor", "Doktor profesor" };
 		cbTitula = new JComboBox<String>(titule);
+		switch (profesor.getTitula()) {
+		case Master:
+			cbTitula.setSelectedIndex(0);
+			break;
+		case Doktor:
+			cbTitula.setSelectedIndex(1);
+			break;
+		case DoktorProfesor:
+			cbTitula.setSelectedIndex(2);
+			break;
+		}
 		GridBagConstraints gbc_cbTitula = new GridBagConstraints();
 		gbc_cbTitula.gridwidth = 3;
 		gbc_cbTitula.insets = new Insets(20, 20, 0, 20);
@@ -252,6 +293,20 @@ public class DodajProfesoraDialog extends JDialog {
 
 		String[] zvanja = { "Asistent", "Docent", "Vanredni profesor", "Redovni profesor" };
 		cbZvanje = new JComboBox<String>(zvanja);
+		switch (profesor.getZvanje()) {
+		case Asistent:
+			cbZvanje.setSelectedIndex(0);
+			break;
+		case Docent:
+			cbZvanje.setSelectedIndex(1);
+			break;
+		case RedovniProfesor:
+			cbZvanje.setSelectedIndex(2);
+			break;
+		case VanredniProfesor:
+			cbZvanje.setSelectedIndex(3);
+			break;
+		}
 		GridBagConstraints gbc_cbZvanje = new GridBagConstraints();
 		gbc_cbZvanje.gridwidth = 3;
 		gbc_cbZvanje.insets = new Insets(20, 20, 0, 20);
@@ -261,7 +316,7 @@ public class DodajProfesoraDialog extends JDialog {
 		panTop.add(cbZvanje, gbc_cbZvanje);
 
 		JPanel panBottom = new JPanel();
-		this.add(panBottom, BorderLayout.SOUTH);
+		panel.add(panBottom, BorderLayout.SOUTH);
 		panBottom.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
 		txtIme.getDocument().addDocumentListener(documentListener);
@@ -277,7 +332,7 @@ public class DodajProfesoraDialog extends JDialog {
 		btnPotvrdi.setEnabled(false);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (ProfesoriController.getInstance().proveriProfesora() == true) {
+				if (ProfesoriController.getInstance().proveriIzmenuProfesora() == true) {
 					dispose();
 				}
 			}
@@ -292,7 +347,6 @@ public class DodajProfesoraDialog extends JDialog {
 		});
 		panBottom.add(btnOdustani);
 
-		this.setVisible(true);
+		return panel;
 	}
-
 }

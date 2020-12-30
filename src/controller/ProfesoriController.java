@@ -14,8 +14,9 @@ import model.Predmet;
 import model.Profesor;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
-import view.ProfesorTable;
+import view.TabbedPanel;
 import view.dialogs.DodajProfesoraDialog;
+import view.dialogs.IzmeniProfesoraDialog;
 
 public class ProfesoriController {
 
@@ -34,6 +35,11 @@ public class ProfesoriController {
 	public void dodajProfesora() {
 		@SuppressWarnings("unused")
 		DodajProfesoraDialog dialog = new DodajProfesoraDialog();
+	}
+
+	public void izmeniProfesora() {
+		@SuppressWarnings("unused")
+		IzmeniProfesoraDialog dialog = new IzmeniProfesoraDialog();
 	}
 
 	public boolean proveriProfesora() {
@@ -56,11 +62,6 @@ public class ProfesoriController {
 		eMail = DodajProfesoraDialog.txtEmailAdresa.getText().trim();
 		adresaKancelarije = DodajProfesoraDialog.txtAdresaKancelarije.getText().trim();
 		brojLicne = DodajProfesoraDialog.txtBrojLicneKarte.getText().trim();
-
-		if (!proveriIme(ime + " " + prezime) || !proveriAdresu(adresa) || !proveriBrTelefona(telefon)
-				|| !proveriEmail(eMail) || !proveriAdresu(adresaKancelarije) || !proveriBrLicne(brojLicne)) {
-			return false;
-		}
 
 		datumRodjenja = new Date();
 		try {
@@ -121,7 +122,84 @@ public class ProfesoriController {
 			return false;
 		}
 
-		ProfesorTable.azurirajPrikazProfesora();
+		TabbedPanel.tabelaProfesora.azurirajPrikazProfesora();
+
+		return true;
+	}
+
+	public boolean proveriIzmenuProfesora() {
+		String prezime;
+		String ime;
+		Date datumRodjenja;
+		String adresa;
+		String telefon;
+		String eMail;
+		String adresaKancelarije;
+		String brojLicne;
+		Titula titula;
+		Zvanje zvanje;
+
+		prezime = IzmeniProfesoraDialog.txtPrezime.getText().trim();
+		ime = IzmeniProfesoraDialog.txtIme.getText().trim();
+		adresa = IzmeniProfesoraDialog.txtAdresaStanovanja.getText().trim();
+		telefon = IzmeniProfesoraDialog.txtBrojTelefona.getText().trim();
+		eMail = IzmeniProfesoraDialog.txtEmailAdresa.getText().trim();
+		adresaKancelarije = IzmeniProfesoraDialog.txtAdresaKancelarije.getText().trim();
+		brojLicne = IzmeniProfesoraDialog.txtBrojLicneKarte.getText().trim();
+
+		datumRodjenja = new Date();
+		try {
+			datumRodjenja = new SimpleDateFormat("dd.MM.yyyy")
+					.parse(IzmeniProfesoraDialog.txtDatumRodjenja.getText().trim());
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+
+		switch (IzmeniProfesoraDialog.cbTitula.getSelectedItem().toString()) {
+		case "Master":
+			titula = Titula.Master;
+			break;
+		case "Doktor":
+			titula = Titula.Doktor;
+			break;
+		case "Doktor profesor":
+			titula = Titula.DoktorProfesor;
+			break;
+		default:
+			titula = null;
+			return false;
+		}
+		switch (IzmeniProfesoraDialog.cbZvanje.getSelectedItem().toString()) {
+		case "Asistent":
+			zvanje = Zvanje.Asistent;
+			break;
+		case "Docent":
+			zvanje = Zvanje.Docent;
+			break;
+		case "Vanredni profesor":
+			zvanje = Zvanje.VanredniProfesor;
+			break;
+		case "Redovni profesor":
+			zvanje = Zvanje.RedovniProfesor;
+			break;
+		default:
+			zvanje = null;
+			return false;
+		}
+
+		if (titula == Titula.Master) {
+			if (zvanje != Zvanje.Asistent) {
+				JOptionPane.showMessageDialog(null, "Predavač sa titulom mastera može biti samo asistent!", "GREŠKA",
+						JOptionPane.ERROR_MESSAGE);
+				return false;
+			}
+		}
+
+		BazaProfesora.getInstance().izmeniProfesora(ime, prezime, datumRodjenja, adresa, telefon, eMail,
+				adresaKancelarije, brojLicne, titula, zvanje);
+		TabbedPanel.tabelaProfesora.azurirajPrikazProfesora();
 
 		return true;
 	}
@@ -146,6 +224,29 @@ public class ProfesoriController {
 				|| DodajProfesoraDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
 				|| DodajProfesoraDialog.txtAdresaKancelarije.getText().trim().equals("Adresa, Kancelarija, 123")
 				|| DodajProfesoraDialog.txtBrojLicneKarte.getText().trim().equals("111222333")) {
+			retVal = false;
+		}
+		return retVal;
+	}
+
+	public boolean proveriPopunjenostIzmenjenihPolja() {
+		boolean retVal = false;
+		if (proveriIme(IzmeniProfesoraDialog.txtPrezime.getText().trim())
+				&& proveriIme(IzmeniProfesoraDialog.txtIme.getText().trim())
+				&& proveriDatum(IzmeniProfesoraDialog.txtDatumRodjenja.getText().trim())
+				&& proveriAdresu(IzmeniProfesoraDialog.txtAdresaStanovanja.getText().trim())
+				&& proveriBrTelefona(IzmeniProfesoraDialog.txtBrojTelefona.getText().trim())
+				&& proveriEmail(IzmeniProfesoraDialog.txtEmailAdresa.getText().trim())
+				&& proveriAdresu(IzmeniProfesoraDialog.txtAdresaKancelarije.getText().trim())) {
+			retVal = true;
+		}
+		if (IzmeniProfesoraDialog.txtPrezime.getText().trim().equals("Ime")
+				|| IzmeniProfesoraDialog.txtIme.getText().trim().equals("Prezime")
+				|| IzmeniProfesoraDialog.txtDatumRodjenja.getText().trim().equals("dd.mm.yyyy.")
+				|| IzmeniProfesoraDialog.txtAdresaStanovanja.getText().trim().equals("Adresa, 123")
+				|| IzmeniProfesoraDialog.txtBrojTelefona.getText().trim().equals("06123123123")
+				|| IzmeniProfesoraDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
+				|| IzmeniProfesoraDialog.txtAdresaKancelarije.getText().trim().equals("Adresa, Kancelarija, 123")) {
 			retVal = false;
 		}
 		return retVal;
@@ -200,7 +301,7 @@ public class ProfesoriController {
 		retVal = matcher.matches();
 		return retVal;
 	}
-	
+
 	public boolean proveriDatum(String datumRodjenja) {
 		if (datumRodjenja.isEmpty()) {
 			return false;
@@ -211,7 +312,7 @@ public class ProfesoriController {
 		retVal = matcher.matches();
 		return retVal;
 	}
-	
+
 	public boolean proveriIme(String ime) {
 		if (ime.isEmpty()) {
 			return false;

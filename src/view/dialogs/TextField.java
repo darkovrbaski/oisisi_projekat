@@ -43,8 +43,8 @@ public class TextField extends JTextField {
 
 			@Override
 			public void focusGained(FocusEvent e) {
+				tf.setForeground(Color.BLACK);
 				if (tf.getText().trim().equals(text)) {
-					tf.setForeground(Color.BLACK);
 					tf.setText("");
 				}
 

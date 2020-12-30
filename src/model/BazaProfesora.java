@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
@@ -27,7 +28,7 @@ public class BazaProfesora {
 		this.kolone.add("TITULA");
 		this.kolone.add("ZVANJE");
 	}
-	
+
 	private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
 	}
@@ -76,7 +77,7 @@ public class BazaProfesora {
 			return null;
 		}
 	}
-	
+
 	public boolean dodajProfesora(Profesor profesor) {
 		for (Profesor p : profesori) {
 			if (p.getBrojLicne().equals(profesor.getBrojLicne())) {
@@ -85,6 +86,23 @@ public class BazaProfesora {
 		}
 		profesori.add(profesor);
 		return true;
+	}
+
+	public void izmeniProfesora(String ime, String prezime, Date datumRodjenja, String adresa, String telefon,
+			String eMail, String adresaKancelarije, String brojLicne, Titula titula, Zvanje zvanje) {
+		for (Profesor p : profesori) {
+			if (p.getBrojLicne().equals(brojLicne)) {
+				p.setIme(ime);
+				p.setPrezime(prezime);
+				p.setDatumRodjenja(datumRodjenja);
+				p.setAdresa(adresa);
+				p.setTelefon(telefon);
+				p.seteMail(eMail);
+				p.setAdresaKancelarije(adresaKancelarije);
+				p.setTitula(titula);
+				p.setZvanje(zvanje);
+			}
+		}
 	}
 
 }

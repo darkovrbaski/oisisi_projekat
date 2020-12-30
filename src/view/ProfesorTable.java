@@ -14,14 +14,11 @@ public class ProfesorTable extends JTable {
 	 */
 	private static final long serialVersionUID = -500762274265898052L;
 	
-	public static JTable tabelaProfesora;
-
 	public ProfesorTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesori());
-		tabelaProfesora = this;
 	}
 
 	@Override
@@ -35,9 +32,14 @@ public class ProfesorTable extends JTable {
 		return c;
 	}
 	
-	public static void azurirajPrikazProfesora() {
-		AbstractTableModelProfesori model = (AbstractTableModelProfesori) tabelaProfesora.getModel();
+	public void azurirajPrikazProfesora() {
+		AbstractTableModelProfesori model = (AbstractTableModelProfesori) this.getModel();
 		model.fireTableDataChanged();
+		this.validate();
+	}
+
+	public int getCurrentSelectedRow() {
+		return this.getSelectedRow();
 	}
 
 }

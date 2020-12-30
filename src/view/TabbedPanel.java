@@ -19,6 +19,7 @@ public class TabbedPanel extends JTabbedPane {
 	private static final long serialVersionUID = 9109758071824258550L;
 
 	public static int currentTab = 0;
+	public static ProfesorTable tabelaProfesora;
 	
 	public TabbedPanel() {
 
@@ -35,8 +36,8 @@ public class TabbedPanel extends JTabbedPane {
 		JPanel profesorTab = new JPanel();
 		profesorTab.setLayout(new BorderLayout());
 		ImageIcon iconP = Frame.createImageIcon("Images" + File.separator + "teacher-at-the-blackboard.png", true, 16, 16);
-		ProfesorTable profTable = new ProfesorTable();
-		JScrollPane scrollPane = new JScrollPane(profTable);
+		tabelaProfesora = new ProfesorTable();
+		JScrollPane scrollPane = new JScrollPane(tabelaProfesora);
 		profesorTab.add(scrollPane, BorderLayout.CENTER);
 		this.addTab("Profesori", iconP, profesorTab, "Prikaz profesora");
 
