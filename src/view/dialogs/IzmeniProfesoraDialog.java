@@ -34,13 +34,13 @@ public class IzmeniProfesoraDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 7297428227529238986L;
 
-	public static JTextField txtIme;
-	public static JTextField txtPrezime;
-	public static JTextField txtDatumRodjenja;
-	public static JTextField txtAdresaStanovanja;
-	public static JTextField txtBrojTelefona;
-	public static JTextField txtEmailAdresa;
-	public static JTextField txtAdresaKancelarije;
+	public static TextField txtIme;
+	public static TextField txtPrezime;
+	public static TextField txtDatumRodjenja;
+	public static TextField txtAdresaStanovanja;
+	public static TextField txtBrojTelefona;
+	public static TextField txtEmailAdresa;
+	public static TextField txtAdresaKancelarije;
 	public static JTextField txtBrojLicneKarte;
 	public static JComboBox<String> cbTitula;
 	public static JComboBox<String> cbZvanje;

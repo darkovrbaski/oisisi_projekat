@@ -216,14 +216,20 @@ public class ProfesoriController {
 				&& proveriBrLicne(DodajProfesoraDialog.txtBrojLicneKarte.getText().trim())) {
 			retVal = true;
 		}
-		if (DodajProfesoraDialog.txtPrezime.getText().trim().equals("Ime")
-				|| DodajProfesoraDialog.txtIme.getText().trim().equals("Prezime")
-				|| DodajProfesoraDialog.txtDatumRodjenja.getText().trim().equals("dd.mm.yyyy.")
-				|| DodajProfesoraDialog.txtAdresaStanovanja.getText().trim().equals("Adresa, 123")
-				|| DodajProfesoraDialog.txtBrojTelefona.getText().trim().equals("06123123123")
-				|| DodajProfesoraDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
-				|| DodajProfesoraDialog.txtAdresaKancelarije.getText().trim().equals("Adresa, Kancelarija, 123")
-				|| DodajProfesoraDialog.txtBrojLicneKarte.getText().trim().equals("111222333")) {
+		if (DodajProfesoraDialog.txtPrezime.getText().trim().equals(DodajProfesoraDialog.txtPrezime.getTxt())
+				|| DodajProfesoraDialog.txtIme.getText().trim().equals(DodajProfesoraDialog.txtIme.getTxt())
+				|| DodajProfesoraDialog.txtDatumRodjenja.getText().trim()
+						.equals(DodajProfesoraDialog.txtDatumRodjenja.getTxt())
+				|| DodajProfesoraDialog.txtAdresaStanovanja.getText().trim()
+						.equals(DodajProfesoraDialog.txtAdresaStanovanja.getTxt())
+				|| DodajProfesoraDialog.txtBrojTelefona.getText().trim()
+						.equals(DodajProfesoraDialog.txtBrojTelefona.getTxt())
+				|| DodajProfesoraDialog.txtEmailAdresa.getText().trim()
+						.equals(DodajProfesoraDialog.txtEmailAdresa.getTxt())
+				|| DodajProfesoraDialog.txtAdresaKancelarije.getText().trim()
+						.equals(DodajProfesoraDialog.txtAdresaKancelarije.getTxt())
+				|| DodajProfesoraDialog.txtBrojLicneKarte.getText().trim()
+						.equals(DodajProfesoraDialog.txtBrojLicneKarte.getTxt())) {
 			retVal = false;
 		}
 		return retVal;
@@ -240,13 +246,18 @@ public class ProfesoriController {
 				&& proveriAdresu(IzmeniProfesoraDialog.txtAdresaKancelarije.getText().trim())) {
 			retVal = true;
 		}
-		if (IzmeniProfesoraDialog.txtPrezime.getText().trim().equals("Ime")
-				|| IzmeniProfesoraDialog.txtIme.getText().trim().equals("Prezime")
-				|| IzmeniProfesoraDialog.txtDatumRodjenja.getText().trim().equals("dd.mm.yyyy.")
-				|| IzmeniProfesoraDialog.txtAdresaStanovanja.getText().trim().equals("Adresa, 123")
-				|| IzmeniProfesoraDialog.txtBrojTelefona.getText().trim().equals("06123123123")
-				|| IzmeniProfesoraDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
-				|| IzmeniProfesoraDialog.txtAdresaKancelarije.getText().trim().equals("Adresa, Kancelarija, 123")) {
+		if (IzmeniProfesoraDialog.txtPrezime.getText().trim().equals(IzmeniProfesoraDialog.txtPrezime.getTxt())
+				|| IzmeniProfesoraDialog.txtIme.getText().trim().equals(IzmeniProfesoraDialog.txtIme.getTxt())
+				|| IzmeniProfesoraDialog.txtDatumRodjenja.getText().trim()
+						.equals(IzmeniProfesoraDialog.txtDatumRodjenja.getTxt())
+				|| IzmeniProfesoraDialog.txtAdresaStanovanja.getText().trim()
+						.equals(IzmeniProfesoraDialog.txtAdresaStanovanja.getTxt())
+				|| IzmeniProfesoraDialog.txtBrojTelefona.getText().trim()
+						.equals(IzmeniProfesoraDialog.txtBrojTelefona.getTxt())
+				|| IzmeniProfesoraDialog.txtEmailAdresa.getText().trim()
+						.equals(IzmeniProfesoraDialog.txtEmailAdresa.getTxt())
+				|| IzmeniProfesoraDialog.txtAdresaKancelarije.getText().trim()
+						.equals(IzmeniProfesoraDialog.txtAdresaKancelarije.getTxt())) {
 			retVal = false;
 		}
 		return retVal;

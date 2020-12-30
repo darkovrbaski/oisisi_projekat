@@ -22,10 +22,12 @@ public class TextField extends JTextField {
 
 	private JTextField tf;
 	private Provera provera;
+	private String txt;
 
 	public TextField(String text, Provera provera, String error) {
 		tf = this;
 		this.provera = provera;
+		this.txt = text;
 		this.setText(text);
 		this.setForeground(new Color(156, 156, 156));
 		this.addFocusListener(new FocusListener() {
@@ -50,6 +52,10 @@ public class TextField extends JTextField {
 
 			}
 		});
+	}
+	
+	public String getTxt() {
+		return txt;
 	}
 
 	public boolean proveraValidnosti() {
