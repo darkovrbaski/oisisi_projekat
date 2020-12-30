@@ -23,10 +23,10 @@ public class BazaProfesora {
 	private BazaProfesora() {
 		initProfesore();
 		this.kolone = new ArrayList<String>();
-		this.kolone.add("IME");
-		this.kolone.add("PREZIME");
-		this.kolone.add("TITULA");
-		this.kolone.add("ZVANJE");
+		this.kolone.add("Ime");
+		this.kolone.add("Prezime");
+		this.kolone.add("Titula");
+		this.kolone.add("Zvanje");
 	}
 
 	private void initProfesore() {

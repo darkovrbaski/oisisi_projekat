@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.io.File;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -20,6 +19,7 @@ public class TabbedPanel extends JTabbedPane {
 
 	public static int currentTab = 0;
 	public static ProfesorTable tabelaProfesora;
+	public static PredmetTable tabelaPredmeta;
 	
 	public TabbedPanel() {
 
@@ -43,9 +43,11 @@ public class TabbedPanel extends JTabbedPane {
 
 		// Predmet sekcija
 		JPanel predmetTab = new JPanel();
+		predmetTab.setLayout(new BorderLayout());
 		ImageIcon iconPd = Frame.createImageIcon("Images" + File.separator + "books-stack-of-three.png", true, 16, 16);
-		JLabel todoPd = new JLabel("TODO: prikaz entiteta predmet");
-		predmetTab.add(todoPd);
+		tabelaPredmeta = new PredmetTable();
+		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmeta);
+		predmetTab.add(scrollPanePredmeti, BorderLayout.CENTER);
 		this.addTab("Predmeti", iconPd, predmetTab, "Prikaz predmeta");
 		
 		this.addChangeListener(new ChangeListener() {
