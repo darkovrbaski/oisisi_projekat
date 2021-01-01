@@ -104,5 +104,16 @@ public class BazaProfesora {
 			}
 		}
 	}
+	
+	public void izbrisiPredmet(Predmet predmet) {
+		for (Profesor prof : profesori) {
+			for (Predmet p : prof.getSpisakPredmeta()) {
+				if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					prof.getSpisakPredmeta().remove(p);
+					break;
+				}
+			}
+		}
+	}
 
 }

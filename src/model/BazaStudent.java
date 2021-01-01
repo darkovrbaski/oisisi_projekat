@@ -114,8 +114,21 @@ public class BazaStudent {
 		return true;
 	}
 	
-	
-	
-	
+	public void izbrisiPredmet(Predmet predmet) {
+		for (Student s : studenti) {
+//			for (Predmet p : s.getSpisakNePolozenihIspita()) { TODO: OTKOMENTARISATI KAD KOLEGA ISPRAVI GRESKU!
+//				if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+//					s.getSpisakNePolozenihIspita().remove(p);
+//					break;
+//				}
+//			}
+			for (Ocena o : s.getSpisakPolozenihIspita()) {
+				if (o.getTrenutniPredmet().getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					s.getSpisakPolozenihIspita().remove(o);
+					break;
+				}
+			}
+		}
+	}
 	
 }

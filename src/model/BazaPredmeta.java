@@ -67,5 +67,14 @@ public class BazaPredmeta {
 			return null;
 		}
 	}
+	
+	public void izbrisiPredmet(Predmet predmet) {
+		for (Predmet p : predmeti) {
+			if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+				predmeti.remove(p);
+				break;
+			}
+		}
+	}
 
 }

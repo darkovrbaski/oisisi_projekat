@@ -7,6 +7,7 @@ import java.io.File;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
+import controller.PredmetController;
 
 public class DeleteAction extends AbstractAction {
 	
@@ -23,8 +24,10 @@ public class DeleteAction extends AbstractAction {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
+	public void actionPerformed(ActionEvent e) {
+		if (TabbedPanel.currentTab == 2 && TabbedPanel.tabelaPredmeta.getSelectedRow() != -1) {
+			PredmetController.getInstance().izbrisiPredmet();
+		}
 	}
 
 }
