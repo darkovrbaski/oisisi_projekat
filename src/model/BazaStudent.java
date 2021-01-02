@@ -96,7 +96,9 @@ public class BazaStudent {
 			return student.getStatusStudenta().toString();
 			
 		case 5:
-			return student.getProsecnaOcjena();
+			double d=student.getProsecnaOcjena(); 
+			String s=String.valueOf(d);  
+			return s;
 		
 		default:
 			return null;
@@ -116,12 +118,12 @@ public class BazaStudent {
 	
 	public void izbrisiPredmet(Predmet predmet) {
 		for (Student s : studenti) {
-//			for (Predmet p : s.getSpisakNePolozenihIspita()) { TODO: OTKOMENTARISATI KAD KOLEGA ISPRAVI GRESKU!
-//				if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
-//					s.getSpisakNePolozenihIspita().remove(p);
-//					break;
-//				}
-//			}
+			for (Predmet p : s.getSpisakNePolozenihIspita()) { 
+				if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+					s.getSpisakNePolozenihIspita().remove(p);
+					break;
+				}
+			}
 			for (Ocena o : s.getSpisakPolozenihIspita()) {
 				if (o.getTrenutniPredmet().getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
 					s.getSpisakPolozenihIspita().remove(o);

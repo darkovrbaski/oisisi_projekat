@@ -1,6 +1,9 @@
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,11 +11,14 @@ import javax.swing.JOptionPane;
 
 import model.BazaStudent;
 import model.Ocena;
+import model.Predmet;
 import model.Student;
 import model.Student.Status;
 import model.Student.TrenutnaGodina;
 import view.StudentTable;
+import view.dialogs.DodajProfesoraDialog;
 import view.dialogs.DodajStudentaDialog;
+import view.dialogs.IzmeniProfesoraDialog;
 
 public class StudentiController {
 
@@ -36,22 +42,34 @@ public class StudentiController {
 		boolean retVal = true;
 		String ime;
 		String prezime;
-		String datumRodjenja;
+		Date datumRodjenja;
 		String adresa;
 		String telefon;
 		String eMail;
 		String brIndeksa;
 		String godUpisa;
-		String prosecnaOcjena = null;
+		double prosecnaOcjena = 0;
 		TrenutnaGodina trenGodina;
 		Status status;
 		ArrayList<Ocena> spisakPolozenihIspita = new ArrayList<Ocena>();
-		ArrayList<Ocena> spisakNePolozenihIspita = new ArrayList<Ocena>();
+		ArrayList<Predmet> spisakNePolozenihIspita = new ArrayList<Predmet>();
 		
 
 		prezime = DodajStudentaDialog.txtPrezime.getText().trim();
 		ime = DodajStudentaDialog.txtIme.getText().trim();
-		datumRodjenja = DodajStudentaDialog.txtDatumRodjenja.getText().trim();
+		
+		datumRodjenja = new Date();
+		try {
+			datumRodjenja = new SimpleDateFormat("dd.MM.yyyy")
+					.parse(DodajStudentaDialog.txtDatumRodjenja.getText().trim());
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		//datumRodjenja = DodajStudentaDialog.txtDatumRodjenja.getText().trim();
+		
 		adresa = DodajStudentaDialog.txtAdresaStanovanja.getText().trim();
 		telefon = DodajStudentaDialog.txtBrojTelefona.getText().trim();
 		eMail = DodajStudentaDialog.txtEmailAdresa.getText().trim();
@@ -60,9 +78,8 @@ public class StudentiController {
 		
 		
 		
-		if (!proveriIme(ime + " " + prezime) || !proveriDatum(datumRodjenja) || !proveriAdresu(adresa)
-				|| !proveriBrTelefona(telefon) || !proveriEmail(eMail) || !proveriBrIndeksa(brIndeksa)
-				|| !proveriGodUpisa(godUpisa)) {
+		if (!proveriIme(ime + " " + prezime) || !proveriDatum(DodajStudentaDialog.txtDatumRodjenja.getText().trim()) || !proveriAdresu(adresa)
+				|| !proveriBrTelefona(telefon) || !proveriEmail(eMail) || !proveriGodUpisa(godUpisa)) {
 			retVal = false;
 		}
 		
@@ -187,16 +204,14 @@ public class StudentiController {
 		return retVal;
 	}
 
-	private boolean proveriDatum(String datumRodjenja) {
+	public boolean proveriDatum(String datumRodjenja) {
+		if (datumRodjenja.isEmpty()) {
+			return false;
+		}
 		boolean retVal = true;
 		Pattern patern = Pattern.compile("(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})");
 		Matcher matcher = patern.matcher(datumRodjenja);
 		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null,
-					"GREŠKA Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy .",
-					"GREŠKA", JOptionPane.ERROR_MESSAGE);
-		}
 		return retVal;
 	}
 
@@ -216,17 +231,17 @@ public class StudentiController {
 	
 	
 	
-	private boolean proveriBrIndeksa(String brIndeksa) {
-		boolean retVal = true;
-		Pattern patern = Pattern.compile("^\\d{5}$");
-		Matcher matcher = patern.matcher(brIndeksa);
-		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj indeksa.( MAX PET BROJEVA) \nSamo brojevi su dozvoljeni!",
-					"GREŠKA", JOptionPane.ERROR_MESSAGE);
-		}
-		return retVal;
-	}
+	//private boolean proveriBrIndeksa(String brIndeksa) {
+	//	boolean retVal = true;
+	//	Pattern patern = Pattern.compile("^\\d{5}$");
+	//	Matcher matcher = patern.matcher(brIndeksa);
+	//	retVal = matcher.matches();
+	//	if (retVal == false) {
+	//		JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj indeksa.( MAX PET BROJEVA) \nSamo brojevi su dozvoljeni!",
+	//				"GREŠKA", JOptionPane.ERROR_MESSAGE);
+	//	}
+	//	return retVal;
+	//}
 	
 	
 	

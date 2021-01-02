@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Student {
 	
@@ -9,7 +10,7 @@ public class Student {
 
 	private String prezime;
 	private String ime;
-	private String datumRodjenja;
+	private Date datumRodjenja;
 	private String adresa;
 	private String telefon;
 	private String eMail;
@@ -17,14 +18,14 @@ public class Student {
 	private String godUpisa;
 	private TrenutnaGodina trenGodina;
 	private Status statusStudenta;
-	private String prosecnaOcjena;
+	private double prosecnaOcjena;
 	private ArrayList<Ocena> spisakPolozenihIspita;
-	private ArrayList<Ocena> spisakNePolozenihIspita;
+	private ArrayList<Predmet> spisakNePolozenihIspita;
 	
 
-	public Student(String prezime, String ime, String datumRodjenja, String adresa, String telefon, String eMail,
-			String brIndeksa, String godUpisa, TrenutnaGodina trenGodina, Status statusStudenta, String prosecnaOcjena,
-			ArrayList<Ocena> spisakPolozenihIspita, ArrayList<Ocena> spisakNePolozenihIspita) {
+	public Student(String prezime, String ime, Date datumRodjenja, String adresa, String telefon, String eMail,
+			String brIndeksa, String godUpisa, TrenutnaGodina trenGodina, Status statusStudenta, double prosecnaOcjena,
+			ArrayList<Ocena> spisakPolozenihIspita, ArrayList<Predmet> spisakNePolozenihIspita) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
@@ -60,11 +61,11 @@ public class Student {
 		this.ime = ime;
 	}
 	
-	public String getDatumRodjenja() {
+	public Date getDatumRodjenja() {
 		return datumRodjenja;
 	}
 	
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(Date datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 	
@@ -124,11 +125,11 @@ public class Student {
 		this.statusStudenta = statusStudenta;
 	}
 	
-	public String getProsecnaOcjena() {
+	public double getProsecnaOcjena() {
 		return prosecnaOcjena;
 	}
 	
-	public void setProsecnaOcjena(String prosecnaOcjena) {
+	public void setProsecnaOcjena(double prosecnaOcjena) {
 		this.prosecnaOcjena = prosecnaOcjena;
 	}
 
@@ -143,11 +144,11 @@ public class Student {
 		this.spisakPolozenihIspita = spisakPolozenihIspita;
 	}
 
-	public ArrayList<Ocena> getSpisakNePolozenihIspita() {
+	public ArrayList<Predmet> getSpisakNePolozenihIspita() {
 		return spisakNePolozenihIspita;
 	}
 
-	public void setSpisakNePolozenihIspita(ArrayList<Ocena> spisakNePolozenihIspita) {
+	public void setSpisakNePolozenihIspita(ArrayList<Predmet> spisakNePolozenihIspita) {
 		this.spisakNePolozenihIspita = spisakNePolozenihIspita;
 	}
 	
