@@ -27,7 +27,7 @@ public class PredmetController {
 		if (dialog.isYes() == true) {
 			Predmet predmet = BazaPredmeta.getInstance().getRow(TabbedPanel.tabelaPredmeta.getCurrentSelectedRow());
 			BazaPredmeta.getInstance().izbrisiPredmet(predmet);
-			TabbedPanel.tabelaPredmeta.azurirajPrikazPredmeta();
+			TabbedPanel.tabelaPredmeta.azurirajPrikaz();
 			BazaProfesora.getInstance().izbrisiPredmet(predmet);
 			// TODO: azuriraj predmete u profesoru
 			BazaStudent.getInstance().izbrisiPredmet(predmet);

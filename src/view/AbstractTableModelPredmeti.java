@@ -9,7 +9,7 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3261024513031285602L;
+	private static final long serialVersionUID = -2177631931847342087L;
 
 	@Override
 	public int getColumnCount() {

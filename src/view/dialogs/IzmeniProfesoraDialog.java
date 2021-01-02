@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -23,8 +24,10 @@ import javax.swing.event.DocumentListener;
 import controller.ProfesoriController;
 import model.BazaProfesora;
 import model.Profesor;
+import view.AbstractTableModelProfesorPredajePredmete;
 import view.Frame;
 import view.TabbedPanel;
+import view.Table;
 import view.dialogs.TextField.Provera;
 
 public class IzmeniProfesoraDialog extends JDialog {
@@ -32,8 +35,9 @@ public class IzmeniProfesoraDialog extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7297428227529238986L;
-
+	private static final long serialVersionUID = 8150024806031754555L;
+	
+	private Profesor profesor;
 	public static TextField txtIme;
 	public static TextField txtPrezime;
 	public static TextField txtDatumRodjenja;
@@ -80,22 +84,57 @@ public class IzmeniProfesoraDialog extends JDialog {
 		this.setResizable(false);
 		this.setSize(500, 600);
 		this.setLocationRelativeTo(Frame.getInstance());
+		
+		this.profesor = BazaProfesora.getInstance().getRow(TabbedPanel.tabelaProfesora.getCurrentSelectedRow());
 
 		JTabbedPane tabbedPanel = new JTabbedPane();
 
 		JPanel informacijeTab = informacijeProfesora();
 		tabbedPanel.addTab("Informacije", informacijeTab);
 
-		JPanel predmetiTab = new JPanel();
+		JPanel predmetiTab = predmetiProfesora();
 		tabbedPanel.addTab("Predmeti", predmetiTab);
 
 		this.add(tabbedPanel);
 		this.setVisible(true);
 	}
 
+	private JPanel predmetiProfesora() {
+		JPanel panel = new JPanel();	
+
+		JPanel panTop = new JPanel();
+		panel.add(panTop, BorderLayout.NORTH);
+		panTop.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
+
+		JButton btnDodajPredmet = new JButton("Dodaj Predmet");
+		btnDodajPredmet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		panTop.add(btnDodajPredmet);
+
+		JButton btnUkloniPredmet = new JButton("Ukloni Predmet");
+		btnUkloniPredmet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		panTop.add(btnUkloniPredmet);
+
+		JPanel panBottom = new JPanel();
+		panel.add(panBottom);
+		panBottom.setLayout(new BorderLayout());
+		Table tabelaPredmetaProfesora = new Table();
+		tabelaPredmetaProfesora.setModel(new AbstractTableModelProfesorPredajePredmete(this.profesor));
+		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmetaProfesora);
+		panBottom.add(scrollPanePredmeti, BorderLayout.CENTER);
+
+		return panel;
+	}
+
 	private JPanel informacijeProfesora() {
 		JPanel panel = new JPanel();
-		Profesor profesor = BazaProfesora.getInstance().getRow(TabbedPanel.tabelaProfesora.getCurrentSelectedRow());
 		
 		panel.setLayout(new BorderLayout(0, 30));
 		JPanel panTop = new JPanel();

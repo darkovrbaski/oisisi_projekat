@@ -19,6 +19,7 @@ public class BazaProfesora {
 
 	private ArrayList<Profesor> profesori;
 	private ArrayList<String> kolone;
+	private ArrayList<String> kolonePredmeta;
 
 	private BazaProfesora() {
 		initProfesore();
@@ -27,10 +28,17 @@ public class BazaProfesora {
 		this.kolone.add("Prezime");
 		this.kolone.add("Titula");
 		this.kolone.add("Zvanje");
+		this.kolonePredmeta = new ArrayList<String>();
+		this.kolonePredmeta.add("Šifra");
+		this.kolonePredmeta.add("Naziv");
+		this.kolonePredmeta.add("Godina studija");
+		this.kolonePredmeta.add("Semestar");
 	}
 
 	private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
+		Date d = new Date();
+		profesori.add(new Profesor("P", "P", d, "afsa", "41253463663", "q@q", "faefwggw", "123456789", Titula.DoktorProfesor, Zvanje.RedovniProfesor, new ArrayList<Predmet>()));
 	}
 
 	public ArrayList<Profesor> getProfesori() {
@@ -40,17 +48,37 @@ public class BazaProfesora {
 	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;
 	}
+	
+	public ArrayList<Predmet> getPredmeti(Profesor profesor) {
+		return profesor.getSpisakPredmeta();
+	}
 
+	public void setPredmeti(Profesor profesor, ArrayList<Predmet> predmeti) {
+		profesor.setSpisakPredmeta(predmeti);
+	}
+	
 	public int getColumnCount() {
 		return kolone.size();
+	}
+	
+	public int getColumnCountPredmeti() {
+		return kolonePredmeta.size();
 	}
 
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
 	}
+	
+	public String getColumnNamePredmeti(int index) {
+		return this.kolonePredmeta.get(index);
+	}
 
 	public Profesor getRow(int rowIndex) {
 		return this.profesori.get(rowIndex);
+	}
+	
+	public Predmet getRowPredmet(Profesor profesor, int rowIndex) {
+		return profesor.getSpisakPredmeta().get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
@@ -73,6 +101,22 @@ public class BazaProfesora {
 				return "Vanredni Profesor";
 			}
 			return profesor.getZvanje().toString();
+		default:
+			return null;
+		}
+	}
+	
+	public String getValueAtPredmeti(Profesor profesor, int row, int column) {
+		Predmet predmet = profesor.getSpisakPredmeta().get(row);
+		switch (column) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNaziv();
+		case 2:
+			return predmet.getGodina().toString();
+		case 3:
+			return predmet.getSemestar().toString();
 		default:
 			return null;
 		}

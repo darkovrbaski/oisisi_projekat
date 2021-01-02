@@ -122,7 +122,7 @@ public class ProfesoriController {
 			return false;
 		}
 
-		TabbedPanel.tabelaProfesora.azurirajPrikazProfesora();
+		TabbedPanel.tabelaProfesora.azurirajPrikaz();
 
 		return true;
 	}
@@ -199,7 +199,7 @@ public class ProfesoriController {
 
 		BazaProfesora.getInstance().izmeniProfesora(ime, prezime, datumRodjenja, adresa, telefon, eMail,
 				adresaKancelarije, brojLicne, titula, zvanje);
-		TabbedPanel.tabelaProfesora.azurirajPrikazProfesora();
+		TabbedPanel.tabelaProfesora.azurirajPrikaz();
 
 		return true;
 	}

@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import model.Predmet.Godina;
+import model.Predmet.Semestar;
+
 public class BazaPredmeta {
 
 	private static BazaPredmeta instance = null;
@@ -21,13 +24,16 @@ public class BazaPredmeta {
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra predmeta");
 		this.kolone.add("Naziv predmeta");
-		this.kolone.add("Broj ESPB bodova");
-		this.kolone.add("Godina na kojem se predmet izvodi");
-		this.kolone.add("Semestar u kome se predmet izvodi");
+		this.kolone.add("ESPB");
+		this.kolone.add("Godina studija");
+		this.kolone.add("Semestar");
 	}
 
 	private void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
+		predmeti.add(new Predmet("123", "", Semestar.Letnji, Godina.Prva, null, 9, null, null));
+		predmeti.add(new Predmet("124", "", Semestar.Letnji, Godina.Prva, null, 9, null, null));
+		predmeti.add(new Predmet("125", "", Semestar.Letnji, Godina.Prva, null, 9, null, null));
 	}
 
 	public ArrayList<Predmet> getPredmeti() {

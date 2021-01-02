@@ -5,20 +5,20 @@ import java.awt.Component;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
-public class ProfesorTable extends JTable {
+public class Table extends JTable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -500762274265898052L;
 	
-	public ProfesorTable() {
+	public Table() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelProfesori());
 	}
 
 	@Override
@@ -32,8 +32,8 @@ public class ProfesorTable extends JTable {
 		return c;
 	}
 	
-	public void azurirajPrikazProfesora() {
-		AbstractTableModelProfesori model = (AbstractTableModelProfesori) this.getModel();
+	public void azurirajPrikaz() {
+		AbstractTableModel model = (AbstractTableModel) this.getModel();
 		model.fireTableDataChanged();
 		this.validate();
 	}
