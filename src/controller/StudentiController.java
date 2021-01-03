@@ -146,19 +146,34 @@ public class StudentiController {
 	
 	
 	public boolean proveriPopunjenostPolja() {
-		boolean retVal = true;
-		if (DodajStudentaDialog.txtPrezime.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtIme.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtDatumRodjenja.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtAdresaStanovanja.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtBrojTelefona.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtEmailAdresa.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtBrIndeksa.getText().trim().isEmpty()
-				|| DodajStudentaDialog.txtGodUpisa.getText().trim().isEmpty()) {
+		
+		boolean retVal = false;
+		if (proveriIme(DodajStudentaDialog.txtPrezime.getText().trim())
+				&& proveriIme(DodajStudentaDialog.txtIme.getText().trim())
+				&& proveriDatum(DodajStudentaDialog.txtDatumRodjenja.getText().trim())
+				&& proveriAdresu(DodajStudentaDialog.txtAdresaStanovanja.getText().trim())
+				&& proveriBrTelefona(DodajStudentaDialog.txtBrojTelefona.getText().trim())
+				&& proveriEmail(DodajStudentaDialog.txtEmailAdresa.getText().trim())
+				&& proveriGodUpisa(DodajStudentaDialog.txtGodUpisa.getText().trim())
+				&& proveriBrIndeksa(DodajStudentaDialog.txtBrIndeksa.getText().trim())
+				) {
+			retVal = true;
+		}
+		if (DodajStudentaDialog.txtPrezime.getText().trim().equals("Ime")
+				|| DodajStudentaDialog.txtIme.getText().trim().equals("Prezime")
+				|| DodajStudentaDialog.txtDatumRodjenja.getText().trim().equals("dd.mm.yyyy.")
+				|| DodajStudentaDialog.txtAdresaStanovanja.getText().trim().equals("Adresa, 123")
+				|| DodajStudentaDialog.txtBrojTelefona.getText().trim().equals("06123123123")
+				|| DodajStudentaDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
+				|| DodajStudentaDialog.txtGodUpisa.getText().trim().equals("1900") 
+				|| DodajStudentaDialog.txtBrIndeksa.getText().trim().equals("NZ123") 
+				) {
 			retVal = false;
 		}
-		return retVal;
-	}
+		return retVal;		
+		
+	
+	  }
 	
 	
 	
@@ -166,44 +181,55 @@ public class StudentiController {
 	
 
 
-	private boolean proveriEmail(String eMail) {
+	public boolean proveriEmail(String eMail) {
+		if( eMail.isEmpty() ) {
+			return false;
+		}
 		boolean retVal = true;
 		Pattern patern = Pattern.compile(
 				"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
 		Matcher matcher = patern.matcher(eMail);
 		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unetu eMail adresu.", "GREŠKA",
-					JOptionPane.ERROR_MESSAGE);
-		}
 		return retVal;
 	}
+	
+	
 
-	private boolean proveriBrTelefona(String telefon) {
+	public boolean proveriBrTelefona(String telefon) {
+		if( telefon.isEmpty() ) {
+			return false;
+		}
+		
 		boolean retVal = true;
 		Pattern patern = Pattern.compile("\\+?\\d[\\d\\s]{6,15}\\d");
 		Matcher matcher = patern.matcher(telefon);
 		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!",
-					"GREŠKA", JOptionPane.ERROR_MESSAGE);
-		}
+
 		return retVal;
 	}
+	
+	
 
-	private boolean proveriAdresu(String adresa) {
+
+	public boolean proveriAdresu(String adresa) {
+		if( adresa.isEmpty() ) {
+			
+			return false;
+		}
 		boolean retVal = true;
 		Pattern patern = Pattern.compile("[a-zA-ZšŠđĐčČćĆžŽ0-9',. -]+");
 		Matcher matcher = patern.matcher(adresa);
 		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null,
-					"GREŠKA Proverite unetu adresu ili adresu kancelarije.\nPolje sadrži nedozvoljene karaktere!",
-					"GREŠKA", JOptionPane.ERROR_MESSAGE);
-		}
+
 		return retVal;
 	}
 
+	
+	
+	
+	
+	
+	
 	public boolean proveriDatum(String datumRodjenja) {
 		if (datumRodjenja.isEmpty()) {
 			return false;
@@ -215,45 +241,52 @@ public class StudentiController {
 		return retVal;
 	}
 
-	private boolean proveriIme(String ime) {
+	
+	
+	
+	
+	public boolean proveriIme(String ime) {
+		if ( ime.isEmpty() ) {
+			return false;
+		}
+		
 		boolean retVal = true;
 		Pattern patern = Pattern.compile("^[a-zA-ZšŠđĐčČćĆžŽ]+(([',. -][a-zA-ZšŠđĐčČćĆžŽ ])?[a-zA-ZšŠđĐčČćĆžŽ]*)*$");
 		Matcher matcher = patern.matcher(ime);
 		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null,
-					"GREŠKA Proverite uneto ime ili prezime.\nPolje sadrži nedozvoljene karaktere!", "GREŠKA",
-					JOptionPane.ERROR_MESSAGE);
-		}
+
 		return retVal;
 	}
 	
 	
 	
+	public boolean proveriBrIndeksa(String brIndeksa) {
+		if ( brIndeksa.isEmpty() ) {
+			return false;
+		}
+		
+		
+		boolean retVal = true;
+		Pattern patern = Pattern.compile("^[A-Z]{1,4}[0-9]{1,4}"); 
+		Matcher matcher = patern.matcher(brIndeksa);
+		retVal = matcher.matches();
+
+		return retVal;
+	}
 	
-	//private boolean proveriBrIndeksa(String brIndeksa) {
-	//	boolean retVal = true;
-	//	Pattern patern = Pattern.compile("^\\d{5}$");
-	//	Matcher matcher = patern.matcher(brIndeksa);
-	//	retVal = matcher.matches();
-	//	if (retVal == false) {
-	//		JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj indeksa.( MAX PET BROJEVA) \nSamo brojevi su dozvoljeni!",
-	//				"GREŠKA", JOptionPane.ERROR_MESSAGE);
-	//	}
-	//	return retVal;
-	//}
 	
 	
-	
-	private boolean proveriGodUpisa(String godUpisa) {
+	public boolean proveriGodUpisa(String godUpisa) {
+		if ( godUpisa.isEmpty() ) {
+			return false;
+		}
+		
+		
 		boolean retVal = true;
 		Pattern patern = Pattern.compile("^\\d{4}$");
 		Matcher matcher = patern.matcher(godUpisa);
 		retVal = matcher.matches();
-		if (retVal == false) {
-			JOptionPane.showMessageDialog(null, "GREŠKA Proverite unet broj godine upisa.( MAX CETIRI BROJA) \nSamo brojevi su dozvoljeni!",
-					"GREŠKA", JOptionPane.ERROR_MESSAGE);
-		}
+
 		return retVal;
 	}
 	

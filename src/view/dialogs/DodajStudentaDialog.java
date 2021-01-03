@@ -20,6 +20,7 @@ import javax.swing.event.DocumentListener;
 
 import controller.StudentiController;
 import view.Frame;
+import view.dialogs.TextFieldStudent.Provera;
 
 public class DodajStudentaDialog extends JDialog{
 
@@ -89,6 +90,8 @@ public class DodajStudentaDialog extends JDialog{
 		GridBagLayout gb = new GridBagLayout();
 		panTop.setLayout(gb);
 
+		
+		
 		JLabel lblIme = new JLabel("Ime*");
 		GridBagConstraints gbc_lblIme = new GridBagConstraints();
 		gbc_lblIme.anchor = GridBagConstraints.WEST;
@@ -97,7 +100,7 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblIme.gridy = 0;
 		panTop.add(lblIme, gbc_lblIme);
 
-		txtIme = new JTextField();
+		txtIme = new TextFieldStudent("Ime", Provera.Ime, "Proverite uneto ime.\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtIme = new GridBagConstraints();
 		gbc_txtIme.gridwidth = 3;
 		gbc_txtIme.fill = GridBagConstraints.HORIZONTAL;
@@ -116,7 +119,8 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblPrezime.gridy = 1;
 		panTop.add(lblPrezime, gbc_lblPrezime);
 
-		txtPrezime = new JTextField();
+		txtPrezime = new TextFieldStudent("Prezime", Provera.Prezime,
+				"Proverite uneto prezime.\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtPrezime = new GridBagConstraints();
 		gbc_txtPrezime.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPrezime.gridwidth = 3;
@@ -136,7 +140,8 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblDatumRodjenja.gridy = 2;
 		panTop.add(lblDatumRodjenja, gbc_lblDatumRodjenja);
 
-		txtDatumRodjenja = new JTextField();
+		txtDatumRodjenja = new TextFieldStudent("dd.mm.yyyy", Provera.Datum,
+				"Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy");
 		GridBagConstraints gbc_txtDatumRodjenja = new GridBagConstraints();
 		gbc_txtDatumRodjenja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDatumRodjenja.gridwidth = 3;
@@ -155,7 +160,8 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblAdresaStanovanja.gridy = 3;
 		panTop.add(lblAdresaStanovanja, gbc_lblAdresaStanovanja);
 
-		txtAdresaStanovanja = new JTextField();
+		txtAdresaStanovanja = new TextFieldStudent("Adresa, 123", Provera.Adresa,
+				"Proverite unetu adresu stanovanja.\\nPolje sadrži nedozvoljene karaktere!");
 		GridBagConstraints gbc_txtAdresaStanovanja = new GridBagConstraints();
 		gbc_txtAdresaStanovanja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresaStanovanja.gridwidth = 3;
@@ -175,7 +181,8 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblBrojTelefona.gridy = 4;
 		panTop.add(lblBrojTelefona, gbc_lblBrojTelefona);
 
-		txtBrojTelefona = new JTextField();
+		txtBrojTelefona = new TextFieldStudent("06123123123", Provera.BrTel,
+				"Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!");
 		GridBagConstraints gbc_txtBrojTelefona = new GridBagConstraints();
 		gbc_txtBrojTelefona.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrojTelefona.gridwidth = 3;
@@ -196,7 +203,7 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblEmailAdresa.gridy = 5;
 		panTop.add(lblEmailAdresa, gbc_lblEmailAdresa);
 
-		txtEmailAdresa = new JTextField();
+		txtEmailAdresa = new TextFieldStudent("primer@primer.com", Provera.Email, "Proverite unetu eMail adresu.");
 		GridBagConstraints gbc_txtEmailAdresa = new GridBagConstraints();
 		gbc_txtEmailAdresa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtEmailAdresa.gridwidth = 3;
@@ -215,7 +222,8 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblBrIndeksa.gridy = 6;
 		panTop.add(lblBrIndeksa, gbc_lblBrIndeksa);
 
-		txtBrIndeksa = new JTextField();
+		
+		txtBrIndeksa = new TextFieldStudent("NZ123", Provera.BrojIndeksa, "Proverite uneti broj indeksa");
 		GridBagConstraints gbc_txtBrindeksa = new GridBagConstraints();
 		gbc_txtBrindeksa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrindeksa.gridwidth = 3;
@@ -236,7 +244,7 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblGodUpisa.gridy = 7;
 		panTop.add(lblGodUpisa, gbc_lblGodUpisa);
 
-		txtGodUpisa = new JTextField();
+		txtGodUpisa = new TextFieldStudent("1900", Provera.GodUpisa, "Proverite unetu godinu upisa.");
 		GridBagConstraints gbc_txtGodUpisa = new GridBagConstraints();
 		gbc_txtGodUpisa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtGodUpisa.gridwidth = 3;
