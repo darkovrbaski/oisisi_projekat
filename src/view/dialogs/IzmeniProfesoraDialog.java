@@ -38,6 +38,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 	private static final long serialVersionUID = 8150024806031754555L;
 	
 	private Profesor profesor;
+	private Table tabelaPredmetaProfesora;
 	public static TextField txtIme;
 	public static TextField txtPrezime;
 	public static TextField txtDatumRodjenja;
@@ -92,24 +93,27 @@ public class IzmeniProfesoraDialog extends JDialog {
 		JPanel informacijeTab = informacijeProfesora();
 		tabbedPanel.addTab("Informacije", informacijeTab);
 
-		JPanel predmetiTab = predmetiProfesora();
+		JPanel predmetiTab = predmetiProfesora(this);
 		tabbedPanel.addTab("Predmeti", predmetiTab);
 
 		this.add(tabbedPanel);
 		this.setVisible(true);
 	}
 
-	private JPanel predmetiProfesora() {
-		JPanel panel = new JPanel();	
+	private JPanel predmetiProfesora(JDialog parent) {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
 
 		JPanel panTop = new JPanel();
 		panel.add(panTop, BorderLayout.NORTH);
-		panTop.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 5));
+		panTop.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 5));
 
 		JButton btnDodajPredmet = new JButton("Dodaj Predmet");
 		btnDodajPredmet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				@SuppressWarnings("unused")
+				DodajPredmeteProfesoruDialog dialog = new DodajPredmeteProfesoruDialog(parent, profesor);
+				tabelaPredmetaProfesora.azurirajPrikaz();
 			}
 		});
 		panTop.add(btnDodajPredmet);
@@ -117,7 +121,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 		JButton btnUkloniPredmet = new JButton("Ukloni Predmet");
 		btnUkloniPredmet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				
 			}
 		});
 		panTop.add(btnUkloniPredmet);
@@ -125,7 +129,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 		JPanel panBottom = new JPanel();
 		panel.add(panBottom);
 		panBottom.setLayout(new BorderLayout());
-		Table tabelaPredmetaProfesora = new Table();
+		tabelaPredmetaProfesora = new Table();
 		tabelaPredmetaProfesora.setModel(new AbstractTableModelProfesorPredajePredmete(this.profesor));
 		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmetaProfesora);
 		panBottom.add(scrollPanePredmeti, BorderLayout.CENTER);

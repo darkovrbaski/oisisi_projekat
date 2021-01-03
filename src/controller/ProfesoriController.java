@@ -15,6 +15,7 @@ import model.Profesor;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
 import view.TabbedPanel;
+import view.dialogs.DodajPredmeteProfesoruDialog;
 import view.dialogs.DodajProfesoraDialog;
 import view.dialogs.IzmeniProfesoraDialog;
 
@@ -40,6 +41,16 @@ public class ProfesoriController {
 	public void izmeniProfesora() {
 		@SuppressWarnings("unused")
 		IzmeniProfesoraDialog dialog = new IzmeniProfesoraDialog();
+	}
+
+	public void dodajPredmetProfesoru() {
+		ArrayList<Predmet> predmeti = BazaProfesora.getInstance()
+				.getPredmetiKojeNePredaje(DodajPredmeteProfesoruDialog.profesor);
+		int[] rows = DodajPredmeteProfesoruDialog.tabelaDodavanjePredmeta.getMultipleSelectedRows();
+		for (int i : rows) {
+			BazaProfesora.getInstance().dodajPredmetePofesoru(DodajPredmeteProfesoruDialog.profesor, predmeti.get(i));
+		}
+		DodajPredmeteProfesoruDialog.tabelaDodavanjePredmeta.azurirajPrikaz();
 	}
 
 	public boolean proveriProfesora() {

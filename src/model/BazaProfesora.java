@@ -159,5 +159,15 @@ public class BazaProfesora {
 			}
 		}
 	}
+	
+	public ArrayList<Predmet> getPredmetiKojeNePredaje(Profesor profesor) {
+		ArrayList<Predmet> predmeti = new ArrayList<Predmet>(BazaPredmeta.getInstance().getPredmeti());
+		predmeti.removeAll(profesor.getSpisakPredmeta());
+		return predmeti;
+	}
+	
+	public void dodajPredmetePofesoru(Profesor profesor, Predmet predmet) {
+		profesor.getSpisakPredmeta().add(predmet);
+	}
 
 }
