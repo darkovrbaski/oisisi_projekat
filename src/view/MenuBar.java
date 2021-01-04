@@ -77,6 +77,14 @@ public class MenuBar extends JMenuBar {
 		// Action Lisiteneri 
 	    miEdit.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent avg0) {
+	        	
+	    		if (TabbedPanel.currentTab == 1 && TabbedPanel.tabelaProfesora.getSelectedRow() != -1) {
+	    			ProfesoriController.getInstance().izmeniProfesora();
+	    		}
+	    		
+	    		if (TabbedPanel.currentTab == 0 && TabbedPanel.tabelaStudenata.getSelectedRow() != -1) {
+	    			StudentiController.getInstance().izmeniStudenta();
+	    		}
 	          
 	        }
 	      });

@@ -27,7 +27,7 @@ public class TextFieldStudent extends JTextField {
 	
 	private JTextField tf;
 	private Provera provera;
-	
+	private String txt;
 	
 	
 	
@@ -35,6 +35,7 @@ public class TextFieldStudent extends JTextField {
 		tf = this;
 		this.provera = provera;
 		this.setText(text);
+		this.txt = text;
 		this.setForeground(new Color(156, 156, 156));
 		this.addFocusListener(new FocusListener() {
 
@@ -42,7 +43,7 @@ public class TextFieldStudent extends JTextField {
 			public void focusLost(FocusEvent e) {
 				if (!proveraValidnosti() || tf.getText().trim().equals(text) || tf.getText().trim().isEmpty() == true) {
 					if (!tf.getText().trim().equals(text) && tf.getText().trim().isEmpty() == false) {
-						JOptionPane.showMessageDialog(null, error, "GREŠKA", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, error, "GREÅ KA", JOptionPane.ERROR_MESSAGE);
 					}
 					tf.setForeground(new Color(156, 156, 156));
 					tf.setText(text);
@@ -51,8 +52,8 @@ public class TextFieldStudent extends JTextField {
 
 			@Override
 			public void focusGained(FocusEvent e) {
+				tf.setForeground(Color.BLACK);
 				if (tf.getText().trim().equals(text)) {
-					tf.setForeground(Color.BLACK);
 					tf.setText("");
 				}
 
@@ -62,6 +63,9 @@ public class TextFieldStudent extends JTextField {
 		});
 	}
 	
+	public String getTxt() {
+		return txt;
+	}
 	
 	
 	public boolean proveraValidnosti() {

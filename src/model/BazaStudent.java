@@ -1,6 +1,7 @@
 package model;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import model.Student.Status;
@@ -115,6 +116,36 @@ public class BazaStudent {
 		studenti.add(student);
 		return true;
 	}
+	
+	// TODO: PROVERITI CASTOVANJE DA LI RADI
+	public void izmeniStudenta(String ime, String prezime, java.util.Date datumRodjenja, String adresa, String telefon,
+			String eMail, String brojIndeksa, String godUpisa, TrenutnaGodina trenGodina, Status status) {
+		for (Student s : studenti) {
+			if (s.getBrIndeksa().equals(brojIndeksa)) {
+				s.setIme(ime);
+				s.setPrezime(prezime);
+				s.setDatumRodjenja(datumRodjenja);
+				s.setAdresa(adresa);
+				s.setTelefon(telefon);
+				s.seteMail(eMail);
+				s.setBrIndeksa(brojIndeksa);
+				s.setTrenGodina(trenGodina);
+				s.setStatusStudenta(status);
+				
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void izbrisiPredmet(Predmet predmet) {
 		for (Student s : studenti) {

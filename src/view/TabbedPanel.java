@@ -21,14 +21,16 @@ public class TabbedPanel extends JTabbedPane {
 	public static Table tabelaProfesora;
 	public static Table tabelaPredmeta;
 	
+	public static StudentTable tabelaStudenata;
+	
 	public TabbedPanel() {
 
 		// Student sekcija
 		JPanel studentTab = new JPanel();
 		studentTab.setLayout(new BorderLayout()); 
 		ImageIcon iconS = Frame.createImageIcon("Images" + File.separator + "iconmonstr-school-23-16.png", false, 16, 16);
-		StudentTable studTable = new StudentTable();
-		JScrollPane scrollPanee = new JScrollPane(studTable);
+		tabelaStudenata = new StudentTable();
+		JScrollPane scrollPanee = new JScrollPane(tabelaStudenata);	
 		studentTab.add(scrollPanee, BorderLayout.CENTER);
 		this.addTab("Studenti", iconS, studentTab, "Prikaz studenta");
 

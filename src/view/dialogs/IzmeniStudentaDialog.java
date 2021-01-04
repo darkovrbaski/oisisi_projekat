@@ -8,39 +8,45 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.StudentiController;
+import model.BazaStudent;
+import model.Student;
 import view.Frame;
+import view.TabbedPanel;
 import view.dialogs.TextFieldStudent.Provera;
 
-public class DodajStudentaDialog extends JDialog{
+public class IzmeniStudentaDialog extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 356593115042387583L;
+	private static final long serialVersionUID = -7285866491261741657L;
 
-	public static JTextField txtIme;
-	public static JTextField txtPrezime;
-	public static JTextField txtDatumRodjenja;
-	public static JTextField txtAdresaStanovanja;
-	public static JTextField txtBrojTelefona;
-	public static JTextField txtEmailAdresa;
-	public static JTextField txtBrIndeksa;
-	public static JTextField txtGodUpisa;
-	public static JTextField txtTrenGodina;
 	
-	public static JTextField txtStatusStudenta;
-	public static JTextField txtProsecnaOcjena;
+	public static TextFieldStudent txtIme;
+	public static TextFieldStudent txtPrezime;
+	public static TextFieldStudent txtDatumRodjenja;
+	public static TextFieldStudent txtAdresaStanovanja;
+	public static TextFieldStudent txtBrojTelefona;
+	public static TextFieldStudent txtEmailAdresa;
+	public static TextFieldStudent txtBrIndeksa;
+	public static TextFieldStudent txtGodUpisa;
+	public static TextFieldStudent txtTrenGodina;
+	
+	public static TextFieldStudent txtStatusStudenta;
+	public static TextFieldStudent txtProsecnaOcjena;
 	
 	public static JComboBox<String> cbTrenutnaG;
 	public static JComboBox<String> cbStatus;
@@ -50,7 +56,7 @@ public class DodajStudentaDialog extends JDialog{
 
 		@Override
 		public void removeUpdate(DocumentEvent e) {
-			if (StudentiController.getInstance().proveriPopunjenostPolja()) {
+			if (StudentiController.getInstance().proveriPopunjenostIzmenjenihPolja()) {
 				btnPotvrdi.setEnabled(true);
 			} else {
 				btnPotvrdi.setEnabled(false);
@@ -59,7 +65,7 @@ public class DodajStudentaDialog extends JDialog{
 
 		@Override
 		public void insertUpdate(DocumentEvent e) {
-			if (StudentiController.getInstance().proveriPopunjenostPolja()) {
+			if (StudentiController.getInstance().proveriPopunjenostIzmenjenihPolja()) {
 				btnPotvrdi.setEnabled(true);
 			} else {
 				btnPotvrdi.setEnabled(false);
@@ -68,7 +74,7 @@ public class DodajStudentaDialog extends JDialog{
 
 		@Override
 		public void changedUpdate(DocumentEvent e) {
-			if (StudentiController.getInstance().proveriPopunjenostPolja()) {
+			if (StudentiController.getInstance().proveriPopunjenostIzmenjenihPolja()) {
 				btnPotvrdi.setEnabled(true);
 			} else {
 				btnPotvrdi.setEnabled(false);
@@ -76,20 +82,47 @@ public class DodajStudentaDialog extends JDialog{
 		}
 	};
 	
-
-	public DodajStudentaDialog() {
-		super(Frame.getInstance(), "Dodavanje studenta", true);
+	
+	
+	public IzmeniStudentaDialog() {
+		
+		super(Frame.getInstance(), "Izmeni studenta", true);
 		this.setResizable(false);
 		this.setSize(500, 600);
 		this.setLocationRelativeTo(Frame.getInstance());
+		
+		
+		JTabbedPane tabbedPanel = new JTabbedPane();
 
-		this.setLayout(new BorderLayout(0, 30));
+		JPanel informacijeTab = informacijeStudenta();
+		tabbedPanel.addTab("Informacije", informacijeTab);
 
+		JPanel polozeniTab = new JPanel();
+		tabbedPanel.addTab("Polozeni", polozeniTab);
+		
+		JPanel nepolozeniTab = new JPanel();
+		tabbedPanel.addTab("Nepolozeni", nepolozeniTab);
+
+		this.add(tabbedPanel);
+		this.setVisible(true);	
+	}
+	
+	
+	
+	private JPanel informacijeStudenta() {
+		
+		JPanel panel = new JPanel();
+		Student student = BazaStudent.getInstance().getRow(TabbedPanel.tabelaStudenata.getCurrentSelectedRow());
+
+		panel.setLayout(new BorderLayout(0, 30));
 		JPanel panTop = new JPanel();
-		this.add(panTop, BorderLayout.CENTER);
+		panel.add(panTop, BorderLayout.CENTER);
 		GridBagLayout gb = new GridBagLayout();
 		panTop.setLayout(gb);
-
+		
+		
+		
+		
 		
 		
 		JLabel lblIme = new JLabel("Ime*");
@@ -100,7 +133,9 @@ public class DodajStudentaDialog extends JDialog{
 		gbc_lblIme.gridy = 0;
 		panTop.add(lblIme, gbc_lblIme);
 
-		txtIme = new TextFieldStudent("Ime", Provera.Ime, "Proverite uneto ime.\nPolje sadrži nedozvoljene karaktere!");
+		
+		txtIme = new TextFieldStudent("Ime", Provera.Ime, "Proverite uneto ime.\nPolje sadrÅ¾i nedozvoljene karaktere!");
+		txtIme.setText(student.getIme());
 		GridBagConstraints gbc_txtIme = new GridBagConstraints();
 		gbc_txtIme.gridwidth = 3;
 		gbc_txtIme.fill = GridBagConstraints.HORIZONTAL;
@@ -120,7 +155,8 @@ public class DodajStudentaDialog extends JDialog{
 		panTop.add(lblPrezime, gbc_lblPrezime);
 
 		txtPrezime = new TextFieldStudent("Prezime", Provera.Prezime,
-				"Proverite uneto prezime.\nPolje sadrži nedozvoljene karaktere!");
+				"Proverite uneto prezime.\nPolje sadrÅ¾i nedozvoljene karaktere!");
+		txtPrezime.setText(student.getPrezime());
 		GridBagConstraints gbc_txtPrezime = new GridBagConstraints();
 		gbc_txtPrezime.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtPrezime.gridwidth = 3;
@@ -132,7 +168,7 @@ public class DodajStudentaDialog extends JDialog{
 		
 		
 		
-		JLabel lblDatumRodjenja = new JLabel("Datum rođenja*");
+		JLabel lblDatumRodjenja = new JLabel("Datum roÄ‘enja*");
 		GridBagConstraints gbc_lblDatumRodjenja = new GridBagConstraints();
 		gbc_lblDatumRodjenja.anchor = GridBagConstraints.WEST;
 		gbc_lblDatumRodjenja.insets = new Insets(20, 0, 5, 20);
@@ -141,7 +177,9 @@ public class DodajStudentaDialog extends JDialog{
 		panTop.add(lblDatumRodjenja, gbc_lblDatumRodjenja);
 
 		txtDatumRodjenja = new TextFieldStudent("dd.mm.yyyy", Provera.Datum,
-				"Proverite datum rođenja.\nFormat datuma je: dd.mm.yyyy");
+				"Proverite datum roÄ‘enja.\nFormat datuma je: dd.mm.yyyy");
+		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
+		txtDatumRodjenja.setText(formatDate.format(student.getDatumRodjenja()));
 		GridBagConstraints gbc_txtDatumRodjenja = new GridBagConstraints();
 		gbc_txtDatumRodjenja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDatumRodjenja.gridwidth = 3;
@@ -161,7 +199,8 @@ public class DodajStudentaDialog extends JDialog{
 		panTop.add(lblAdresaStanovanja, gbc_lblAdresaStanovanja);
 
 		txtAdresaStanovanja = new TextFieldStudent("Adresa, 123", Provera.Adresa,
-				"Proverite unetu adresu stanovanja.\\nPolje sadrži nedozvoljene karaktere!");
+				"Proverite unetu adresu stanovanja.\\nPolje sadrÅ¾i nedozvoljene karaktere!");
+		txtAdresaStanovanja.setText(student.getAdresa());
 		GridBagConstraints gbc_txtAdresaStanovanja = new GridBagConstraints();
 		gbc_txtAdresaStanovanja.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtAdresaStanovanja.gridwidth = 3;
@@ -183,6 +222,7 @@ public class DodajStudentaDialog extends JDialog{
 
 		txtBrojTelefona = new TextFieldStudent("06123123123", Provera.BrTel,
 				"Proverite unet broj telefona.\nSamo brojevi su dozvoljeni!");
+		txtBrojTelefona.setText(student.getTelefon());
 		GridBagConstraints gbc_txtBrojTelefona = new GridBagConstraints();
 		gbc_txtBrojTelefona.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrojTelefona.gridwidth = 3;
@@ -204,6 +244,7 @@ public class DodajStudentaDialog extends JDialog{
 		panTop.add(lblEmailAdresa, gbc_lblEmailAdresa);
 
 		txtEmailAdresa = new TextFieldStudent("primer@primer.com", Provera.Email, "Proverite unetu eMail adresu.");
+		txtEmailAdresa.setText(student.geteMail());
 		GridBagConstraints gbc_txtEmailAdresa = new GridBagConstraints();
 		gbc_txtEmailAdresa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtEmailAdresa.gridwidth = 3;
@@ -224,6 +265,7 @@ public class DodajStudentaDialog extends JDialog{
 
 		
 		txtBrIndeksa = new TextFieldStudent("NZ123", Provera.BrojIndeksa, "Proverite uneti broj indeksa");
+		txtBrIndeksa.setText(student.getBrIndeksa());
 		GridBagConstraints gbc_txtBrindeksa = new GridBagConstraints();
 		gbc_txtBrindeksa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrindeksa.gridwidth = 3;
@@ -245,6 +287,7 @@ public class DodajStudentaDialog extends JDialog{
 		panTop.add(lblGodUpisa, gbc_lblGodUpisa);
 
 		txtGodUpisa = new TextFieldStudent("1900", Provera.GodUpisa, "Proverite unetu godinu upisa.");
+		txtGodUpisa.setText(student.getGodUpisa());
 		GridBagConstraints gbc_txtGodUpisa = new GridBagConstraints();
 		gbc_txtGodUpisa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtGodUpisa.gridwidth = 3;
@@ -267,6 +310,27 @@ public class DodajStudentaDialog extends JDialog{
 
 		String[] trGodina = { "PRVA", "DRUGA", "TRECA", "CETVRTA" };
 		cbTrenutnaG = new JComboBox<String>(trGodina);
+		
+		switch(student.getTrenGodina()) {
+		
+		case PRVA:
+			cbTrenutnaG.setSelectedIndex(0);
+			break;
+			
+		case DRUGA:
+			cbTrenutnaG.setSelectedIndex(1);
+			break;
+			
+		case TRECA:
+			cbTrenutnaG.setSelectedIndex(2);
+			break;
+			
+		case CETVRTA:
+			cbTrenutnaG.setSelectedIndex(3);
+			break;
+			
+		}
+		
 		GridBagConstraints gbc_cbTrenutnaG = new GridBagConstraints();
 		gbc_cbTrenutnaG.gridwidth = 3;
 		gbc_cbTrenutnaG.insets = new Insets(20, 20, 0, 20);
@@ -289,6 +353,20 @@ public class DodajStudentaDialog extends JDialog{
 
 		String[] statusi = { "B", "S" };
 		cbStatus = new JComboBox<String>(statusi);
+		
+		switch (student.getStatusStudenta()) {
+		
+		case B:
+			cbStatus.setSelectedIndex(0);
+			break;
+			
+		case S:
+			cbStatus.setSelectedIndex(1);
+			break;
+		
+		}
+		
+		
 		GridBagConstraints gbc_cbStatus = new GridBagConstraints();
 		gbc_cbStatus.gridwidth = 3;
 		gbc_cbStatus.insets = new Insets(20, 20, 0, 20);
@@ -321,7 +399,7 @@ public class DodajStudentaDialog extends JDialog{
 		
 		btnPotvrdi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (StudentiController.getInstance().proveriStudenta() == true) {
+				if (StudentiController.getInstance().proveriIzmenuStudenta() == true) {
 					dispose();
 				}
 			}
@@ -336,7 +414,10 @@ public class DodajStudentaDialog extends JDialog{
 		});
 		panBottom.add(btnOdustani);
 
-		this.setVisible(true);
+		return panel;
+		
+		
 	}
+		
 	
 }

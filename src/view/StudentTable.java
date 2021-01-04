@@ -14,14 +14,14 @@ public class StudentTable extends JTable{
 	 */
 	private static final long serialVersionUID = 1029156741381290239L;
 	
-	public static JTable tabelaStudenata;
+	//public static JTable tabelaStudenata;
 
 	public StudentTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudenti());
-		tabelaStudenata = this;
+//		tabelaStudenata = this;
 	}
 
 	@Override
@@ -35,9 +35,15 @@ public class StudentTable extends JTable{
 		return c;
 	}
 	
-	public static void azurirajPrikazStudenata() {
-		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStudenata.getModel();
+
+	public void azurirajPrikazStudenta() {
+		AbstractTableModelStudenti model = (AbstractTableModelStudenti) this.getModel();
 		model.fireTableDataChanged();
+		this.validate();
+	}
+	
+	public int getCurrentSelectedRow() {
+		return this.getSelectedRow();
 	}
 	
 	
