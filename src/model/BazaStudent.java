@@ -8,7 +8,6 @@ import model.Student.Status;
 import model.Student.TrenutnaGodina;
 
 
-
 public class BazaStudent {
 
 	private static BazaStudent instance = null;
@@ -22,6 +21,7 @@ public class BazaStudent {
 
 	private ArrayList<Student> studenti;
 	private ArrayList<String> kolone;
+	private ArrayList<String> koloneNepolozeniPredmeti;
 
 	private BazaStudent() {
 		initStudente();
@@ -32,6 +32,12 @@ public class BazaStudent {
 		this.kolone.add("Godina studija");
 		this.kolone.add("Status");
 		this.kolone.add("Prosek");
+		this.koloneNepolozeniPredmeti = new ArrayList<String>();
+		koloneNepolozeniPredmeti.add("Šifra predmeta");
+		koloneNepolozeniPredmeti.add("Naziv predmeta");
+		koloneNepolozeniPredmeti.add("ESPB");
+		koloneNepolozeniPredmeti.add("Godina studija");
+		koloneNepolozeniPredmeti.add("Semestar");
 	}
 	
 	private void initStudente() {
@@ -136,16 +142,35 @@ public class BazaStudent {
 		}
 	}
 	
+	public ArrayList<Predmet> getNepolozeniPredmeti(Student student) {
+		return student.getSpisakNePolozenihIspita();
+	}
 	
+	public int getColumnCountNepolozeniPredmeti() {
+		return this.koloneNepolozeniPredmeti.size();
+	}
 	
+	public String getColumnNameNepolozeniPredmeti(int index) {
+		return this.koloneNepolozeniPredmeti.get(index);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public String getValueAtNepolozeniPredmeti(Student student, int row, int column) {
+	Predmet predmet = student.getSpisakNePolozenihIspita().get(row);
+	switch (column) {
+	case 0:
+		return predmet.getSifraPredmeta();
+	case 1:
+		return predmet.getNaziv();
+	case 2:
+		return "" + predmet.getBrojESPB();
+	case 3:
+		return predmet.getGodina().toString();
+	case 4:
+		return predmet.getSemestar().toString();
+	default:
+		return null;
+	}
+}
 	
 	public void izbrisiPredmet(Predmet predmet) {
 		for (Student s : studenti) {

@@ -15,16 +15,18 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.StudentiController;
 import model.BazaStudent;
 import model.Student;
+import view.AbstractTableModelNepolozeniIspitiStudenta;
 import view.Frame;
 import view.TabbedPanel;
+import view.Table;
 import view.dialogs.TextFieldStudent.Provera;
 
 public class IzmeniStudentaDialog extends JDialog {
@@ -34,7 +36,8 @@ public class IzmeniStudentaDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -7285866491261741657L;
 
-	
+	private Student student;
+	private Table tabelaNepolozenihPredmeta;
 	public static TextFieldStudent txtIme;
 	public static TextFieldStudent txtPrezime;
 	public static TextFieldStudent txtDatumRodjenja;
@@ -91,6 +94,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		this.setSize(500, 600);
 		this.setLocationRelativeTo(Frame.getInstance());
 		
+		student = BazaStudent.getInstance().getRow(TabbedPanel.tabelaStudenata.getCurrentSelectedRow());
 		
 		JTabbedPane tabbedPanel = new JTabbedPane();
 
@@ -100,19 +104,68 @@ public class IzmeniStudentaDialog extends JDialog {
 		JPanel polozeniTab = new JPanel();
 		tabbedPanel.addTab("Polozeni", polozeniTab);
 		
-		JPanel nepolozeniTab = new JPanel();
+		JPanel nepolozeniTab = nepolozeniPredmeti();
 		tabbedPanel.addTab("Nepolozeni", nepolozeniTab);
 
 		this.add(tabbedPanel);
 		this.setVisible(true);	
 	}
 	
-	
+	private JPanel nepolozeniPredmeti() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+
+		JPanel panTop = new JPanel();
+		panel.add(panTop, BorderLayout.NORTH);
+		panTop.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 5));
+
+		JButton btnDodaj = new JButton("Dodaj");
+		btnDodaj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		panTop.add(btnDodaj);
+
+		JButton btnObrisi = new JButton("Obriši");
+		btnObrisi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		panTop.add(btnObrisi);
+		
+		JButton btnPolaganje = new JButton("Pologanje");
+		btnPolaganje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		panTop.add(btnPolaganje);
+
+		JPanel panBottom = new JPanel();
+		panel.add(panBottom);
+		panBottom.setLayout(new BorderLayout());
+		tabelaNepolozenihPredmeta = new Table();
+		tabelaNepolozenihPredmeta.setModel(new AbstractTableModelNepolozeniIspitiStudenta(student));
+		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaNepolozenihPredmeta);
+		panBottom.add(scrollPanePredmeti, BorderLayout.CENTER);
+
+		return panel;
+	}
 	
 	private JPanel informacijeStudenta() {
 		
 		JPanel panel = new JPanel();
-		Student student = BazaStudent.getInstance().getRow(TabbedPanel.tabelaStudenata.getCurrentSelectedRow());
 
 		panel.setLayout(new BorderLayout(0, 30));
 		JPanel panTop = new JPanel();
