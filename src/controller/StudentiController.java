@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import model.BazaStudent;
@@ -15,10 +16,10 @@ import model.Predmet;
 import model.Student;
 import model.Student.Status;
 import model.Student.TrenutnaGodina;
-import view.StudentTable;
 import view.TabbedPanel;
 import view.dialogs.DodajStudentaDialog;
 import view.dialogs.IzmeniStudentaDialog;
+import view.dialogs.UpisOceneDialog;
 
 public class StudentiController {
 
@@ -43,6 +44,53 @@ public class StudentiController {
 		IzmeniStudentaDialog dialog = new IzmeniStudentaDialog();
 	}
 	
+	public void upisOcene(JDialog parent, Student student) {
+		@SuppressWarnings("unused")
+		UpisOceneDialog dialog = new UpisOceneDialog(parent, student);
+	}
+	
+	public boolean proveriUpisOcene(Student student, Predmet predmet) {
+		int ocena;
+		Date datum;
+		
+		switch (UpisOceneDialog.cbOcena.getSelectedItem().toString()) {
+		case "6":
+			ocena =  6;
+			break;
+		case "7":
+			ocena =  7;
+			break;
+		case "8":
+			ocena =  8;
+			break;
+		case "9":
+			ocena =  9;
+			break;
+		case "10":
+			ocena =  10;
+			break;
+		default:
+			return false;
+		}
+		datum = new Date();
+		try {
+			datum = new SimpleDateFormat("dd.MM.yyyy").parse(UpisOceneDialog.txtDatum.getText().trim());
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "Proverite datum.\nFormat datuma je: dd.mm.yyyy",
+					"GREŠKA", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		Ocena o = new Ocena(student, predmet, ocena, datum);
+		if (BazaStudent.getInstance().dodajOcenu(student, o) == false) {
+			return false;
+		}
+		student.getSpisakNePolozenihIspita().remove(predmet);
+		IzmeniStudentaDialog.tabelaNepolozenihPredmeta.azurirajPrikaz();
+		//TODO: azurirati prikaz polozenih predmeta
+		
+		return true;
+	}
 
 	public boolean proveriStudenta() {
 		boolean retVal = true;

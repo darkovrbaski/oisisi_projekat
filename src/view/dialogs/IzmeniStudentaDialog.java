@@ -37,7 +37,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	private static final long serialVersionUID = -7285866491261741657L;
 
 	private Student student;
-	private Table tabelaNepolozenihPredmeta;
+	public static Table tabelaNepolozenihPredmeta;
 	public static TextFieldStudent txtIme;
 	public static TextFieldStudent txtPrezime;
 	public static TextFieldStudent txtDatumRodjenja;
@@ -104,14 +104,14 @@ public class IzmeniStudentaDialog extends JDialog {
 		JPanel polozeniTab = new JPanel();
 		tabbedPanel.addTab("Polozeni", polozeniTab);
 		
-		JPanel nepolozeniTab = nepolozeniPredmeti();
+		JPanel nepolozeniTab = nepolozeniPredmeti(this);
 		tabbedPanel.addTab("Nepolozeni", nepolozeniTab);
 
 		this.add(tabbedPanel);
 		this.setVisible(true);	
 	}
 	
-	private JPanel nepolozeniPredmeti() {
+	private JPanel nepolozeniPredmeti(JDialog parent) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
@@ -146,8 +146,9 @@ public class IzmeniStudentaDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				if (tabelaNepolozenihPredmeta.getCurrentSelectedRow() != -1) {
+					StudentiController.getInstance().upisOcene(parent, student);
+				}
 			}
 		});
 		panTop.add(btnPolaganje);
