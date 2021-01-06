@@ -169,7 +169,7 @@ public class BazaStudent {
 	case 2:
 		return "" + predmet.getBrojESPB();
 	case 3:
-		return predmet.getGodina().toString();
+		return "" + predmet.getGodina();
 	case 4:
 		return predmet.getSemestar().toString();
 	default:

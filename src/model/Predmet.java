@@ -5,12 +5,11 @@ import java.util.ArrayList;
 public class Predmet {
 
 	public enum Semestar { Letnji, Zimski };
-	public enum Godina { Prva, Druga, Treca, Cetvrta };
 
 	private String sifraPredmeta;
 	private String naziv;
 	private Semestar semestar;
-	private Godina godina;
+	private int godina;
 	private Profesor predmetniProfesor;
 	private int brojESPB;
 	private ArrayList<Student> studPolozili;
@@ -20,7 +19,7 @@ public class Predmet {
 		super();
 	}
 
-	public Predmet(String sifraPredmeta, String naziv, Semestar semestar, Godina godina, Profesor predmetniProfesor,
+	public Predmet(String sifraPredmeta, String naziv, Semestar semestar, int godina, Profesor predmetniProfesor,
 			int brojESPB, ArrayList<Student> studPolozili, ArrayList<Student> studNisuPolozili) {
 		super();
 		this.sifraPredmeta = sifraPredmeta;
@@ -57,11 +56,11 @@ public class Predmet {
 		this.semestar = semestar;
 	}
 
-	public Godina getGodina() {
+	public int getGodina() {
 		return godina;
 	}
 
-	public void setGodina(Godina godina) {
+	public void setGodina(int godina) {
 		this.godina = godina;
 	}
 

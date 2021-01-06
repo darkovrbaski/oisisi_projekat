@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import model.Predmet.Godina;
 import model.Predmet.Semestar;
 
 public class BazaPredmeta {
@@ -31,9 +30,9 @@ public class BazaPredmeta {
 
 	private void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("123", "", Semestar.Letnji, Godina.Prva, null, 9, null, null));
-		predmeti.add(new Predmet("124", "", Semestar.Letnji, Godina.Prva, null, 9, null, null));
-		predmeti.add(new Predmet("125", "", Semestar.Letnji, Godina.Prva, null, 9, null, null));
+		predmeti.add(new Predmet("123", "Aa", Semestar.Letnji, 1, null, 6, null, null));
+		predmeti.add(new Predmet("124", "Ab", Semestar.Zimski, 2, null, 9, null, null));
+		predmeti.add(new Predmet("125", "Aca", Semestar.Letnji, 3, null, 9, null, null));
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
@@ -66,7 +65,7 @@ public class BazaPredmeta {
 		case 2:
 			return "" + predmet.getBrojESPB();
 		case 3:
-			return predmet.getGodina().toString();
+			return "" + predmet.getGodina();
 		case 4:
 			return predmet.getSemestar().toString();
 		default:
