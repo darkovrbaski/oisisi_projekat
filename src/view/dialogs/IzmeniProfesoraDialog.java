@@ -343,10 +343,10 @@ public class IzmeniProfesoraDialog extends JDialog {
 		case Docent:
 			cbZvanje.setSelectedIndex(1);
 			break;
-		case RedovniProfesor:
+		case VanredniProfesor:
 			cbZvanje.setSelectedIndex(2);
 			break;
-		case VanredniProfesor:
+		case RedovniProfesor:
 			cbZvanje.setSelectedIndex(3);
 			break;
 		}

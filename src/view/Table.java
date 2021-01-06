@@ -19,6 +19,7 @@ public class Table extends JTable {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setAutoCreateRowSorter(true);
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class Table extends JTable {
 	}
 
 	public int getCurrentSelectedRow() {
-		return this.getSelectedRow();
+		return this.convertRowIndexToModel(this.getSelectedRow());
 	}
 
 }
