@@ -43,7 +43,7 @@ public class BazaStudent {
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
 		Date d = new Date();
-		ArrayList<Predmet> p = BazaPredmeta.getInstance().getPredmeti();
+		ArrayList<Predmet> p = new ArrayList<Predmet>(BazaPredmeta.getInstance().getPredmeti());
 		Student student = new Student("a", "a", d, "a", "1241251251", "dad@dasda", "RA200", "2018", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
 		student.setSpisakNePolozenihIspita(p);
 		studenti.add(student);

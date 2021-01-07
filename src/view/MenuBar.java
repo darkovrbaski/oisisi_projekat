@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -11,9 +12,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-
 import controller.ProfesoriController;
 import controller.StudentiController;
+import model.Entiteti;
 
 public class MenuBar extends JMenuBar {
 
@@ -48,8 +49,12 @@ public class MenuBar extends JMenuBar {
 	    
 	    miClose.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
+	        	try {
+					Entiteti.getInstance().serializeToXML();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 	        	System.exit(0);
-	       
 	        }
 	        });
 		

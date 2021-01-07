@@ -5,11 +5,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import model.Entiteti;
 
 
 public class Frame extends JFrame {
@@ -36,9 +41,27 @@ public class Frame extends JFrame {
 		Image image = imageIcon.getImage();
 		setIconImage(image);
 		setTitle("Studentska Služba");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
+		this.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					Entiteti.getInstance().serializeToXML();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				System.exit(0);
+			}
 		
+		});
 
 		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
