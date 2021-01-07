@@ -5,3 +5,7 @@ Informacioni sistem studentske službe Fakulteta tehničkih nauka iz predmeta Oi
 student 1: Nikola Ninkovic RA197/2018 JDK 14 Eclipse 2020-09
 
 student 2: Darko Vrbaški RA200/2018 JDK 1.8 Eclipse 2019-09
+
+
+Eksterne bibliotek:
+xstream-1.4.15
