@@ -169,8 +169,8 @@ public class BazaProfesora {
 		return predmeti;
 	}
 	
-	public void dodajPredmetePofesoru(Profesor profesor, Predmet predmet) {
-		profesor.getSpisakPredmeta().add(predmet);
+	public void dodajPredmetePofesoru(Profesor profesor, ArrayList<Predmet> predmeti) {
+		profesor.getSpisakPredmeta().addAll(predmeti);
 	}
 
 }

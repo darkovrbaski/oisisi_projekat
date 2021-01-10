@@ -46,10 +46,15 @@ public class ProfesoriController {
 	public void dodajPredmetProfesoru() {
 		ArrayList<Predmet> predmeti = BazaProfesora.getInstance()
 				.getPredmetiKojeNePredaje(DodajPredmeteProfesoruDialog.profesor);
+		ArrayList<Predmet> predmetiKojeTrebaDodati = new ArrayList<Predmet>();
 		int[] rows = DodajPredmeteProfesoruDialog.tabelaDodavanjePredmeta.getMultipleSelectedRows();
 		for (int i : rows) {
-			BazaProfesora.getInstance().dodajPredmetePofesoru(DodajPredmeteProfesoruDialog.profesor, predmeti.get(i));
+			predmetiKojeTrebaDodati.add(predmeti.get(i));
 		}
+		for (Predmet predmet: predmetiKojeTrebaDodati) {
+			predmet.setPredmetniProfesor(DodajPredmeteProfesoruDialog.profesor);
+		}
+		BazaProfesora.getInstance().dodajPredmetePofesoru(DodajPredmeteProfesoruDialog.profesor, predmetiKojeTrebaDodati);
 		DodajPredmeteProfesoruDialog.tabelaDodavanjePredmeta.azurirajPrikaz();
 	}
 
