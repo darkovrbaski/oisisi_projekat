@@ -86,6 +86,8 @@ public class StudentiController {
 			return false;
 		}
 		student.getSpisakNePolozenihIspita().remove(predmet);
+		predmet.getStudNisuPolozili().remove(student);
+		predmet.getStudPolozili().add(student);
 		IzmeniStudentaDialog.tabelaNepolozenihPredmeta.azurirajPrikaz();
 		//TODO: azurirati prikaz polozenih predmeta
 		

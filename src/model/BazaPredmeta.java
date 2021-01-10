@@ -30,9 +30,9 @@ public class BazaPredmeta {
 
 	private void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("123", "Aa", Semestar.Letnji, 1, null, 6, null, null));
-		predmeti.add(new Predmet("124", "Ab", Semestar.Zimski, 2, null, 9, null, null));
-		predmeti.add(new Predmet("125", "Aca", Semestar.Letnji, 3, null, 9, null, null));
+		predmeti.add(new Predmet("123", "Aa", Semestar.Letnji, 1, null, 6, new ArrayList<Student>(), new ArrayList<Student>()));
+		predmeti.add(new Predmet("124", "Ab", Semestar.Zimski, 2, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
+		predmeti.add(new Predmet("125", "Aca", Semestar.Letnji, 3, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
