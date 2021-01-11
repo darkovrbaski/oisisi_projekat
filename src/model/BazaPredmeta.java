@@ -73,6 +73,21 @@ public class BazaPredmeta {
 		}
 	}
 	
+	
+	public boolean dodajPredmet(Predmet predmet) {
+		for (Predmet p : predmeti) {
+			if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
+				return false;
+			}
+		}
+		predmeti.add(predmet);
+		return true;
+	}
+	
+	
+	
+	
+	
 	public void izbrisiPredmet(Predmet predmet) {
 		for (Predmet p : predmeti) {
 			if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {

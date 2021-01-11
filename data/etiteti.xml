@@ -6,6 +6,8 @@
       <semestar>Letnji</semestar>
       <godina>1</godina>
       <brojESPB>6</brojESPB>
+      <studPolozili/>
+      <studNisuPolozili/>
     </predmet>
     <predmet>
       <sifraPredmeta>124</sifraPredmeta>
@@ -13,6 +15,8 @@
       <semestar>Zimski</semestar>
       <godina>2</godina>
       <brojESPB>9</brojESPB>
+      <studPolozili/>
+      <studNisuPolozili/>
     </predmet>
     <predmet>
       <sifraPredmeta>125</sifraPredmeta>
@@ -20,13 +24,24 @@
       <semestar>Letnji</semestar>
       <godina>3</godina>
       <brojESPB>9</brojESPB>
+      <studPolozili/>
+      <studNisuPolozili/>
+    </predmet>
+    <predmet>
+      <sifraPredmeta>E123</sifraPredmeta>
+      <naziv>Socilogija</naziv>
+      <semestar>Letnji</semestar>
+      <godina>0</godina>
+      <brojESPB>0</brojESPB>
+      <studPolozili/>
+      <studNisuPolozili/>
     </predmet>
   </predmeti>
   <profesori>
     <profesor>
       <prezime>AP</prezime>
       <ime>AA</ime>
-      <datumRodjenja>2021-01-08 00:21:46.313 CET</datumRodjenja>
+      <datumRodjenja>2021-01-11 20:38:47.423 CET</datumRodjenja>
       <adresa>afsa</adresa>
       <telefon>41253463663</telefon>
       <eMail>q@q</eMail>
@@ -80,7 +95,7 @@
     <student>
       <prezime>a</prezime>
       <ime>a</ime>
-      <datumRodjenja>2021-01-08 00:21:46.303 CET</datumRodjenja>
+      <datumRodjenja>2021-01-11 20:38:47.417 CET</datumRodjenja>
       <adresa>a</adresa>
       <telefon>1241251251</telefon>
       <eMail>dad@dasda</eMail>

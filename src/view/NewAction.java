@@ -7,6 +7,7 @@ import java.io.File;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
+import controller.PredmetController;
 import controller.ProfesoriController;
 import controller.StudentiController;
 
@@ -33,6 +34,14 @@ public class NewAction extends AbstractAction {
 		if (TabbedPanel.currentTab == 0) {
 			StudentiController.getInstance().dodajStudenta();
 		}
+		
+		
+		if (TabbedPanel.currentTab == 2) {
+			PredmetController.getInstance().dodajPredmet();
+		}
+		
+		
+		
 	}
 
 }
