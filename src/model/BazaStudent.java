@@ -20,8 +20,11 @@ public class BazaStudent {
 	}
 
 	private ArrayList<Student> studenti;
+	private ArrayList<Student> sacuvaniStudenti;
 	private ArrayList<String> kolone;
 	private ArrayList<String> koloneNepolozeniPredmeti;
+	
+	
 
 	private BazaStudent() {
 		initStudente();
@@ -123,10 +126,27 @@ public class BazaStudent {
 				return false;
 			}
 		}
-		
 		studenti.add(student);
 		return true;
 	}
+	
+	
+	
+	
+	
+	public void izbrisiStudenta(Student student) {
+		for (Student s : studenti) {
+			if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
+				studenti.remove(s);
+				break;
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	
 	// TODO: PROVERITI CASTOVANJE DA LI RADI
 	public void izmeniStudenta(String ime, String prezime, java.util.Date datumRodjenja, String adresa, String telefon,

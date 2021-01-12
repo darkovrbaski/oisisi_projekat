@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import model.BazaPredmeta;
 import model.BazaStudent;
 import model.Ocena;
 import model.Predmet;
@@ -20,10 +21,11 @@ import view.TabbedPanel;
 import view.dialogs.DodajStudentaDialog;
 import view.dialogs.IzmeniStudentaDialog;
 import view.dialogs.UpisOceneDialog;
+import view.dialogs.UpitPotvrdeDialog;
 
 public class StudentiController {
-
-	private static StudentiController instance = null;
+	// izmm
+	private static StudentiController instance;
 
 	public static StudentiController getInstance() {
 		if (instance == null) {
@@ -33,6 +35,23 @@ public class StudentiController {
 	}
 
 	private StudentiController() {}
+	
+	
+	public void izbrisiStudenta() {
+		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Brisanje studenta",
+				"Da li ste sigurni da želite da obrišete studenta?");
+		if (dialog.isYes() == true) {
+			Student student = BazaStudent.getInstance().getRow(TabbedPanel.tabelaStudenata.getCurrentSelectedRow());
+			BazaStudent.getInstance().izbrisiStudenta(student);
+			TabbedPanel.tabelaStudenata.azurirajPrikazStudenta();
+			BazaPredmeta.getInstance().izbrisiStudenta(student);
+	
+		}
+	}
+	
+	
+	
+	
 
 	public void dodajStudenta() {
 		@SuppressWarnings("unused")

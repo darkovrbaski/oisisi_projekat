@@ -106,7 +106,9 @@ public class MenuBar extends JMenuBar {
 	    
 	    miDelete.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent avg0) {
-	          
+	    		if (TabbedPanel.currentTab == 0 && TabbedPanel.tabelaStudenata.getSelectedRow() != -1) {
+	    			StudentiController.getInstance().izbrisiStudenta();
+	    		}
 	        }
 	      });
 		

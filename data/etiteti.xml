@@ -2,10 +2,10 @@
   <predmeti>
     <predmet>
       <sifraPredmeta>123</sifraPredmeta>
-      <naziv>Matematicka Analiza</naziv>
-      <semestar>Zimski</semestar>
+      <naziv>Aa</naziv>
+      <semestar>Letnji</semestar>
       <godina>1</godina>
-      <brojESPB>9</brojESPB>
+      <brojESPB>6</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
@@ -32,7 +32,7 @@
     <profesor>
       <prezime>AP</prezime>
       <ime>AA</ime>
-      <datumRodjenja>2021-01-12 20:05:04.8 CET</datumRodjenja>
+      <datumRodjenja>2021-01-12 22:43:03.744 CET</datumRodjenja>
       <adresa>afsa</adresa>
       <telefon>41253463663</telefon>
       <eMail>q@q</eMail>
@@ -82,25 +82,5 @@
       <spisakPredmeta/>
     </profesor>
   </profesori>
-  <studenti>
-    <student>
-      <prezime>a</prezime>
-      <ime>a</ime>
-      <datumRodjenja>2021-01-12 20:05:03.999 CET</datumRodjenja>
-      <adresa>a</adresa>
-      <telefon>1241251251</telefon>
-      <eMail>dad@dasda</eMail>
-      <brIndeksa>RA200</brIndeksa>
-      <godUpisa>2018</godUpisa>
-      <trenGodina>TRECA</trenGodina>
-      <statusStudenta>B</statusStudenta>
-      <prosecnaOcjena>0.0</prosecnaOcjena>
-      <spisakPolozenihIspita/>
-      <spisakNePolozenihIspita>
-        <predmet reference="../../../../predmeti/predmet"/>
-        <predmet reference="../../../../predmeti/predmet[2]"/>
-        <predmet reference="../../../../predmeti/predmet[3]"/>
-      </spisakNePolozenihIspita>
-    </student>
-  </studenti>
+  <studenti/>
 </ENTITETI>

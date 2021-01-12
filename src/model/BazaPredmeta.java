@@ -113,6 +113,26 @@ public class BazaPredmeta {
 	
 	
 	
+	public void izbrisiStudenta(Student student) {
+		for (Predmet p : predmeti) {
+			for (Student s : p.getStudNisuPolozili()) { 
+				if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
+					p.getStudNisuPolozili().remove(p);
+					break;
+				}
+			}
+			
+			
+			for (Student s : p.getStudPolozili()) { 
+				if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
+					p.getStudPolozili().remove(p);
+					break;
+				}
+			}
+		}
+		
+	}
+	
 	
 	
 	
