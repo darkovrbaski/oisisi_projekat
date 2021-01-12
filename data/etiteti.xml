@@ -29,10 +29,10 @@
     </predmet>
     <predmet>
       <sifraPredmeta>E123</sifraPredmeta>
-      <naziv>Socilogija</naziv>
-      <semestar>Letnji</semestar>
-      <godina>0</godina>
-      <brojESPB>0</brojESPB>
+      <naziv>Analiza</naziv>
+      <semestar>Zimski</semestar>
+      <godina>1</godina>
+      <brojESPB>9</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
@@ -41,7 +41,7 @@
     <profesor>
       <prezime>AP</prezime>
       <ime>AA</ime>
-      <datumRodjenja>2021-01-11 20:38:47.423 CET</datumRodjenja>
+      <datumRodjenja>2021-01-12 17:32:41.712 CET</datumRodjenja>
       <adresa>afsa</adresa>
       <telefon>41253463663</telefon>
       <eMail>q@q</eMail>
@@ -95,7 +95,7 @@
     <student>
       <prezime>a</prezime>
       <ime>a</ime>
-      <datumRodjenja>2021-01-11 20:38:47.417 CET</datumRodjenja>
+      <datumRodjenja>2021-01-12 17:32:41.662 CET</datumRodjenja>
       <adresa>a</adresa>
       <telefon>1241251251</telefon>
       <eMail>dad@dasda</eMail>

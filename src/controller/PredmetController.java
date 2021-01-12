@@ -60,8 +60,8 @@ public class PredmetController {
 		boolean retVal = true;
 		String sifraPredmeta;
 		String naziv;
-		int brojESPB = 0;
-		int godina = 0;
+		int brojESPB;
+		int godina;
 	
 		Profesor predmetniProfesor = null;
 		
@@ -74,7 +74,16 @@ public class PredmetController {
 		
 		sifraPredmeta = DodajPredmetDialog.txtSifraPredmeta.getText().trim();
 		naziv = DodajPredmetDialog.txtNaziv.getText().trim();
-
+	
+		
+		String brojESPBStr = DodajPredmetDialog.txtBrojESPB .getText().trim();
+		String godinaStr = DodajPredmetDialog.txtGodina .getText().trim();
+		
+		brojESPB = Integer.parseInt(brojESPBStr);  
+		godina = Integer.parseInt(godinaStr);
+		
+		
+		
 
 
 		 //{ "Letnji", "Zimski" };
