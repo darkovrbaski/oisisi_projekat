@@ -2,7 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.Predmet.Semestar;
+import view.ToolBar;
 
 public class BazaPredmeta {
 
@@ -16,6 +19,7 @@ public class BazaPredmeta {
 	}
 
 	private ArrayList<Predmet> predmeti;
+	private ArrayList<Predmet> sacuvaniPredmeti;
 	private ArrayList<String> kolone;
 
 	private BazaPredmeta() {
@@ -33,6 +37,7 @@ public class BazaPredmeta {
 		predmeti.add(new Predmet("123", "Aa", Semestar.Letnji, 1, null, 6, new ArrayList<Student>(), new ArrayList<Student>()));
 		predmeti.add(new Predmet("124", "Ab", Semestar.Zimski, 2, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
 		predmeti.add(new Predmet("125", "Aca", Semestar.Letnji, 3, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
+		this.sacuvaniPredmeti = this.predmeti;
 	}
 
 	public ArrayList<Predmet> getPredmeti() {
@@ -89,12 +94,37 @@ public class BazaPredmeta {
 	
 	
 	public void izbrisiPredmet(Predmet predmet) {
+		this.predmeti = this.sacuvaniPredmeti;
 		for (Predmet p : predmeti) {
 			if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
 				predmeti.remove(p);
 				break;
 			}
 		}
+		this.sacuvaniPredmeti = this.predmeti;
+		pretragaPredmeta();
+	}
+
+	public void pretragaPredmeta() {
+		this.predmeti = this.sacuvaniPredmeti;
+		String textPretrage = ToolBar.searchField.getText().trim().toLowerCase();
+		ArrayList<Predmet> pretrazeniPredmeti = new ArrayList<Predmet>();
+		
+		if (textPretrage.isEmpty() == true) {
+			return;
+		}
+		
+		if (textPretrage.contains(" ") == false) {
+			for (Predmet p : this.predmeti) {
+				if (p.getNaziv().toLowerCase().contains(textPretrage)) {
+					pretrazeniPredmeti.add(p);
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Kriterijum pretrage je: \n'Naziv predmeta'", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		this.predmeti = pretrazeniPredmeti;
 	}
 
 }

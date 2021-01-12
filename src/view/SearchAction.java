@@ -5,6 +5,9 @@ import java.io.File;
 
 import javax.swing.AbstractAction;
 
+import controller.PredmetController;
+import controller.ProfesoriController;
+
 public class SearchAction extends AbstractAction {
 
 	/**
@@ -18,8 +21,13 @@ public class SearchAction extends AbstractAction {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-
+	public void actionPerformed(ActionEvent e) {
+		if (TabbedPanel.currentTab == 1) {
+			ProfesoriController.getInstance().pretragaProfesora();
+		}
+		if (TabbedPanel.currentTab == 2) {
+			PredmetController.getInstance().pretragaPredmeta();
+		}
 	}
 
 }

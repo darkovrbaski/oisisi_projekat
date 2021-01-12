@@ -52,10 +52,7 @@ public class PredmetController {
 			// TODO: azuriraj predmete u studentu
 		}
 	}
-	
-	
-	
-	
+
 	public boolean proveriPredmet() {
 		boolean retVal = true;
 		String sifraPredmeta;
@@ -205,9 +202,8 @@ public class PredmetController {
 		return retVal;
 	}
 	
-	
-	
-	
-
-	
+	public void pretragaPredmeta() {
+		BazaPredmeta.getInstance().pretragaPredmeta();
+		TabbedPanel.tabelaPredmeta.azurirajPrikaz();
+	}
 }

@@ -3,8 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
+import view.ToolBar;
 
 public class BazaProfesora {
 
@@ -18,6 +21,7 @@ public class BazaProfesora {
 	}
 
 	private ArrayList<Profesor> profesori;
+	private ArrayList<Profesor> sacuvaniProfesori;
 	private ArrayList<String> kolone;
 	private ArrayList<String> kolonePredmeta;
 
@@ -42,6 +46,7 @@ public class BazaProfesora {
 		profesori.add(new Profesor("AB", "AP", d, "afsa", "41253463663", "q@q", "faefwggw", "123426789", Titula.DoktorProfesor, Zvanje.RedovniProfesor, new ArrayList<Predmet>()));
 		profesori.add(new Profesor("P", "P", d, "bfsa", "41253463662", "q@q", "faefwggw", "123456788", Titula.Doktor, Zvanje.VanredniProfesor, new ArrayList<Predmet>()));
 		profesori.add(new Profesor("BP", "BP", d, "cfsa", "31253463663", "q@q", "faefwggw", "123456787", Titula.Master, Zvanje.Asistent, new ArrayList<Predmet>()));
+		this.sacuvaniProfesori = this.profesori;
 	}
 
 	public ArrayList<Profesor> getProfesori() {
@@ -126,12 +131,15 @@ public class BazaProfesora {
 	}
 
 	public boolean dodajProfesora(Profesor profesor) {
+		this.profesori = this.sacuvaniProfesori;
 		for (Profesor p : profesori) {
 			if (p.getBrojLicne().equals(profesor.getBrojLicne())) {
 				return false;
 			}
 		}
 		profesori.add(profesor);
+		this.sacuvaniProfesori = this.profesori;
+		pretragaProfesora();
 		return true;
 	}
 
@@ -150,6 +158,7 @@ public class BazaProfesora {
 				p.setZvanje(zvanje);
 			}
 		}
+		pretragaProfesora();
 	}
 	
 	public void izbrisiPredmet(Predmet predmet) {
@@ -171,6 +180,41 @@ public class BazaProfesora {
 	
 	public void dodajPredmetePofesoru(Profesor profesor, ArrayList<Predmet> predmeti) {
 		profesor.getSpisakPredmeta().addAll(predmeti);
+	}
+
+	public void pretragaProfesora() {
+		this.profesori = this.sacuvaniProfesori;
+		String textPretrage = ToolBar.searchField.getText().trim().toLowerCase();
+		ArrayList<Profesor> pretrazeniProfesori = new ArrayList<Profesor>();
+		
+		if (textPretrage.isEmpty() == true) {
+			return;
+		}
+		
+		if (textPretrage.contains(" ") == false) {
+			for (Profesor p : this.profesori) {
+				if (p.getPrezime().toLowerCase().contains(textPretrage)) {
+					pretrazeniProfesori.add(p);
+				}
+			}
+		} else {
+			String[] parts = textPretrage.split(" ", 2);
+			String prezime = parts[0];
+			String ime = parts[1];
+			if (ime.contains(" ")) {
+				JOptionPane.showMessageDialog(null, "Kriterijum pretrage je: \n'Prezime' 'Ime'", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+				return;
+			} else {
+				for (Profesor p : this.profesori) {
+					if (p.getPrezime().toLowerCase().contains(prezime)) {
+						if (p.getIme().toLowerCase().contains(ime)) {
+							pretrazeniProfesori.add(p);
+						}
+					}
+				}
+			}
+		}
+		this.profesori = pretrazeniProfesori;
 	}
 
 }

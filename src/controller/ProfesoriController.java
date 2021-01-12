@@ -219,6 +219,11 @@ public class ProfesoriController {
 
 		return true;
 	}
+	
+	public void pretragaProfesora() {
+		BazaProfesora.getInstance().pretragaProfesora();
+		TabbedPanel.tabelaProfesora.azurirajPrikaz();
+	}
 
 	public boolean proveriPopunjenostPolja() {
 		boolean retVal = false;
@@ -350,4 +355,5 @@ public class ProfesoriController {
 		retVal = matcher.matches();
 		return retVal;
 	}
+
 }

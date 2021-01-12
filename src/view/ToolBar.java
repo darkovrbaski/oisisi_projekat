@@ -16,6 +16,8 @@ public class ToolBar extends JToolBar {
 	 */
 	private static final long serialVersionUID = -6816043191534090577L;
 	
+	public static JTextField searchField;
+	
 	public ToolBar() {
 		
 		super(SwingConstants.HORIZONTAL);
@@ -53,7 +55,7 @@ public class ToolBar extends JToolBar {
 		JPanel rightPan = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		rightPan.setOpaque(false);
 		
-		JTextField searchField = new JTextField();
+		searchField = new JTextField();
 		searchField.setPreferredSize(new Dimension(250, 25));
 		searchField.setToolTipText("Polje za unos pretrage");
 		rightPan.add(searchField);
