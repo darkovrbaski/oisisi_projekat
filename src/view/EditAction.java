@@ -7,6 +7,7 @@ import java.io.File;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
+import controller.PredmetController;
 import controller.ProfesoriController;
 import controller.StudentiController;
 
@@ -33,6 +34,12 @@ public class EditAction extends AbstractAction {
 		if (TabbedPanel.currentTab == 0 && TabbedPanel.tabelaStudenata.getSelectedRow() != -1) {
 			StudentiController.getInstance().izmeniStudenta();
 		}
+		
+		if (TabbedPanel.currentTab == 2 && TabbedPanel.tabelaPredmeta.getSelectedRow() != -1) {
+			PredmetController.getInstance().izmeniPredmet();
+		}
+		
+		
 	}
 	
 }

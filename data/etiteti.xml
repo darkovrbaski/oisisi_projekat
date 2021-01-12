@@ -2,10 +2,10 @@
   <predmeti>
     <predmet>
       <sifraPredmeta>123</sifraPredmeta>
-      <naziv>Aa</naziv>
-      <semestar>Letnji</semestar>
+      <naziv>Matematicka Analiza</naziv>
+      <semestar>Zimski</semestar>
       <godina>1</godina>
-      <brojESPB>6</brojESPB>
+      <brojESPB>9</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
@@ -27,21 +27,12 @@
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>E123</sifraPredmeta>
-      <naziv>Analiza</naziv>
-      <semestar>Zimski</semestar>
-      <godina>1</godina>
-      <brojESPB>9</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
   </predmeti>
   <profesori>
     <profesor>
       <prezime>AP</prezime>
       <ime>AA</ime>
-      <datumRodjenja>2021-01-12 17:32:41.712 CET</datumRodjenja>
+      <datumRodjenja>2021-01-12 20:05:04.8 CET</datumRodjenja>
       <adresa>afsa</adresa>
       <telefon>41253463663</telefon>
       <eMail>q@q</eMail>
@@ -95,7 +86,7 @@
     <student>
       <prezime>a</prezime>
       <ime>a</ime>
-      <datumRodjenja>2021-01-12 17:32:41.662 CET</datumRodjenja>
+      <datumRodjenja>2021-01-12 20:05:03.999 CET</datumRodjenja>
       <adresa>a</adresa>
       <telefon>1241251251</telefon>
       <eMail>dad@dasda</eMail>

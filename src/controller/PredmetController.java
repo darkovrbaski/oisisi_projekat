@@ -1,6 +1,9 @@
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,11 +14,18 @@ import model.BazaProfesora;
 import model.BazaStudent;
 import model.Predmet;
 import model.Predmet.Semestar;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
+import model.Student.Status;
+import model.Student.TrenutnaGodina;
 import model.Profesor;
 import model.Student;
 import view.TabbedPanel;
 import view.dialogs.DodajPredmetDialog;
 import view.dialogs.DodajStudentaDialog;
+import view.dialogs.IzmeniPredmetDialog;
+import view.dialogs.IzmeniProfesoraDialog;
+import view.dialogs.IzmeniStudentaDialog;
 import view.dialogs.UpitPotvrdeDialog;
 
 public class PredmetController {
@@ -37,7 +47,10 @@ public class PredmetController {
 		DodajPredmetDialog dialog = new DodajPredmetDialog();
 	}
 	
-	
+	public void izmeniPredmet() {
+		@SuppressWarnings("unused")
+		IzmeniPredmetDialog dialog = new IzmeniPredmetDialog();
+	}
 
 	public void izbrisiPredmet() {
 		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Brisanje predmeta",
@@ -116,6 +129,75 @@ public class PredmetController {
 	
 	
 	
+	
+	// TODO: napisati ovu metodu
+	public boolean proveriIzmenuPredmeta() {
+		String sifraPredmeta;
+		String naziv;
+		int brojESPB;
+		int godina;
+		Semestar semestar;
+		
+		sifraPredmeta = IzmeniPredmetDialog.txtSifraPredmeta.getText().trim();
+		naziv = IzmeniPredmetDialog.txtNaziv.getText().trim();
+		
+		
+		// konverzija
+		String brojESPBStr = IzmeniPredmetDialog.txtBrojESPB .getText().trim();
+		String godinaStr = IzmeniPredmetDialog.txtGodina .getText().trim();
+		
+		brojESPB = Integer.parseInt(brojESPBStr);  
+		godina = Integer.parseInt(godinaStr);
+		//---------------
+		 
+		switch (IzmeniPredmetDialog.cbSemestar.getSelectedItem().toString()) {
+		case "Letnji":
+			semestar = Semestar.Letnji;
+			break;
+		case "Zimski":
+			semestar = Semestar.Zimski;
+			break;
+		default:
+			semestar = null;
+			return false;
+		}
+		
+		
+		BazaPredmeta.getInstance().izmeniPredmet(sifraPredmeta, naziv, brojESPB, godina, semestar);
+		
+		
+		TabbedPanel.tabelaPredmeta.azurirajPrikaz();
+
+		return true;	
+	}
+	
+	
+	
+
+	
+	
+	public boolean proveriPopunjenostIzmenjenihPoljaPredmeta() {
+		boolean retVal = false;
+		if (proveriNaziv(IzmeniPredmetDialog.txtNaziv.getText().trim())
+				&& proveriSifruPredmeta(IzmeniPredmetDialog.txtSifraPredmeta.getText().trim())
+				&& proveriBrojESPB(IzmeniPredmetDialog.txtBrojESPB.getText().trim())
+				&& proveriGodina(IzmeniPredmetDialog.txtGodina.getText().trim())) {
+			retVal = true;
+		}
+		if (IzmeniPredmetDialog.txtNaziv.getText().trim().equals("Naziv")
+				|| IzmeniPredmetDialog.txtSifraPredmeta.getText().trim().equals("Sifra predmeta")
+				|| IzmeniPredmetDialog.txtBrojESPB.getText().trim().equals("Broj ESPB")
+				
+				|| IzmeniPredmetDialog.txtGodina.getText().trim().equals("Godina")
+				
+				) {
+			retVal = false;
+		}
+		return retVal;
+	}
+	
+	
+		
 	
 	public boolean proveriPopunjenostPolja() {
 		boolean retVal = false;

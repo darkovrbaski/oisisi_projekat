@@ -1,11 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import model.Predmet.Semestar;
+
 import view.ToolBar;
+
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
+
 
 public class BazaPredmeta {
 
@@ -88,6 +94,25 @@ public class BazaPredmeta {
 		predmeti.add(predmet);
 		return true;
 	}
+	
+	
+	
+	
+	public void izmeniPredmet(String sifraPredmeta, String naziv, int brojESPB,
+							int godina, Semestar semestar) {
+		for (Predmet p : predmeti) {
+			if (p.getSifraPredmeta().equals(sifraPredmeta)) {
+				p.setNaziv(naziv);;
+				p.setBrojESPB(brojESPB);
+				p.setGodina(godina);
+				p.setSemestar(semestar);
+			
+			}
+		}
+	}
+	
+	
+	
 	
 	
 	

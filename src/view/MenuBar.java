@@ -12,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import controller.PredmetController;
 import controller.ProfesoriController;
 import controller.StudentiController;
 import model.Entiteti;
@@ -42,6 +43,10 @@ public class MenuBar extends JMenuBar {
 	    		
 	    		if (TabbedPanel.currentTab == 0) {
 	    			StudentiController.getInstance().dodajStudenta();
+	    		}
+	    		
+	    		if (TabbedPanel.currentTab == 2) {
+	    			PredmetController.getInstance().dodajPredmet();
 	    		}
 	        }
 	      });
@@ -89,6 +94,10 @@ public class MenuBar extends JMenuBar {
 	    		
 	    		if (TabbedPanel.currentTab == 0 && TabbedPanel.tabelaStudenata.getSelectedRow() != -1) {
 	    			StudentiController.getInstance().izmeniStudenta();
+	    		}
+	    		
+	    		if (TabbedPanel.currentTab == 2 && TabbedPanel.tabelaPredmeta.getSelectedRow() != -1) {
+	    			PredmetController.getInstance().izmeniPredmet();
 	    		}
 	          
 	        }
