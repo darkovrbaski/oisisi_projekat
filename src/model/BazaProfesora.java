@@ -172,6 +172,24 @@ public class BazaProfesora {
 		}
 	}
 	
+	
+	public void izbrisiProfesora(Profesor profesor) {
+		for (Profesor p : profesori) {
+			if (p.getBrojLicne().equals(profesor.getBrojLicne())) {
+				profesori.remove(p);
+				break;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public ArrayList<Predmet> getPredmetiKojeNePredaje(Profesor profesor) {
 		ArrayList<Predmet> predmeti = new ArrayList<Predmet>(BazaPredmeta.getInstance().getPredmeti());
 		predmeti.removeAll(profesor.getSpisakPredmeta());

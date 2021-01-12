@@ -9,7 +9,9 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudent;
 import model.Predmet;
 import model.Profesor;
 import model.Profesor.Titula;
@@ -18,6 +20,7 @@ import view.TabbedPanel;
 import view.dialogs.DodajPredmeteProfesoruDialog;
 import view.dialogs.DodajProfesoraDialog;
 import view.dialogs.IzmeniProfesoraDialog;
+import view.dialogs.UpitPotvrdeDialog;
 
 public class ProfesoriController {
 
@@ -42,6 +45,23 @@ public class ProfesoriController {
 		@SuppressWarnings("unused")
 		IzmeniProfesoraDialog dialog = new IzmeniProfesoraDialog();
 	}
+	
+	public void izbrisiProfesora() {
+		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Brisanje profesora",
+				"Da li ste sigurni da želite da obrišete profesora?");
+		if (dialog.isYes() == true) {
+			Profesor profesor = BazaProfesora.getInstance().getRow(TabbedPanel.tabelaProfesora.getCurrentSelectedRow());
+			BazaProfesora.getInstance().izbrisiProfesora(profesor);
+			TabbedPanel.tabelaProfesora.azurirajPrikaz();
+
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 	public void dodajPredmetProfesoru() {
 		ArrayList<Predmet> predmeti = BazaProfesora.getInstance()

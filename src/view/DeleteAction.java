@@ -8,6 +8,7 @@ import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import controller.PredmetController;
+import controller.ProfesoriController;
 import controller.StudentiController;
 
 public class DeleteAction extends AbstractAction {
@@ -33,6 +34,12 @@ public class DeleteAction extends AbstractAction {
 		if (TabbedPanel.currentTab == 0 && TabbedPanel.tabelaStudenata.getSelectedRow() != -1) {
 			StudentiController.getInstance().izbrisiStudenta();
 		}
+		
+		
+		if (TabbedPanel.currentTab == 1 && TabbedPanel.tabelaProfesora.getSelectedRow() != -1) {
+			ProfesoriController.getInstance().izbrisiProfesora();
+		}
+		
 		
 		
 	}
