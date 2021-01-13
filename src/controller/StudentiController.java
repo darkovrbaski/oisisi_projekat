@@ -100,7 +100,7 @@ public class StudentiController {
 	
 	
 	
-	// TODO: Napisati klasu pretragaStudenta
+	
 	public void pretragaStudenta() {
 		BazaStudent.getInstance().pretragaStudenta();
 		TabbedPanel.tabelaStudenata.azurirajPrikazStudenta();
