@@ -20,6 +20,7 @@ import view.TabbedPanel;
 import view.dialogs.DodajPredmeteProfesoruDialog;
 import view.dialogs.DodajProfesoraDialog;
 import view.dialogs.IzmeniProfesoraDialog;
+import view.dialogs.IzmeniStudentaDialog;
 import view.dialogs.UpitPotvrdeDialog;
 
 public class ProfesoriController {
@@ -57,10 +58,7 @@ public class ProfesoriController {
 		}
 	}
 	
-	
-	
-	
-	
+		
 	
 
 	public void dodajPredmetProfesoru() {
@@ -374,6 +372,28 @@ public class ProfesoriController {
 		Matcher matcher = patern.matcher(ime);
 		retVal = matcher.matches();
 		return retVal;
+	}
+
+	public void ukloniPredmetSaProfesora(Profesor profesor) {
+		// TODO Auto-generated method stub
+		
+		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Ukloni Nepolozeni predmet",
+				"Da li ste sigurni da želite da uklonite predmet?");
+		if (dialog.isYes() == true) {
+		
+			Predmet predmet = BazaPredmeta.getInstance().getRow(IzmeniProfesoraDialog.tabelaPredmetaProfesora.getCurrentSelectedRow());
+			
+			 BazaProfesora.getInstance().izbrisiPredmetSaP(profesor, predmet);
+			 IzmeniProfesoraDialog.tabelaPredmetaProfesora.azurirajPrikaz();
+		
+	
+		}
+		
+		
+		
+		
+		
+		
 	}
 
 }

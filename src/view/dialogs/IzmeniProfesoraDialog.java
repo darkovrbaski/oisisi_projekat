@@ -38,7 +38,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 	private static final long serialVersionUID = 8150024806031754555L;
 	
 	private Profesor profesor;
-	private Table tabelaPredmetaProfesora;
+	public static Table tabelaPredmetaProfesora;
 	public static TextField txtIme;
 	public static TextField txtPrezime;
 	public static TextField txtDatumRodjenja;
@@ -121,6 +121,10 @@ public class IzmeniProfesoraDialog extends JDialog {
 		JButton btnUkloniPredmet = new JButton("Ukloni Predmet");
 		btnUkloniPredmet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				ProfesoriController.getInstance().ukloniPredmetSaProfesora(profesor);
+				
+				
 				
 			}
 		});

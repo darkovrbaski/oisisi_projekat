@@ -142,6 +142,22 @@ public class BazaProfesora {
 		pretragaProfesora();
 		return true;
 	}
+	
+	
+	public void izbrisiPredmetSaP(Profesor profesor, Predmet predmet) {
+		for (Profesor p : profesori) {
+			if (p.getBrojLicne().equals(profesor.getBrojLicne())) {
+				p.getSpisakPredmeta().remove(predmet);
+				break;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 	public void izmeniProfesora(String ime, String prezime, Date datumRodjenja, String adresa, String telefon,
 			String eMail, String adresaKancelarije, String brojLicne, Titula titula, Zvanje zvanje) {

@@ -174,8 +174,6 @@ public class IzmeniStudentaDialog extends JDialog {
 	}
 	
 	
-	
-	//dddddddddddddddd
 	private JPanel polozeniPredmeti() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());

@@ -5,6 +5,30 @@
       <naziv>Aa</naziv>
       <semestar>Letnji</semestar>
       <godina>1</godina>
+      <predmetniProfesor>
+        <prezime>AP</prezime>
+        <ime>AA</ime>
+        <datumRodjenja>2021-01-13 20:11:25.117 CET</datumRodjenja>
+        <adresa>afsa</adresa>
+        <telefon>41253463663</telefon>
+        <eMail>q@q</eMail>
+        <adresaKancelarije>faefwggw</adresaKancelarije>
+        <brojLicne>123456789</brojLicne>
+        <titula>DoktorProfesor</titula>
+        <zvanje>RedovniProfesor</zvanje>
+        <spisakPredmeta>
+          <predmet>
+            <sifraPredmeta>125</sifraPredmeta>
+            <naziv>Aca</naziv>
+            <semestar>Letnji</semestar>
+            <godina>3</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>9</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>6</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
@@ -14,64 +38,19 @@
       <naziv>Ab</naziv>
       <semestar>Zimski</semestar>
       <godina>2</godina>
+      <predmetniProfesor reference="../../predmet/predmetniProfesor"/>
       <brojESPB>9</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>125</sifraPredmeta>
-      <naziv>Aca</naziv>
-      <semestar>Letnji</semestar>
-      <godina>3</godina>
-      <brojESPB>9</brojESPB>
-      <studPolozili>
-        <student>
-          <prezime>rrr</prezime>
-          <ime>mmm</ime>
-          <datumRodjenja>2021-01-13 18:11:31.614 CET</datumRodjenja>
-          <adresa>trtrtr</adresa>
-          <telefon>1241251251</telefon>
-          <eMail>afssfa@dasda</eMail>
-          <brIndeksa>RA100</brIndeksa>
-          <godUpisa>2015</godUpisa>
-          <trenGodina>TRECA</trenGodina>
-          <statusStudenta>B</statusStudenta>
-          <prosecnaOcjena>0.0</prosecnaOcjena>
-          <spisakPolozenihIspita>
-            <model.Ocena>
-              <trenutniStudent reference="../../.."/>
-              <trenutniPredmet reference="../../../../.."/>
-              <ocena>6</ocena>
-              <datumPolaganjaIspita>1999-05-03 00:00:00.0 CEST</datumPolaganjaIspita>
-            </model.Ocena>
-          </spisakPolozenihIspita>
-          <spisakNePolozenihIspita>
-            <predmet reference="../../../../../predmet"/>
-            <predmet reference="../../../../../predmet[2]"/>
-          </spisakNePolozenihIspita>
-        </student>
-      </studPolozili>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet/predmetniProfesor/spisakPredmeta/predmet"/>
   </predmeti>
   <profesori>
-    <profesor>
-      <prezime>AP</prezime>
-      <ime>AA</ime>
-      <datumRodjenja>2021-01-13 18:11:31.623 CET</datumRodjenja>
-      <adresa>afsa</adresa>
-      <telefon>41253463663</telefon>
-      <eMail>q@q</eMail>
-      <adresaKancelarije>faefwggw</adresaKancelarije>
-      <brojLicne>123456789</brojLicne>
-      <titula>DoktorProfesor</titula>
-      <zvanje>RedovniProfesor</zvanje>
-      <spisakPredmeta/>
-    </profesor>
+    <profesor reference="../../predmeti/predmet/predmetniProfesor"/>
     <profesor>
       <prezime>AP</prezime>
       <ime>AB</ime>
-      <datumRodjenja reference="../../profesor/datumRodjenja"/>
+      <datumRodjenja reference="../../../predmeti/predmet/predmetniProfesor/datumRodjenja"/>
       <adresa>afsa</adresa>
       <telefon>41253463663</telefon>
       <eMail>q@q</eMail>
@@ -84,7 +63,7 @@
     <profesor>
       <prezime>P</prezime>
       <ime>P</ime>
-      <datumRodjenja reference="../../profesor/datumRodjenja"/>
+      <datumRodjenja reference="../../../predmeti/predmet/predmetniProfesor/datumRodjenja"/>
       <adresa>bfsa</adresa>
       <telefon>41253463662</telefon>
       <eMail>q@q</eMail>
@@ -97,7 +76,7 @@
     <profesor>
       <prezime>BP</prezime>
       <ime>BP</ime>
-      <datumRodjenja reference="../../profesor/datumRodjenja"/>
+      <datumRodjenja reference="../../../predmeti/predmet/predmetniProfesor/datumRodjenja"/>
       <adresa>cfsa</adresa>
       <telefon>31253463663</telefon>
       <eMail>q@q</eMail>
@@ -112,7 +91,7 @@
     <student>
       <prezime>a</prezime>
       <ime>a</ime>
-      <datumRodjenja reference="../../../predmeti/predmet[3]/studPolozili/student/datumRodjenja"/>
+      <datumRodjenja>2021-01-13 20:11:25.110 CET</datumRodjenja>
       <adresa>a</adresa>
       <telefon>1241251251</telefon>
       <eMail>dad@dasda</eMail>
@@ -122,8 +101,26 @@
       <statusStudenta>B</statusStudenta>
       <prosecnaOcjena>0.0</prosecnaOcjena>
       <spisakPolozenihIspita/>
-      <spisakNePolozenihIspita reference="../../../predmeti/predmet[3]/studPolozili/student/spisakNePolozenihIspita"/>
+      <spisakNePolozenihIspita>
+        <predmet reference="../../../../predmeti/predmet"/>
+        <predmet reference="../../../../predmeti/predmet[2]"/>
+        <predmet reference="../../../../predmeti/predmet/predmetniProfesor/spisakPredmeta/predmet"/>
+      </spisakNePolozenihIspita>
     </student>
-    <student reference="../../predmeti/predmet[3]/studPolozili/student"/>
+    <student>
+      <prezime>rrr</prezime>
+      <ime>mmm</ime>
+      <datumRodjenja reference="../../student/datumRodjenja"/>
+      <adresa>trtrtr</adresa>
+      <telefon>1241251251</telefon>
+      <eMail>afssfa@dasda</eMail>
+      <brIndeksa>RA100</brIndeksa>
+      <godUpisa>2015</godUpisa>
+      <trenGodina>TRECA</trenGodina>
+      <statusStudenta>B</statusStudenta>
+      <prosecnaOcjena>0.0</prosecnaOcjena>
+      <spisakPolozenihIspita/>
+      <spisakNePolozenihIspita reference="../../student/spisakNePolozenihIspita"/>
+    </student>
   </studenti>
 </ENTITETI>
