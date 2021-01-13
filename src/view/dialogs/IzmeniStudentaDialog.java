@@ -24,6 +24,7 @@ import controller.StudentiController;
 import model.BazaStudent;
 import model.Student;
 import view.AbstractTableModelNepolozeniIspitiStudenta;
+import view.AbstractTableModelPolozeniIspitiStudenta;
 import view.Frame;
 import view.TabbedPanel;
 import view.Table;
@@ -37,6 +38,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	private static final long serialVersionUID = -7285866491261741657L;
 
 	private Student student;
+	private static Table tabelaPolozenihPredmeta;
 	public static Table tabelaNepolozenihPredmeta;
 	public static TextFieldStudent txtIme;
 	public static TextFieldStudent txtPrezime;
@@ -111,6 +113,9 @@ public class IzmeniStudentaDialog extends JDialog {
 		this.setVisible(true);	
 	}
 	
+	
+	
+	
 	private JPanel nepolozeniPredmeti(JDialog parent) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -136,6 +141,9 @@ public class IzmeniStudentaDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				StudentiController.getInstance().izbrisiNepolozeniPredmet(student);
+				
 				
 			}
 		});
@@ -163,6 +171,32 @@ public class IzmeniStudentaDialog extends JDialog {
 
 		return panel;
 	}
+	
+	
+	
+	//dddddddddddddddd
+	JPanel polozeniPredmeti() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+
+		JPanel panTop = new JPanel();
+		panel.add(panTop, BorderLayout.NORTH);
+		panTop.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 5));
+		
+		
+		JPanel panBottom = new JPanel();
+		panel.add(panBottom);
+		panBottom.setLayout(new BorderLayout());
+		tabelaPolozenihPredmeta = new Table();
+		tabelaPolozenihPredmeta.setModel(new AbstractTableModelPolozeniIspitiStudenta(student));
+		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPolozenihPredmeta);
+		panBottom.add(scrollPanePredmeti, BorderLayout.CENTER);
+
+		return panel;
+	
+	}
+	
+	
 	
 	private JPanel informacijeStudenta() {
 		
@@ -320,6 +354,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		
 		txtBrIndeksa = new TextFieldStudent("NZ123", Provera.BrojIndeksa, "Proverite uneti broj indeksa");
 		txtBrIndeksa.setText(student.getBrIndeksa());
+		txtBrIndeksa.setEditable(false);
 		GridBagConstraints gbc_txtBrindeksa = new GridBagConstraints();
 		gbc_txtBrindeksa.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtBrindeksa.gridwidth = 3;

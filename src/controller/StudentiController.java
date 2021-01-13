@@ -37,6 +37,29 @@ public class StudentiController {
 	private StudentiController() {}
 	
 	
+	
+	public void izbrisiNepolozeniPredmet(Student student) {
+		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Ukloni Nepolozeni predmet",
+				"Da li ste sigurni da želite da uklonite predmet?");
+		if (dialog.isYes() == true) {
+			//Kako pristupiti tabeli nepolozenihIspita
+			// Kod brisanja gdje se nalazi lista nepolozenihIspita
+		//	Student student = BazaStudent.getInstance().getRow(TabbedPanel.tabelaStudenata.getCurrentSelectedRow());
+			Predmet predmet = BazaPredmeta.getInstance().getRow(IzmeniStudentaDialog.tabelaNepolozenihPredmeta.getCurrentSelectedRow());
+			
+			 BazaStudent.getInstance().izbrisiNePolozenPredmet(student, predmet);
+			 IzmeniStudentaDialog.tabelaNepolozenihPredmeta.azurirajPrikaz();
+			 
+			 //TabbedPanel.tabelaStudenata.azurirajPrikazStudenta();
+			//BazaPredmeta.getInstance().izbrisiStudenta(student);
+	
+		}
+		
+	}
+	
+	
+	
+	
 	public void izbrisiStudenta() {
 		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Brisanje studenta",
 				"Da li ste sigurni da želite da obrišete studenta?");
@@ -49,6 +72,13 @@ public class StudentiController {
 		}
 	}
 	
+	
+	
+	// TODO: Napisati klasu pretragaStudenta
+	public void pretragaStudenta() {
+		BazaStudent.getInstance().pretragaStudenta();
+		TabbedPanel.tabelaStudenata.azurirajPrikazStudenta();
+	}
 	
 	
 	
@@ -342,25 +372,25 @@ public class StudentiController {
 	public boolean proveriPopunjenostIzmenjenihPolja() {
 		
 		boolean retVal = false;
-		if (proveriIme(DodajStudentaDialog.txtPrezime.getText().trim())
-				&& proveriIme(DodajStudentaDialog.txtIme.getText().trim())
-				&& proveriDatum(DodajStudentaDialog.txtDatumRodjenja.getText().trim())
-				&& proveriAdresu(DodajStudentaDialog.txtAdresaStanovanja.getText().trim())
-				&& proveriBrTelefona(DodajStudentaDialog.txtBrojTelefona.getText().trim())
-				&& proveriEmail(DodajStudentaDialog.txtEmailAdresa.getText().trim())
-				&& proveriGodUpisa(DodajStudentaDialog.txtGodUpisa.getText().trim())
-				&& proveriBrIndeksa(DodajStudentaDialog.txtBrIndeksa.getText().trim())
+		if (proveriIme(IzmeniStudentaDialog.txtPrezime.getText().trim())
+				&& proveriIme(IzmeniStudentaDialog.txtIme.getText().trim())
+				&& proveriDatum(IzmeniStudentaDialog.txtDatumRodjenja.getText().trim())
+				&& proveriAdresu(IzmeniStudentaDialog.txtAdresaStanovanja.getText().trim())
+				&& proveriBrTelefona(IzmeniStudentaDialog.txtBrojTelefona.getText().trim())
+				&& proveriEmail(IzmeniStudentaDialog.txtEmailAdresa.getText().trim())
+				&& proveriGodUpisa(IzmeniStudentaDialog.txtGodUpisa.getText().trim())
+				&& proveriBrIndeksa(IzmeniStudentaDialog.txtBrIndeksa.getText().trim())
 				) {
 			retVal = true;
 		}
-		if (DodajStudentaDialog.txtPrezime.getText().trim().equals("Ime")
-				|| DodajStudentaDialog.txtIme.getText().trim().equals("Prezime")
-				|| DodajStudentaDialog.txtDatumRodjenja.getText().trim().equals("dd.mm.yyyy.")
-				|| DodajStudentaDialog.txtAdresaStanovanja.getText().trim().equals("Adresa, 123")
-				|| DodajStudentaDialog.txtBrojTelefona.getText().trim().equals("06123123123")
-				|| DodajStudentaDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
-				|| DodajStudentaDialog.txtGodUpisa.getText().trim().equals("1900") 
-				|| DodajStudentaDialog.txtBrIndeksa.getText().trim().equals("NZ123") 
+		if (IzmeniStudentaDialog.txtPrezime.getText().trim().equals("Ime")
+				|| IzmeniStudentaDialog.txtIme.getText().trim().equals("Prezime")
+				|| IzmeniStudentaDialog.txtDatumRodjenja.getText().trim().equals("dd.mm.yyyy.")
+				|| IzmeniStudentaDialog.txtAdresaStanovanja.getText().trim().equals("Adresa, 123")
+				|| IzmeniStudentaDialog.txtBrojTelefona.getText().trim().equals("06123123123")
+				|| IzmeniStudentaDialog.txtEmailAdresa.getText().trim().equals("primer@primer.com")
+				|| IzmeniStudentaDialog.txtGodUpisa.getText().trim().equals("1900") 
+				|| IzmeniStudentaDialog.txtBrIndeksa.getText().trim().equals("NZ123") 
 				) {
 			retVal = false;
 		}

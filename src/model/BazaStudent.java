@@ -4,8 +4,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import model.Student.Status;
 import model.Student.TrenutnaGodina;
+import view.TabbedPanel;
+import view.ToolBar;
 
 
 public class BazaStudent {
@@ -25,6 +29,10 @@ public class BazaStudent {
 	private ArrayList<String> koloneNepolozeniPredmeti;
 	
 	
+	//ddddddddddd
+	private ArrayList<String> kolonePolozeniPredmeti;
+	
+	
 
 	private BazaStudent() {
 		initStudente();
@@ -41,6 +49,16 @@ public class BazaStudent {
 		koloneNepolozeniPredmeti.add("ESPB");
 		koloneNepolozeniPredmeti.add("Godina studija");
 		koloneNepolozeniPredmeti.add("Semestar");
+		
+		
+		//dddddddddddd
+		this.kolonePolozeniPredmeti = new ArrayList<String>();
+		kolonePolozeniPredmeti.add("Sifra predmeta");
+		kolonePolozeniPredmeti.add("Naziv predmeta");
+		kolonePolozeniPredmeti.add("ESPB");
+		kolonePolozeniPredmeti.add("Ocena");
+		kolonePolozeniPredmeti.add("Datum");
+		
 	}
 	
 	private void initStudente() {
@@ -48,10 +66,65 @@ public class BazaStudent {
 		Date d = new Date();
 		ArrayList<Predmet> p = new ArrayList<Predmet>(BazaPredmeta.getInstance().getPredmeti());
 		Student student = new Student("a", "a", d, "a", "1241251251", "dad@dasda", "RA200", "2018", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
+		Student student2 = new Student ("rrr", "mmm", d, "trtrtr", "1241251251", "afssfa@dasda", "RA100", "2015", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
 		student.setSpisakNePolozenihIspita(p);
 		studenti.add(student);
+		studenti.add(student2);
+		
+		this.sacuvaniStudenti = this.studenti;
 	}
 
+	
+	// dddddddddddddddddddddddd
+	public ArrayList<Ocena> getPolozeniPredmeti(Student student) {
+		return student.getSpisakPolozenihIspita();
+	}
+	
+	public int getColumnCountPolozeniPredmeti() {
+		return this.kolonePolozeniPredmeti.size();
+	}
+	
+	public String getColumnNamePolozeniPredmeti(int index) {
+		return this.kolonePolozeniPredmeti.get(index);
+	}
+	
+// TODO: ZAVRSITI metodu getValueAtPolozeniPredmeti
+	public String getValueAtPolozeniPredmeti(Student student, int row, int column) {
+	Ocena ocena = student.getSpisakPolozenihIspita().get(row);
+
+	Predmet predmet = ocena.getTrenutniPredmet();
+		
+	switch (column) {
+	case 0:
+		return predmet.getSifraPredmeta();
+	case 1:
+		return predmet.getNaziv();
+	case 2:
+		return "" + predmet.getBrojESPB();
+	//case 3:
+		//return predmet.getGodina().toString();
+	case 4:
+		return predmet.getSemestar().toString();
+	default:
+		return null;
+	}
+}
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public ArrayList<Student> getStudenti() {
 		return studenti;
 	}
@@ -121,12 +194,15 @@ public class BazaStudent {
 	}
 	
 	public boolean dodajStudenta(Student student) {
+		this.studenti = this.sacuvaniStudenti;
 		for (Student s : studenti) {
 			if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
 				return false;
 			}
 		}
 		studenti.add(student);
+		this.sacuvaniStudenti = this.studenti;
+		pretragaStudenta();
 		return true;
 	}
 	
@@ -134,14 +210,69 @@ public class BazaStudent {
 	
 	
 	
+	public void izbrisiNePolozenPredmet(Student student, Predmet predmet) {
+		for (Student s : studenti) {
+			if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
+				s.getSpisakNePolozenihIspita().remove(predmet);
+				break;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	public void izbrisiStudenta(Student student) {
+		this.studenti = this.sacuvaniStudenti;
 		for (Student s : studenti) {
 			if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
 				studenti.remove(s);
 				break;
 			}
 		}
+		this.sacuvaniStudenti = this.studenti;
+		pretragaStudenta();
 	}
+	
+	
+	
+	//TODO: DOVRSITI
+	public void pretragaStudenta() {
+		this.studenti = this.sacuvaniStudenti;
+		String textPretrage = ToolBar.searchField.getText().trim().toLowerCase();
+		ArrayList<Student> pretrazeniStudenti = new ArrayList<Student>();
+
+		if (textPretrage.isEmpty() == true) {
+			return;
+		}
+
+		if (textPretrage.contains(" ") == false) {
+			for (Student s : this.studenti) {
+				if (s.getPrezime().toLowerCase().contains(textPretrage)) {
+					pretrazeniStudenti.add(s);
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Kriterijum pretrage je: \n'Prezime' 'Ime' 'Indeks'", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		this.studenti = pretrazeniStudenti;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -165,6 +296,8 @@ public class BazaStudent {
 				
 			}
 		}
+		pretragaStudenta();
+		
 	}
 	
 	public ArrayList<Predmet> getNepolozeniPredmeti(Student student) {

@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 
 import controller.PredmetController;
 import controller.ProfesoriController;
+import controller.StudentiController;
 
 public class SearchAction extends AbstractAction {
 
@@ -28,6 +29,12 @@ public class SearchAction extends AbstractAction {
 		if (TabbedPanel.currentTab == 2) {
 			PredmetController.getInstance().pretragaPredmeta();
 		}
+		
+		if (TabbedPanel.currentTab == 0) {
+			StudentiController.getInstance().pretragaStudenta();
+		}
+		
+		
 	}
 
 }

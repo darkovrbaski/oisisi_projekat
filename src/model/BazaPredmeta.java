@@ -25,6 +25,7 @@ public class BazaPredmeta {
 	}
 
 	private ArrayList<Predmet> predmeti;
+	private ArrayList<Ocena> ocene;
 	private ArrayList<Predmet> sacuvaniPredmeti;
 	private ArrayList<String> kolone;
 
@@ -45,6 +46,10 @@ public class BazaPredmeta {
 		predmeti.add(new Predmet("125", "Aca", Semestar.Letnji, 3, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
 		this.sacuvaniPredmeti = this.predmeti;
 	}
+	
+
+	
+	
 
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;

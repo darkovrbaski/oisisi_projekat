@@ -22,6 +22,7 @@ public class StudentTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudenti());
 //		tabelaStudenata = this;
+		this.setAutoCreateRowSorter(true);
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class StudentTable extends JTable{
 	}
 	
 	public int getCurrentSelectedRow() {
-		return this.getSelectedRow();
+		return this.convertRowIndexToModel(this.getSelectedRow());
 	}
 	
 	
