@@ -2,13 +2,11 @@ package model;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import model.Student.Status;
 import model.Student.TrenutnaGodina;
-import view.TabbedPanel;
 import view.ToolBar;
 
 
@@ -63,20 +61,16 @@ public class BazaStudent {
 	
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
-		Date d = new Date();
-		ArrayList<Predmet> p = new ArrayList<Predmet>(BazaPredmeta.getInstance().getPredmeti());
-		
-		
-		
-//		Student student = new Student("a", "a", d, "a", "1241251251", "dad@dasda", "RA200", "2018", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
-//		Student student2 = new Student ("rrr", "mmm", d, "trtrtr", "1241251251", "afssfa@dasda", "RA100", "2015", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
-//		student.setSpisakNePolozenihIspita(p);
-//		studenti.add(student);
-//		studenti.add(student2);
-		
 		this.studenti = Entiteti.getInstance().studenti;
-		
 		this.sacuvaniStudenti = this.studenti;
+	}
+	
+	public ArrayList<Student> getSacuvaniStudenti() {
+		return sacuvaniStudenti;
+	}
+
+	public void setSacuvaniStudenti(ArrayList<Student> sacuvaniStudenti) {
+		this.sacuvaniStudenti = sacuvaniStudenti;
 	}
 
 	

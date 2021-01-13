@@ -39,6 +39,22 @@ public class Profesor {
 		this.zvanje = zvanje;
 		this.spisakPredmeta = spisakPredmeta;
 	}
+	
+	public Profesor(String brojLicne, String ime, String prezime, Date datumRodjenja, String adresa, String telefon, String eMail,
+			String adresaKancelarije, Titula titula, Zvanje zvanje, ArrayList<Predmet> spisakPredmeta) {
+		super();
+		this.prezime = prezime;
+		this.ime = ime;
+		this.datumRodjenja = datumRodjenja;
+		this.adresa = adresa;
+		this.telefon = telefon;
+		this.eMail = eMail;
+		this.adresaKancelarije = adresaKancelarije;
+		this.brojLicne = brojLicne;
+		this.titula = titula;
+		this.zvanje = zvanje;
+		this.spisakPredmeta = spisakPredmeta;
+	}
 
 	public String getPrezime() {
 		return prezime;

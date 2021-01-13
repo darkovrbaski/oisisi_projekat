@@ -41,13 +41,6 @@ public class BazaProfesora {
 
 	private void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
-		Date d = new Date();
-//		profesori.add(new Profesor("AA", "AP", d, "afsa", "41253463663", "q@q", "faefwggw", "123456789", Titula.DoktorProfesor, Zvanje.RedovniProfesor, new ArrayList<Predmet>()));
-//		profesori.add(new Profesor("AB", "AP", d, "afsa", "41253463663", "q@q", "faefwggw", "123426789", Titula.DoktorProfesor, Zvanje.RedovniProfesor, new ArrayList<Predmet>()));
-//		profesori.add(new Profesor("P", "P", d, "bfsa", "41253463662", "q@q", "faefwggw", "123456788", Titula.Doktor, Zvanje.VanredniProfesor, new ArrayList<Predmet>()));
-//		profesori.add(new Profesor("BP", "BP", d, "cfsa", "31253463663", "q@q", "faefwggw", "123456787", Titula.Master, Zvanje.Asistent, new ArrayList<Predmet>()));
-		
-		
 		this.profesori = Entiteti.getInstance().profesori;
 		this.sacuvaniProfesori = this.profesori;
 	}
@@ -58,6 +51,14 @@ public class BazaProfesora {
 
 	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;
+	}
+	
+	public ArrayList<Profesor> getSacuvaniProfesori() {
+		return sacuvaniProfesori;
+	}
+
+	public void setSacuvaniProfesori(ArrayList<Profesor> sacuvaniProfesori) {
+		this.sacuvaniProfesori = sacuvaniProfesori;
 	}
 	
 	public ArrayList<Predmet> getPredmeti(Profesor profesor) {

@@ -32,9 +32,9 @@ public class Entiteti {
 	}
 
 	public void serializeToXML() throws IOException {
-		this.predmeti = BazaPredmeta.getInstance().getPredmeti();
-		this.profesori = BazaProfesora.getInstance().getProfesori();
-		this.studenti = BazaStudent.getInstance().getStudenti();
+		this.predmeti = BazaPredmeta.getInstance().getSacuvaniPredmeti();
+		this.profesori = BazaProfesora.getInstance().getSacuvaniProfesori();
+		this.studenti = BazaStudent.getInstance().getSacuvaniStudenti();
 		File f = new File("data" + File.separator + "entiteti.xml");
 		OutputStream os = new BufferedOutputStream(new FileOutputStream(f));
 		try {

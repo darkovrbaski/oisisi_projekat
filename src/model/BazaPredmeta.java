@@ -1,16 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 import model.Predmet.Semestar;
-
 import view.ToolBar;
-
-import model.Profesor.Titula;
-import model.Profesor.Zvanje;
 
 
 public class BazaPredmeta {
@@ -41,17 +36,9 @@ public class BazaPredmeta {
 
 	private void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
-//		predmeti.add(new Predmet("123", "Aa", Semestar.Letnji, 1, null, 6, new ArrayList<Student>(), new ArrayList<Student>()));
-//		predmeti.add(new Predmet("124", "Ab", Semestar.Zimski, 2, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
-//		predmeti.add(new Predmet("125", "Aca", Semestar.Letnji, 3, null, 9, new ArrayList<Student>(), new ArrayList<Student>()));
-		
 		this.predmeti = Entiteti.getInstance().predmeti;
 		this.sacuvaniPredmeti = this.predmeti;
 	}
-	
-
-	
-	
 
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
@@ -60,7 +47,15 @@ public class BazaPredmeta {
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
+	
+	public ArrayList<Predmet> getSacuvaniPredmeti() {
+		return sacuvaniPredmeti;
+	}
 
+	public void setSacuvaniPredmeti(ArrayList<Predmet> sacuvaniPredmeti) {
+		this.sacuvaniPredmeti = sacuvaniPredmeti;
+	}
+	
 	public int getColumnCount() {
 		return kolone.size();
 	}

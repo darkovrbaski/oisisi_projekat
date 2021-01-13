@@ -31,6 +31,18 @@ public class Predmet {
 		this.studPolozili = studPolozili;
 		this.studNisuPolozili = studNisuPolozili;
 	}
+	
+	public Predmet(String sifraPredmeta, String naziv, int godina, int brojESPB, Profesor predmetniProfesor, Semestar semestar) {
+		super();
+		this.sifraPredmeta = sifraPredmeta;
+		this.naziv = naziv;
+		this.semestar = semestar;
+		this.godina = godina;
+		this.predmetniProfesor = predmetniProfesor;
+		this.brojESPB = brojESPB;
+		this.studPolozili = new ArrayList<Student>();
+		this.studNisuPolozili = new ArrayList<Student>();
+	}
 
 	public String getSifraPredmeta() {
 		return sifraPredmeta;

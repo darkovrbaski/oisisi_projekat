@@ -43,6 +43,25 @@ public class Student {
 		
 		
 	}
+	
+	public Student(String brIndeksa, String ime, String prezime, TrenutnaGodina trenGodina, Date datumRodjenja, String adresa, String telefon, String eMail, Status statusStudenta, String godUpisa) {
+		super();
+		this.prezime = prezime;
+		this.ime = ime;
+		this.datumRodjenja = datumRodjenja;
+		this.adresa = adresa;
+		this.telefon = telefon;
+		this.eMail = eMail;
+		this.brIndeksa = brIndeksa;
+		this.godUpisa = godUpisa;
+		this.trenGodina = trenGodina;
+		this.statusStudenta = statusStudenta;
+		this.prosecnaOcjena = 0;
+		this.spisakPolozenihIspita = new ArrayList<Ocena>();
+		this.spisakNePolozenihIspita = new ArrayList<Predmet>();
+		
+		
+	}
 
 	public String getPrezime() {
 		return prezime;
