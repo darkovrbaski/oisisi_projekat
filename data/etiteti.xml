@@ -6,33 +6,59 @@
       <semestar>Letnji</semestar>
       <godina>1</godina>
       <brojESPB>6</brojESPB>
-      <studPolozili/>
+      <studPolozili>
+        <student>
+          <prezime>a</prezime>
+          <ime>a</ime>
+          <datumRodjenja>2021-01-13 16:43:19.382 CET</datumRodjenja>
+          <adresa>a</adresa>
+          <telefon>1241251251</telefon>
+          <eMail>dad@dasda</eMail>
+          <brIndeksa>RA200</brIndeksa>
+          <godUpisa>2018</godUpisa>
+          <trenGodina>TRECA</trenGodina>
+          <statusStudenta>B</statusStudenta>
+          <prosecnaOcjena>0.0</prosecnaOcjena>
+          <spisakPolozenihIspita>
+            <model.Ocena>
+              <trenutniStudent reference="../../.."/>
+              <trenutniPredmet reference="../../../../.."/>
+              <ocena>6</ocena>
+              <datumPolaganjaIspita>2020-01-03 00:00:00.0 CET</datumPolaganjaIspita>
+            </model.Ocena>
+          </spisakPolozenihIspita>
+          <spisakNePolozenihIspita>
+            <predmet>
+              <sifraPredmeta>124</sifraPredmeta>
+              <naziv>Ab</naziv>
+              <semestar>Zimski</semestar>
+              <godina>2</godina>
+              <brojESPB>9</brojESPB>
+              <studPolozili/>
+              <studNisuPolozili/>
+            </predmet>
+            <predmet>
+              <sifraPredmeta>125</sifraPredmeta>
+              <naziv>Aca</naziv>
+              <semestar>Letnji</semestar>
+              <godina>3</godina>
+              <brojESPB>9</brojESPB>
+              <studPolozili/>
+              <studNisuPolozili/>
+            </predmet>
+          </spisakNePolozenihIspita>
+        </student>
+      </studPolozili>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>124</sifraPredmeta>
-      <naziv>Ab</naziv>
-      <semestar>Zimski</semestar>
-      <godina>2</godina>
-      <brojESPB>9</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
-    <predmet>
-      <sifraPredmeta>125</sifraPredmeta>
-      <naziv>Aca</naziv>
-      <semestar>Letnji</semestar>
-      <godina>3</godina>
-      <brojESPB>9</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet/studPolozili/student/spisakNePolozenihIspita/predmet"/>
+    <predmet reference="../predmet/studPolozili/student/spisakNePolozenihIspita/predmet[2]"/>
   </predmeti>
   <profesori>
     <profesor>
       <prezime>AP</prezime>
       <ime>AA</ime>
-      <datumRodjenja>2021-01-13 14:56:37.34 CET</datumRodjenja>
+      <datumRodjenja>2021-01-13 16:43:19.389 CET</datumRodjenja>
       <adresa>afsa</adresa>
       <telefon>41253463663</telefon>
       <eMail>q@q</eMail>
@@ -83,27 +109,11 @@
     </profesor>
   </profesori>
   <studenti>
-    <student>
-      <prezime>a</prezime>
-      <ime>a</ime>
-      <datumRodjenja>2021-01-13 14:56:37.26 CET</datumRodjenja>
-      <adresa>a</adresa>
-      <telefon>1241251251</telefon>
-      <eMail>dad@dasda</eMail>
-      <brIndeksa>RA200</brIndeksa>
-      <godUpisa>2018</godUpisa>
-      <trenGodina>TRECA</trenGodina>
-      <statusStudenta>B</statusStudenta>
-      <prosecnaOcjena>0.0</prosecnaOcjena>
-      <spisakPolozenihIspita/>
-      <spisakNePolozenihIspita>
-        <predmet reference="../../../../predmeti/predmet[3]"/>
-      </spisakNePolozenihIspita>
-    </student>
+    <student reference="../../predmeti/predmet/studPolozili/student"/>
     <student>
       <prezime>rrr</prezime>
       <ime>mmm</ime>
-      <datumRodjenja reference="../../student/datumRodjenja"/>
+      <datumRodjenja reference="../../../predmeti/predmet/studPolozili/student/datumRodjenja"/>
       <adresa>trtrtr</adresa>
       <telefon>1241251251</telefon>
       <eMail>afssfa@dasda</eMail>
@@ -113,7 +123,7 @@
       <statusStudenta>B</statusStudenta>
       <prosecnaOcjena>0.0</prosecnaOcjena>
       <spisakPolozenihIspita/>
-      <spisakNePolozenihIspita reference="../../student/spisakNePolozenihIspita"/>
+      <spisakNePolozenihIspita reference="../../../predmeti/predmet/studPolozili/student/spisakNePolozenihIspita"/>
     </student>
   </studenti>
 </ENTITETI>

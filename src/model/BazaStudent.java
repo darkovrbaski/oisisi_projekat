@@ -65,6 +65,9 @@ public class BazaStudent {
 		this.studenti = new ArrayList<Student>();
 		Date d = new Date();
 		ArrayList<Predmet> p = new ArrayList<Predmet>(BazaPredmeta.getInstance().getPredmeti());
+		
+		
+		
 		Student student = new Student("a", "a", d, "a", "1241251251", "dad@dasda", "RA200", "2018", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
 		Student student2 = new Student ("rrr", "mmm", d, "trtrtr", "1241251251", "afssfa@dasda", "RA100", "2015", TrenutnaGodina.TRECA, Status.B, 0, new ArrayList<Ocena>(), p);
 		student.setSpisakNePolozenihIspita(p);
@@ -101,10 +104,12 @@ public class BazaStudent {
 		return predmet.getNaziv();
 	case 2:
 		return "" + predmet.getBrojESPB();
-	//case 3:
-		//return predmet.getGodina().toString();
+	case 3:
+		return "" + ocena.getOcena();
+		
 	case 4:
-		return predmet.getSemestar().toString();
+		return ocena.getDatumPolaganjaIspita().toString();
+		
 	default:
 		return null;
 	}
@@ -265,17 +270,7 @@ public class BazaStudent {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

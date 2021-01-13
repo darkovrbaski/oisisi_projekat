@@ -37,8 +37,6 @@ public class AbstractTableModelPolozeniIspitiStudenta extends AbstractTableModel
 		return BazaStudent.getInstance().getColumnNamePolozeniPredmeti(column);
 	}
 	
-	
-	
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {

@@ -38,7 +38,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	private static final long serialVersionUID = -7285866491261741657L;
 
 	private Student student;
-	private static Table tabelaPolozenihPredmeta;
+	public static Table tabelaPolozenihPredmeta;
 	public static Table tabelaNepolozenihPredmeta;
 	public static TextFieldStudent txtIme;
 	public static TextFieldStudent txtPrezime;
@@ -103,7 +103,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		JPanel informacijeTab = informacijeStudenta();
 		tabbedPanel.addTab("Informacije", informacijeTab);
 
-		JPanel polozeniTab = new JPanel();
+		JPanel polozeniTab =  polozeniPredmeti();
 		tabbedPanel.addTab("Polozeni", polozeniTab);
 		
 		JPanel nepolozeniTab = nepolozeniPredmeti(this);
@@ -131,6 +131,8 @@ public class IzmeniStudentaDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
+				StudentiController.getInstance().dodajNepolozeniPredmet(student);
+				
 			}
 		});
 		panTop.add(btnDodaj);
@@ -143,7 +145,6 @@ public class IzmeniStudentaDialog extends JDialog {
 				// TODO Auto-generated method stub
 				
 				StudentiController.getInstance().izbrisiNepolozeniPredmet(student);
-				
 				
 			}
 		});
@@ -175,7 +176,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	
 	
 	//dddddddddddddddd
-	JPanel polozeniPredmeti() {
+	private JPanel polozeniPredmeti() {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 
@@ -183,15 +184,29 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(panTop, BorderLayout.NORTH);
 		panTop.setLayout(new FlowLayout(FlowLayout.LEFT, 25, 5));
 		
+		JButton btnPonisti = new JButton("Ponisti Ocenu");
+		btnPonisti.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		panTop.add(btnPonisti);
+		
+				
+		
 		
 		JPanel panBottom = new JPanel();
 		panel.add(panBottom);
 		panBottom.setLayout(new BorderLayout());
 		tabelaPolozenihPredmeta = new Table();
 		tabelaPolozenihPredmeta.setModel(new AbstractTableModelPolozeniIspitiStudenta(student));
-		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPolozenihPredmeta);
-		panBottom.add(scrollPanePredmeti, BorderLayout.CENTER);
-
+		JScrollPane scrollPanePolozeni = new JScrollPane(tabelaPolozenihPredmeta);
+		panBottom.add(scrollPanePolozeni, BorderLayout.CENTER);
+		
+				
 		return panel;
 	
 	}

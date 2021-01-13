@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import model.BazaPredmeta;
 import model.BazaStudent;
@@ -38,20 +41,26 @@ public class StudentiController {
 	
 	
 	
+	
+	// TODO: ZAVRSITI OVU METODU 
+	public void dodajNepolozeniPredmet(Student student) {
+			
+				
+		
+		
+	}
+	
+	
 	public void izbrisiNepolozeniPredmet(Student student) {
 		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Ukloni Nepolozeni predmet",
 				"Da li ste sigurni da želite da uklonite predmet?");
 		if (dialog.isYes() == true) {
-			//Kako pristupiti tabeli nepolozenihIspita
-			// Kod brisanja gdje se nalazi lista nepolozenihIspita
-		//	Student student = BazaStudent.getInstance().getRow(TabbedPanel.tabelaStudenata.getCurrentSelectedRow());
+		
 			Predmet predmet = BazaPredmeta.getInstance().getRow(IzmeniStudentaDialog.tabelaNepolozenihPredmeta.getCurrentSelectedRow());
 			
 			 BazaStudent.getInstance().izbrisiNePolozenPredmet(student, predmet);
 			 IzmeniStudentaDialog.tabelaNepolozenihPredmeta.azurirajPrikaz();
-			 
-			 //TabbedPanel.tabelaStudenata.azurirajPrikazStudenta();
-			//BazaPredmeta.getInstance().izbrisiStudenta(student);
+		
 	
 		}
 		
@@ -138,7 +147,7 @@ public class StudentiController {
 		predmet.getStudNisuPolozili().remove(student);
 		predmet.getStudPolozili().add(student);
 		IzmeniStudentaDialog.tabelaNepolozenihPredmeta.azurirajPrikaz();
-		//TODO: azurirati prikaz polozenih predmeta
+		IzmeniStudentaDialog.tabelaPolozenihPredmeta.azurirajPrikaz();
 		
 		return true;
 	}
@@ -324,8 +333,7 @@ public class StudentiController {
 			return false;
 		}
 		
-		
-// TODO: PROVERITI DALI RADI OVO CASTOVANJE NA DATE
+
 		BazaStudent.getInstance().izmeniStudenta(ime, prezime,  datumRodjenja, adresa, telefon, eMail, brIndeksa, godUpisa, trenGodina, status);
 		TabbedPanel.tabelaStudenata.azurirajPrikazStudenta();
 
