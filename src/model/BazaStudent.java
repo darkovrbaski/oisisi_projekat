@@ -227,6 +227,23 @@ public class BazaStudent {
 	
 	
 	
+	public void ponistiPolozenPredmet(Student student, Predmet predmet, int index) {
+		
+		for (Student s : studenti) {
+			if (s.getBrIndeksa().equals(student.getBrIndeksa())) {
+				s.getSpisakPolozenihIspita().remove(index);
+				s.getSpisakNePolozenihIspita().add(predmet);
+				break;
+			}
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	

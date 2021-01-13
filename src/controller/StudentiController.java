@@ -46,9 +46,26 @@ public class StudentiController {
 	public void dodajNepolozeniPredmet(Student student) {
 			
 				
-		
-		
 	}
+	
+	
+	
+	public void ponistiPolozenuOcijenu(Student student){
+		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Ponisti Predmet",
+				"Da li ste sigurni da želite da ponistite predmet?");
+		if (dialog.isYes() == true) {
+			
+			 Predmet predmet = BazaPredmeta.getInstance().getRow(IzmeniStudentaDialog.tabelaPolozenihPredmeta.getCurrentSelectedRow()); 
+			 int index = IzmeniStudentaDialog.tabelaPolozenihPredmeta.getCurrentSelectedRow();
+			 
+			 BazaStudent.getInstance().ponistiPolozenPredmet(student, predmet, index);
+			 IzmeniStudentaDialog.tabelaPolozenihPredmeta.azurirajPrikaz();
+			 IzmeniStudentaDialog.tabelaNepolozenihPredmeta.azurirajPrikaz();
+
+		}
+	}
+	
+		
 	
 	
 	public void izbrisiNepolozeniPredmet(Student student) {

@@ -189,8 +189,9 @@ public class IzmeniStudentaDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 
+				StudentiController.getInstance().ponistiPolozenuOcijenu(student);
+					
 			}
 		});
 		panTop.add(btnPonisti);
