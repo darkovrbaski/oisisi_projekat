@@ -88,12 +88,15 @@ public class BazaPredmeta {
 	
 	
 	public boolean dodajPredmet(Predmet predmet) {
+		this.predmeti = this.sacuvaniPredmeti;
 		for (Predmet p : predmeti) {
 			if (p.getSifraPredmeta().equals(predmet.getSifraPredmeta())) {
 				return false;
 			}
 		}
 		predmeti.add(predmet);
+		this.sacuvaniPredmeti = this.predmeti;
+		pretragaPredmeta();
 		return true;
 	}
 	
@@ -111,6 +114,7 @@ public class BazaPredmeta {
 			
 			}
 		}
+		pretragaPredmeta();
 	}
 	
 	
