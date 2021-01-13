@@ -5,37 +5,58 @@
       <naziv>osnove programiranja</naziv>
       <semestar>Zimski</semestar>
       <godina>1</godina>
+      <predmetniProfesor>
+        <prezime>Mirkovic</prezime>
+        <ime>Nikola</ime>
+        <datumRodjenja>1978-01-01 00:00:00.0 CET</datumRodjenja>
+        <adresa>Jovana Cvjica 25, Subotica</adresa>
+        <telefon>021368456</telefon>
+        <eMail>nikola.mirkovic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 601</adresaKancelarije>
+        <brojLicne>321321321</brojLicne>
+        <titula>DoktorProfesor</titula>
+        <zvanje>RedovniProfesor</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+          <predmet>
+            <sifraPredmeta>p2</sifraPredmeta>
+            <naziv>statistika</naziv>
+            <semestar>Letnji</semestar>
+            <godina>3</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>8</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifraPredmeta>p3</sifraPredmeta>
+            <naziv>algoritmi i strukture podataka</naziv>
+            <semestar>Letnji</semestar>
+            <godina>2</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>9</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifraPredmeta>p4</sifraPredmeta>
+            <naziv>LPRS</naziv>
+            <semestar>Zimski</semestar>
+            <godina>3</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>7</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>7</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>p2</sifraPredmeta>
-      <naziv>statistika</naziv>
-      <semestar>Letnji</semestar>
-      <godina>3</godina>
-      <brojESPB>8</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
-    <predmet>
-      <sifraPredmeta>p3</sifraPredmeta>
-      <naziv>algoritmi i strukture podataka</naziv>
-      <semestar>Letnji</semestar>
-      <godina>2</godina>
-      <brojESPB>9</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
-    <predmet>
-      <sifraPredmeta>p4</sifraPredmeta>
-      <naziv>LPRS</naziv>
-      <semestar>Zimski</semestar>
-      <godina>3</godina>
-      <brojESPB>7</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet/predmetniProfesor/spisakPredmeta/predmet[2]"/>
+    <predmet reference="../predmet/predmetniProfesor/spisakPredmeta/predmet[3]"/>
+    <predmet reference="../predmet/predmetniProfesor/spisakPredmeta/predmet[4]"/>
     <predmet>
       <sifraPredmeta>p5</sifraPredmeta>
       <naziv>matematika</naziv>
@@ -68,28 +89,47 @@
       <naziv>osnove elektortehnike</naziv>
       <semestar>Letnji</semestar>
       <godina>1</godina>
+      <predmetniProfesor>
+        <prezime>Micic</prezime>
+        <ime>Vasa</ime>
+        <datumRodjenja>1970-02-14 00:00:00.0 CET</datumRodjenja>
+        <adresa>Tolstojeva 55, Novi Sad</adresa>
+        <telefon>021212114</telefon>
+        <eMail>vasa.micic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 604</adresaKancelarije>
+        <brojLicne>001001001</brojLicne>
+        <titula>Doktor</titula>
+        <zvanje>Docent</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+          <predmet>
+            <sifraPredmeta>p9</sifraPredmeta>
+            <naziv>Sociologija</naziv>
+            <semestar>Zimski</semestar>
+            <godina>1</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>10</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifraPredmeta>p10</sifraPredmeta>
+            <naziv>Filozofija</naziv>
+            <semestar>Zimski</semestar>
+            <godina>1</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>4</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>11</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>p9</sifraPredmeta>
-      <naziv>Sociologija</naziv>
-      <semestar>Zimski</semestar>
-      <godina>1</godina>
-      <brojESPB>10</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
-    <predmet>
-      <sifraPredmeta>p10</sifraPredmeta>
-      <naziv>Filozofija</naziv>
-      <semestar>Zimski</semestar>
-      <godina>1</godina>
-      <brojESPB>4</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet[8]/predmetniProfesor/spisakPredmeta/predmet[2]"/>
+    <predmet reference="../predmet[8]/predmetniProfesor/spisakPredmeta/predmet[3]"/>
     <predmet>
       <sifraPredmeta>p11</sifraPredmeta>
       <naziv>ORT</naziv>
@@ -104,46 +144,82 @@
       <naziv>NANS</naziv>
       <semestar>Letnji</semestar>
       <godina>2</godina>
+      <predmetniProfesor>
+        <prezime>Miletic</prezime>
+        <ime>Srdjan</ime>
+        <datumRodjenja>1966-04-20 00:00:00.0 CET</datumRodjenja>
+        <adresa>Šekspirova 12, Novi Sad</adresa>
+        <telefon>021978225</telefon>
+        <eMail>srdjan.miletic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 605</adresaKancelarije>
+        <brojLicne>002002002</brojLicne>
+        <titula>Doktor</titula>
+        <zvanje>Docent</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+          <predmet>
+            <sifraPredmeta>p13</sifraPredmeta>
+            <naziv>Organizacija podataka</naziv>
+            <semestar>Zimski</semestar>
+            <godina>2</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>7</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifraPredmeta>p14</sifraPredmeta>
+            <naziv>Baze podataka</naziv>
+            <semestar>Zimski</semestar>
+            <godina>2</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>6</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>5</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>p13</sifraPredmeta>
-      <naziv>Organizacija podataka</naziv>
-      <semestar>Zimski</semestar>
-      <godina>2</godina>
-      <brojESPB>7</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
-    <predmet>
-      <sifraPredmeta>p14</sifraPredmeta>
-      <naziv>Baze podataka</naziv>
-      <semestar>Zimski</semestar>
-      <godina>2</godina>
-      <brojESPB>6</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet[12]/predmetniProfesor/spisakPredmeta/predmet[2]"/>
+    <predmet reference="../predmet[12]/predmetniProfesor/spisakPredmeta/predmet[3]"/>
     <predmet>
       <sifraPredmeta>p15</sifraPredmeta>
       <naziv>paralelno programiranje</naziv>
       <semestar>Zimski</semestar>
       <godina>2</godina>
+      <predmetniProfesor>
+        <prezime>Mihajlovic</prezime>
+        <ime>Branislav</ime>
+        <datumRodjenja>1980-06-28 00:00:00.0 CEST</datumRodjenja>
+        <adresa>Jovana Subotica 99, Novi Sad</adresa>
+        <telefon>021778323</telefon>
+        <eMail>branislav.mihajlovic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 606</adresaKancelarije>
+        <brojLicne>559585632</brojLicne>
+        <titula>DoktorProfesor</titula>
+        <zvanje>RedovniProfesor</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+          <predmet>
+            <sifraPredmeta>p16</sifraPredmeta>
+            <naziv>konkurentno programiranje</naziv>
+            <semestar>Letnji</semestar>
+            <godina>2</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>9</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>8</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>p16</sifraPredmeta>
-      <naziv>konkurentno programiranje</naziv>
-      <semestar>Letnji</semestar>
-      <godina>2</godina>
-      <brojESPB>9</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet[15]/predmetniProfesor/spisakPredmeta/predmet[2]"/>
     <predmet>
       <sifraPredmeta>p17</sifraPredmeta>
       <naziv>Operativni sistemi</naziv>
@@ -221,6 +297,31 @@
       <naziv>Informaciona bezbednost</naziv>
       <semestar>Letnji</semestar>
       <godina>4</godina>
+      <predmetniProfesor>
+        <prezime>Maricic</prezime>
+        <ime>Branko</ime>
+        <datumRodjenja>1973-01-18 00:00:00.0 CET</datumRodjenja>
+        <adresa>Nikole Tesle 25, Sombor</adresa>
+        <telefon>021487265</telefon>
+        <eMail>branko.maricic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 616</adresaKancelarije>
+        <brojLicne>004004004</brojLicne>
+        <titula>DoktorProfesor</titula>
+        <zvanje>Docent</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+          <predmet>
+            <sifraPredmeta>p29</sifraPredmeta>
+            <naziv>Informacioni sistemi</naziv>
+            <semestar>Zimski</semestar>
+            <godina>4</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>6</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>9</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
@@ -230,6 +331,31 @@
       <naziv>Elektronsko placanje</naziv>
       <semestar>Zimski</semestar>
       <godina>3</godina>
+      <predmetniProfesor>
+        <prezime>Lukovic</prezime>
+        <ime>Branislav</ime>
+        <datumRodjenja>1982-04-08 00:00:00.0 CEST</datumRodjenja>
+        <adresa>Živojina Mišica 7, Apatin</adresa>
+        <telefon>021159478</telefon>
+        <eMail>branislav.lukovic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 617</adresaKancelarije>
+        <brojLicne>005005005</brojLicne>
+        <titula>Doktor</titula>
+        <zvanje>RedovniProfesor</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+          <predmet>
+            <sifraPredmeta>p28</sifraPredmeta>
+            <naziv>Projektovanje softvera</naziv>
+            <semestar>Zimski</semestar>
+            <godina>3</godina>
+            <predmetniProfesor reference="../../.."/>
+            <brojESPB>5</brojESPB>
+            <studPolozili/>
+            <studNisuPolozili/>
+          </predmet>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>8</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
@@ -239,28 +365,27 @@
       <naziv>Distribuirani sistemi</naziv>
       <semestar>Zimski</semestar>
       <godina>4</godina>
+      <predmetniProfesor>
+        <prezime>Obradovic</prezime>
+        <ime>Branimir</ime>
+        <datumRodjenja>1979-01-07 00:00:00.0 CET</datumRodjenja>
+        <adresa>Stari šor 18, Sremska Mitrovica</adresa>
+        <telefon>021922333</telefon>
+        <eMail>branimir.obradovic@mailinator.com</eMail>
+        <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 618</adresaKancelarije>
+        <brojLicne>006006006</brojLicne>
+        <titula>DoktorProfesor</titula>
+        <zvanje>Docent</zvanje>
+        <spisakPredmeta>
+          <predmet reference="../../.."/>
+        </spisakPredmeta>
+      </predmetniProfesor>
       <brojESPB>6</brojESPB>
       <studPolozili/>
       <studNisuPolozili/>
     </predmet>
-    <predmet>
-      <sifraPredmeta>p28</sifraPredmeta>
-      <naziv>Projektovanje softvera</naziv>
-      <semestar>Zimski</semestar>
-      <godina>3</godina>
-      <brojESPB>5</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
-    <predmet>
-      <sifraPredmeta>p29</sifraPredmeta>
-      <naziv>Informacioni sistemi</naziv>
-      <semestar>Zimski</semestar>
-      <godina>4</godina>
-      <brojESPB>6</brojESPB>
-      <studPolozili/>
-      <studNisuPolozili/>
-    </predmet>
+    <predmet reference="../predmet[26]/predmetniProfesor/spisakPredmeta/predmet[2]"/>
+    <predmet reference="../predmet[25]/predmetniProfesor/spisakPredmeta/predmet[2]"/>
     <predmet>
       <sifraPredmeta>p30</sifraPredmeta>
       <naziv>Masinsko ucenje</naziv>
@@ -285,19 +410,7 @@
       <zvanje>RedovniProfesor</zvanje>
       <spisakPredmeta/>
     </profesor>
-    <profesor>
-      <prezime>Mirkovic</prezime>
-      <ime>Nikola</ime>
-      <datumRodjenja>1978-01-01 00:00:00.0 CET</datumRodjenja>
-      <adresa>Jovana Cvjica 25, Subotica</adresa>
-      <telefon>021368456</telefon>
-      <eMail>nikola.mirkovic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 601</adresaKancelarije>
-      <brojLicne>321321321</brojLicne>
-      <titula>DoktorProfesor</titula>
-      <zvanje>RedovniProfesor</zvanje>
-      <spisakPredmeta/>
-    </profesor>
+    <profesor reference="../../predmeti/predmet/predmetniProfesor"/>
     <profesor>
       <prezime>Petkovic</prezime>
       <ime>Ilija</ime>
@@ -324,45 +437,9 @@
       <zvanje>VanredniProfesor</zvanje>
       <spisakPredmeta/>
     </profesor>
-    <profesor>
-      <prezime>Micic</prezime>
-      <ime>Vasa</ime>
-      <datumRodjenja>1970-02-14 00:00:00.0 CET</datumRodjenja>
-      <adresa>Tolstojeva 55, Novi Sad</adresa>
-      <telefon>021212114</telefon>
-      <eMail>vasa.micic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 604</adresaKancelarije>
-      <brojLicne>001001001</brojLicne>
-      <titula>Doktor</titula>
-      <zvanje>Docent</zvanje>
-      <spisakPredmeta/>
-    </profesor>
-    <profesor>
-      <prezime>Miletic</prezime>
-      <ime>Srdjan</ime>
-      <datumRodjenja>1966-04-20 00:00:00.0 CET</datumRodjenja>
-      <adresa>Šekspirova 12, Novi Sad</adresa>
-      <telefon>021978225</telefon>
-      <eMail>srdjan.miletic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 605</adresaKancelarije>
-      <brojLicne>002002002</brojLicne>
-      <titula>Doktor</titula>
-      <zvanje>Docent</zvanje>
-      <spisakPredmeta/>
-    </profesor>
-    <profesor>
-      <prezime>Mihajlovic</prezime>
-      <ime>Branislav</ime>
-      <datumRodjenja>1980-06-28 00:00:00.0 CEST</datumRodjenja>
-      <adresa>Jovana Subotica 99, Novi Sad</adresa>
-      <telefon>021778323</telefon>
-      <eMail>branislav.mihajlovic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 606</adresaKancelarije>
-      <brojLicne>559585632</brojLicne>
-      <titula>DoktorProfesor</titula>
-      <zvanje>RedovniProfesor</zvanje>
-      <spisakPredmeta/>
-    </profesor>
+    <profesor reference="../../predmeti/predmet[8]/predmetniProfesor"/>
+    <profesor reference="../../predmeti/predmet[12]/predmetniProfesor"/>
+    <profesor reference="../../predmeti/predmet[15]/predmetniProfesor"/>
     <profesor>
       <prezime>Markovic</prezime>
       <ime>Marko</ime>
@@ -480,45 +557,9 @@
       <zvanje>Docent</zvanje>
       <spisakPredmeta/>
     </profesor>
-    <profesor>
-      <prezime>Maricic</prezime>
-      <ime>Branko</ime>
-      <datumRodjenja>1973-01-18 00:00:00.0 CET</datumRodjenja>
-      <adresa>Nikole Tesle 25, Sombor</adresa>
-      <telefon>021487265</telefon>
-      <eMail>branko.maricic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 616</adresaKancelarije>
-      <brojLicne>004004004</brojLicne>
-      <titula>DoktorProfesor</titula>
-      <zvanje>Docent</zvanje>
-      <spisakPredmeta/>
-    </profesor>
-    <profesor>
-      <prezime>Lukovic</prezime>
-      <ime>Branislav</ime>
-      <datumRodjenja>1982-04-08 00:00:00.0 CEST</datumRodjenja>
-      <adresa>Živojina Mišica 7, Apatin</adresa>
-      <telefon>021159478</telefon>
-      <eMail>branislav.lukovic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 617</adresaKancelarije>
-      <brojLicne>005005005</brojLicne>
-      <titula>Doktor</titula>
-      <zvanje>RedovniProfesor</zvanje>
-      <spisakPredmeta/>
-    </profesor>
-    <profesor>
-      <prezime>Obradovic</prezime>
-      <ime>Branimir</ime>
-      <datumRodjenja>1979-01-07 00:00:00.0 CET</datumRodjenja>
-      <adresa>Stari šor 18, Sremska Mitrovica</adresa>
-      <telefon>021922333</telefon>
-      <eMail>branimir.obradovic@mailinator.com</eMail>
-      <adresaKancelarije>Dositeja Obradovica 6, Novi Sad, NTP 618</adresaKancelarije>
-      <brojLicne>006006006</brojLicne>
-      <titula>DoktorProfesor</titula>
-      <zvanje>Docent</zvanje>
-      <spisakPredmeta/>
-    </profesor>
+    <profesor reference="../../predmeti/predmet[25]/predmetniProfesor"/>
+    <profesor reference="../../predmeti/predmet[26]/predmetniProfesor"/>
+    <profesor reference="../../predmeti/predmet[27]/predmetniProfesor"/>
   </profesori>
   <studenti>
     <student>
@@ -548,7 +589,20 @@
       <trenGodina>DRUGA</trenGodina>
       <statusStudenta>S</statusStudenta>
       <prosecnaOcjena>0.0</prosecnaOcjena>
-      <spisakPolozenihIspita/>
+      <spisakPolozenihIspita>
+        <model.Ocena>
+          <trenutniStudent reference="../../.."/>
+          <trenutniPredmet reference="../../../../../predmeti/predmet"/>
+          <ocena>10</ocena>
+          <datumPolaganjaIspita>2020-11-20 00:00:00.0 CET</datumPolaganjaIspita>
+        </model.Ocena>
+        <model.Ocena>
+          <trenutniStudent reference="../../.."/>
+          <trenutniPredmet reference="../../../../../predmeti/predmet[5]"/>
+          <ocena>10</ocena>
+          <datumPolaganjaIspita>2020-10-30 00:00:00.0 CET</datumPolaganjaIspita>
+        </model.Ocena>
+      </spisakPolozenihIspita>
       <spisakNePolozenihIspita/>
     </student>
     <student>
@@ -578,8 +632,30 @@
       <trenGodina>TRECA</trenGodina>
       <statusStudenta>S</statusStudenta>
       <prosecnaOcjena>0.0</prosecnaOcjena>
-      <spisakPolozenihIspita/>
-      <spisakNePolozenihIspita/>
+      <spisakPolozenihIspita>
+        <model.Ocena>
+          <trenutniStudent reference="../../.."/>
+          <trenutniPredmet reference="../../../../../predmeti/predmet[5]"/>
+          <ocena>10</ocena>
+          <datumPolaganjaIspita>2017-12-12 00:00:00.0 CET</datumPolaganjaIspita>
+        </model.Ocena>
+        <model.Ocena>
+          <trenutniStudent reference="../../.."/>
+          <trenutniPredmet reference="../../../../../predmeti/predmet/predmetniProfesor/spisakPredmeta/predmet[3]"/>
+          <ocena>9</ocena>
+          <datumPolaganjaIspita>2019-11-10 00:00:00.0 CET</datumPolaganjaIspita>
+        </model.Ocena>
+        <model.Ocena>
+          <trenutniStudent reference="../../.."/>
+          <trenutniPredmet reference="../../../../../predmeti/predmet"/>
+          <ocena>8</ocena>
+          <datumPolaganjaIspita>2020-11-11 00:00:00.0 CET</datumPolaganjaIspita>
+        </model.Ocena>
+      </spisakPolozenihIspita>
+      <spisakNePolozenihIspita>
+        <predmet reference="../../../../predmeti/predmet/predmetniProfesor/spisakPredmeta/predmet[2]"/>
+        <predmet reference="../../../../predmeti/predmet/predmetniProfesor/spisakPredmeta/predmet[4]"/>
+      </spisakNePolozenihIspita>
     </student>
     <student>
       <prezime>Ilic</prezime>
@@ -743,7 +819,14 @@
       <trenGodina>CETVRTA</trenGodina>
       <statusStudenta>B</statusStudenta>
       <prosecnaOcjena>0.0</prosecnaOcjena>
-      <spisakPolozenihIspita/>
+      <spisakPolozenihIspita>
+        <model.Ocena>
+          <trenutniStudent reference="../../.."/>
+          <trenutniPredmet reference="../../../../../predmeti/predmet[15]"/>
+          <ocena>9</ocena>
+          <datumPolaganjaIspita>2021-01-10 00:00:00.0 CET</datumPolaganjaIspita>
+        </model.Ocena>
+      </spisakPolozenihIspita>
       <spisakNePolozenihIspita/>
     </student>
     <student>
