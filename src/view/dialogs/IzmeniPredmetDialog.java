@@ -291,6 +291,17 @@ public class IzmeniPredmetDialog extends JDialog {
 			}
 		});
 		panBottom.add(btnOdustani);
+		
+		JButton btnUkloni = new JButton("-");
+		panBottom.add(btnUkloni);
+		btnUkloni.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PredmetController.getInstance().uklanjanjeProfesoraPredmetu(predmet);
+			}
+		});
+		
 
 		return panel;
 	}

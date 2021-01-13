@@ -288,4 +288,16 @@ public class PredmetController {
 		BazaPredmeta.getInstance().pretragaPredmeta();
 		TabbedPanel.tabelaPredmeta.azurirajPrikaz();
 	}
+
+	public void uklanjanjeProfesoraPredmetu(Predmet predmet) {
+		if (predmet.getPredmetniProfesor() == null) {
+			return;
+		}
+		UpitPotvrdeDialog dialog = new UpitPotvrdeDialog("Ukloni Profesora", "Da li ste sigurni?");
+		if (dialog.isYes() == true) {
+			predmet.getPredmetniProfesor().getSpisakPredmeta().remove(predmet);
+			predmet.setPredmetniProfesor(null);
+		}
+	}
+	
 }

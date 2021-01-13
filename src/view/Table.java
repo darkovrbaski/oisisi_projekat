@@ -40,6 +40,9 @@ public class Table extends JTable {
 	}
 
 	public int getCurrentSelectedRow() {
+		if (this.getSelectedRow() == -1) {
+			return -1;
+		}
 		return this.convertRowIndexToModel(this.getSelectedRow());
 	}
 
